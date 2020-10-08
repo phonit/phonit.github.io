@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>k8s</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>k8s&nbsp; kubernetes &nbsp;容器编排工具</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>K8S 架构<BR>IAAS&nbsp;&nbsp;&nbsp; 云厂商级别&nbsp; 阿里云&nbsp; 华为云 
+华三云<BR>PAAS&nbsp;&nbsp; 平台级别&nbsp;&nbsp; 新浪用&nbsp; docker<BR>SAAS&nbsp;&nbsp; 
+应用&nbsp;&nbsp; office365</FONT></P>
+<P><FONT 
+size=3>pod是k8s的最小单元，容器包含在pod中，一个pod中有一个pause容器和若干个业务容器，而容器就是单独的一个容器，简而言之，pod是一组容器，而容器单指一个容器。<BR>这个pause容器的状态来代表这个pod的状态</FONT></P>
+<P><FONT size=3>k8s&nbsp;&nbsp; google 的borg架构前身&nbsp;&nbsp;&nbsp; 资源管理器&nbsp; 
+go语言开发<BR>&nbsp;&nbsp; 轻量级<BR>&nbsp;&nbsp; 进程管理<BR>&nbsp;&nbsp; 
+弹性伸缩<BR>&nbsp;&nbsp; 负载均衡&nbsp; ipvs</FONT></P>
+<P><FONT size=3>pod&nbsp; 控制器类型&nbsp; k8s 网络通讯模式<BR>k8s 集群构建<BR>资源清单 yam 
+语法&nbsp; 编写pod&nbsp; 掌握pod生命周期 重要</FONT></P>
+<P><FONT size=3>掌握重要部分<BR>pod 控制器<BR>service原理&nbsp;&nbsp; 
+syc原理和构建方式<BR>存储&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+掌握多中存储类型特点，合适的环境使用什么类型<BR>调度器&nbsp;&nbsp; 掌握调度器原理， 能够根据需要把POD 
+定义到想要的节点上<BR>集群安全制度&nbsp;&nbsp; 集群认证，鉴权，访问控制，原理及流程<BR>helm&nbsp; linux yum&nbsp; 
+掌握原理 和helm模板 部署常用的插件<BR>运维&nbsp; 修改k8s证书时间&nbsp;&nbsp;&nbsp; 高可用构建</FONT></P>
+<P><FONT size=3>高可用集群的 副本最好》=3个的奇数</FONT></P>
+<P><FONT size=3>组件说明<BR>节点最好是单数&nbsp; etcd 存储 可信赖的分布式键值存储服务 协助分布式集群运转<BR>v2 内存 
+需要备份操作&nbsp;&nbsp;&nbsp; v3数据库版本<BR>apiserver&nbsp;&nbsp;&nbsp;&nbsp; 
+所有服务访问统一入口<BR>crontrollermanager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+维持副本期望数目<BR>scheduler&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+负责介绍任务，选择合适的节点进行分配任务<BR>ETCD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 键值对数据库，&nbsp; 存储k8s 
+集群所有信息 （持久化）<BR>kubelet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+直接跟容器引擎交互实现容器的生命周期管理<BR>kube-proxy&nbsp;&nbsp;&nbsp;&nbsp; 
+负责写入规则到IPTABLES,IPVS实现服务映射访问的<BR>coredns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+可以为集群svc创建域名解析<BR>dashboard:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K8S的 
+bs访问结构体系，<BR>ingress controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+官方只能实现4层代理，ingress&nbsp; 
+实现7层代理<BR>federation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+提供一个可以跨集群中心的多K8S统一管理功能<BR>prometheus&nbsp;&nbsp;&nbsp;&nbsp; 
+提供k8s集群的监控能力<BR>elk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提供集群日志统一分析介入平台</FONT></P>
+<P><FONT size=3>pod 概念<BR>自主式POD<BR>共享一&nbsp; 共享pause<BR>pod里1个或者多个容器 
+共享pause的网络栈ip地址<BR>容器不可以公用端口 相当于主机上进程公用一个端口<BR>共享二<BR>共享pause存储空间</FONT></P>
+<P><FONT size=3>POD管理控制器 <BR>ReplicationController &amp; ReplicaSet &amp; 
+deployment<BR>replicationcontroller 用来确保容器应用副本保持在用户定义的副本数，有容器异常退出，会自动创建新的pod 
+来替代，多出来的容器会自动回收</FONT></P>
+<P><FONT size=3>RelicaSet&nbsp; 和ReplicationController 没有本质不同，增加支持集合式selector 
+建议RS取代RC</FONT></P>
+<P><FONT size=3>deployment&nbsp;&nbsp;&nbsp; 一般建议使用deployment来自动管理ReplicaSet 
+无需担心跟其他机制的不兼容问题 比如 replicaset 不支持rolling-update滚动更新&nbsp; 但 
+deployment支持</FONT></P>
+<P><FONT size=3>HPA 平滑扩展资源&nbsp; horizontal pod autoscaling 仅适用于 deployment 
+和ReplicaSet&nbsp; 监控资源利用率 </FONT></P>
+<P><FONT size=3>&nbsp;无状态服务&nbsp;&nbsp;&nbsp;&nbsp; 进程类型的服务，<BR>有状态服务&nbsp; 
+数据库类型的服务&nbsp; <BR>statefulset&nbsp;&nbsp; 为了解决有状态服务的问题&nbsp; 对应 deployment 
+和relicasets 是为无状态服务设计的 应用场景包括：<BR>&nbsp;&nbsp;&nbsp;&nbsp; 稳定的持久化存储 
+，pod重新调度后，还是能访问到相同持久化数据，基于pvc来实现<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+稳定的网络标志，pod重新调度其pod_name和host_name 不变，基于headless service (即没有cluster 
+ip的service)实现<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 有序部署，有序扩展，即pod是有顺序的， 
+在部署和扩展的时候依据定义的顺序依次进行 ，基于 init containers 实现 前一步pod 
+必须是RUN和ready状态<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 有序收缩，有序删除。</FONT></P>
+<P><FONT size=3>deamonset&nbsp; 确保全部 或者一些 
+node上运行一个pod的副本，当有node加入集群时，也会为他们新增一个pod，当有node移除是，pod会回收，删除deamonset里的所有pod<BR>&nbsp;&nbsp; 
+deamonset典型用法<BR>&nbsp; 运行集群deamon，例如在每个node上运行&nbsp; glusterd,ceph<BR>&nbsp; 
+在每个node上 运行日志收集 deamon 例如 fluentd,logstash<BR>&nbsp; 在每个node上运行监控deamon,例如 
+pormesheus node exporter</FONT></P>
+<P><FONT size=3>job&nbsp; 负责批处理任务，执行一次<BR>cron job 管理基于时间的job&nbsp; 
+特定时间执行，周期性时间执行</FONT></P><FONT size=3>
+<P><BR>服务发现</P>
+<P><BR>网络通讯模式<BR>k8s 网络模型假定了所有pod可以直接连接到扁平网络中，这在google compute engine 
+里面是现成的网络模型， 但是私有云搭建k8s中，假设这个网络不存在，我们需要将不同节点上的docker容器之间互相访问<BR>，然后运行k8s</P>
+<P>同一个pod内多个容器之间： 通过locahost访问<BR>各pod之间的通讯： overlay network <BR>pod与service 
+之间通讯，各节点iptables规则&nbsp; 新版本里lvs转发</P>
+<P>flanel 是coreos 团队k8s 设计的一个网络规划服务，让集群中不同节点物理主机创建docker 
+容器都具有全集群唯一的虚拟IP，他能在这些IP之间建立overlay network （覆盖网络） ， 数据包原封不动的传递到目标容器中，</P>
+<P>&nbsp;</P>
+<P>flannel 与etcd关联<BR>存储管理 
+flannel可以分配的ip地址段<BR>监控etcd每个pod的实际地址，并在内存中建立pod节点路由表</P>
+<P>通讯流程：通过守护进程是flanneld，在网桥flannel0，在docker0（相当于pod的网关） ，在到pod 
+0-n,出入站都使用UDP数据包封装内部ip通讯，通过物理机通讯。</P>
+<P>几种通讯方式与工作原理：etcd中有所有的路由表<BR>同一个pod内部通讯，同一pod共享同一个网络命名空间，使用localhost（同一个linux协议栈）<BR>pod1与pod2<BR>pod1与pod2 
+不在同一台主机，pod地址与docker0在同一网段的，但docker0与物理机不在同ip段，pod的IP封装到udp包通过物理机IP通讯。<BR>pod1与pod2在同一主机，由docker0转发数据包，不需要经过flanneld<BR>pod与service的网络，使用LVS转发<BR>pod 
+与外网 ，pod通过网卡相当于nat转发。</P>
+<P>k8s有三层网络<BR>节点网络 即物理网络<BR>pod网络&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+虚拟的内部网络<BR>services网络&nbsp;&nbsp; 虚拟的内部网络</P>
+<P><BR>k8s安装<BR>前期准备<BR>master01 \node1 \node2\harbor 
+(仓库)\router<BR>kubeadm方案安装</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><BR></FONT>&nbsp;</P></BODY></HTML>

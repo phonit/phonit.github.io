@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>firewall</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<P><FONT size=3><FONT color=#ff0000>1.firewalld的基本使用<BR></FONT>启动：&nbsp; 
+systemctl start firewalld<BR>查状态：systemctl status firewalld <BR>停止：&nbsp; 
+systemctl disable firewalld<BR>禁用：&nbsp; systemctl stop 
+firewalld<BR>在开机时启用一个服务：systemctl enable 
+firewalld.service<BR>在开机时禁用一个服务：systemctl disable 
+firewalld.service<BR>查看服务是否开机启动：systemctl is-enabled 
+firewalld.service<BR>查看已启动的服务列表：systemctl list-unit-files|grep 
+enabled<BR>查看启动失败的服务列表：systemctl --failed</FONT></P><FONT size=3>
+<P><BR>2.<FONT color=#ff0000>配置firewalld-cmd</FONT><BR>查看版本： firewall-cmd 
+--version<BR>查看帮助： firewall-cmd --help<BR>显示状态： firewall-cmd 
+--state<BR>查看所有打开的端口： firewall-cmd --zone=public --list-ports<BR>更新防火墙规则： 
+firewall-cmd --reload<BR>查看区域信息:&nbsp; firewall-cmd 
+--get-active-zones<BR>查看指定接口所属区域： firewall-cmd 
+--get-zone-of-interface=eth0<BR>拒绝所有包：firewall-cmd --panic-on<BR>取消拒绝状态： 
+firewall-cmd --panic-off<BR>查看是否拒绝： firewall-cmd --query-panic<BR></P>
+<P>3.<FONT color=#ff0000>那怎么开启一个端口呢</FONT><BR>添加<BR>firewall-cmd 
+--zone=public(作用域) --add-port=80/tcp(端口和访问类型) --permanent(永久生效)<BR>firewall-cmd 
+--zone=public --add-service=http --permanent<BR>firewall-cmd 
+--reload&nbsp;&nbsp;&nbsp; # 重新载入，更新防火墙规则<BR>firewall-cmd --zone= public 
+--query-port=80/tcp&nbsp; #查看<BR>firewall-cmd --zone= public 
+--remove-port=80/tcp --permanent&nbsp; # 删除</FONT></P>
+<P><FONT size=3>firewall-cmd --list-services<BR>firewall-cmd 
+--get-services<BR>firewall-cmd --add-service=&lt;service&gt;<BR>firewall-cmd 
+--delete-service=&lt;service&gt;<BR>在每次修改端口和服务后/etc/firewalld/zones/public.xml文件就会被修改,所以也可以在文件中之间修改,然后重新加载<BR>使用命令实际也是在修改文件，需要重新加载才能生效。</FONT></P>
+<P><FONT size=3>firewall-cmd --zone=public --query-port=80/tcp<BR>firewall-cmd 
+--zone=public --query-port=8080/tcp<BR>firewall-cmd --zone=public 
+--query-port=3306/tcp<BR>firewall-cmd --zone=public --add-port=8080/tcp 
+--permanent<BR>firewall-cmd --zone=public --add-port=3306/tcp 
+--permanent<BR>firewall-cmd --zone=public --query-port=3306/tcp<BR>firewall-cmd 
+--zone=public --query-port=8080/tcp<BR>firewall-cmd --reload&nbsp; # 
+重新加载后才能生效<BR>firewall-cmd --zone=public --query-port=3306/tcp<BR>firewall-cmd 
+--zone=public --query-port=8080/tcp</FONT></P><FONT size=3>
+<P><BR>4<FONT color=#ff0000>.参数解释</FONT><BR>–add-service #添加的服务<BR>–zone 
+#作用域<BR>–add-port=80/tcp #添加端口，格式为：端口/通讯协议<BR>–permanent #永久生效，没有此参数重启后失效</P>
+<P><BR>5.<FONT color=#ff0000>详细使用</FONT><BR>firewall-cmd --permanent 
+--zone=public --<FONT color=#ff0000>add-rich-rule</FONT>='rule family="ipv4" 
+source address="192.168.0.4/24" service name="http" accept'&nbsp;&nbsp;&nbsp; 
+//设置某个ip访问某个服务<BR>firewall-cmd --permanent --zone=public --<FONT 
+color=#ff0000>remove-rich-rule</FONT>='rule family="ipv4" source 
+address="192.168.0.4/24" service name="http" accept' //删除配置<BR>firewall-cmd 
+--permanent --add-rich-rule 'rule family=ipv4 source address=192.168.0.1/2 port 
+port=80 protocol=tcp accept'&nbsp;&nbsp;&nbsp;&nbsp; 
+//设置某个ip访问某个端口<BR>firewall-cmd --permanent --remove-rich-rule 'rule family=ipv4 
+source address=192.168.0.1/2 port port=80 protocol=tcp 
+accept'&nbsp;&nbsp;&nbsp;&nbsp; //删除配置</FONT></P>
+<P><FONT size=3>firewall-cmd --query-masquerade&nbsp; # 
+检查是否允许伪装IP<BR>firewall-cmd --add-masquerade&nbsp;&nbsp;&nbsp; # 
+允许防火墙伪装IP<BR>firewall-cmd --remove-masquerade # 禁止防火墙伪装IP</FONT></P>
+<P><FONT size=3>firewall-cmd 
+--add-forward-port=port=80:proto=tcp:toport=8080&nbsp;&nbsp; # 
+将80端口的流量转发至8080<BR>firewall-cmd 
+--add-forward-port=proto=80:proto=tcp:toaddr=192.168.1.0.1 # 
+将80端口的流量转发至192.168.0.1<BR>firewall-cmd 
+--add-forward-port=proto=80:proto=tcp:toaddr=192.168.0.1:toport=8080 # 
+将80端口的流量转发至192.168.0.1的8080端口</FONT></P>
+<P><FONT size=3><BR><FONT color=#ff0000>二、centos7以下版本</FONT><BR>1.开放80，22，8080 
+端口<BR>/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT<BR>/sbin/iptables -I 
+INPUT -p tcp --dport 22 -j ACCEPT<BR>/sbin/iptables -I INPUT -p tcp --dport 8080 
+-j ACCEPT<BR>2.保存<BR>/etc/rc.d/init.d/iptables 
+save<BR>3.查看打开的端口<BR>/etc/init.d/iptables status<BR>4.关闭防火墙 <BR>1） 
+永久性生效，重启后不会复原<BR>开启： chkconfig iptables on<BR>关闭： chkconfig iptables off<BR>2） 
+即时生效，重启后复原<BR>开启： service iptables start<BR>关闭： service iptables 
+stop</FONT></P></BODY></HTML>

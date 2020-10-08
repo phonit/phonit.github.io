@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>cronb</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>默认后台执行计划任务，不输出到屏幕</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>vi&nbsp; /etc/crontab</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>*/2,43 *&nbsp; *&nbsp; *&nbsp; *&nbsp;&nbsp;&nbsp; 
+root&nbsp;&nbsp; /usr/sbin/ntpdate 10.90.0.25&nbsp;&nbsp;&nbsp; <BR>1,43 *&nbsp; 
+*&nbsp; *&nbsp; *&nbsp;&nbsp;&nbsp; root&nbsp; /usr/bin/echo "aa" &gt; 
+/root/test.aa</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>*/2&nbsp; 每2分钟</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><BR><FONT size=3>systemctl restart crond</FONT> </DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>cat 
+/var/log/cron&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+查看执行结果日志<BR></FONT></DIV>
+<DIV>&nbsp;</DIV></BODY></HTML>

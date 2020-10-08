@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>history</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>history</H1></DIV></DIV>
+<DIV><FONT size=3><FONT color=#000000></FONT></FONT>&nbsp;</DIV>
+<DIV><FONT size=3><FONT 
+color=#000000>!-5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;执行从下往上第5条命令 （倒数第5条）</FONT></DIV>
+<DIV>
+<P><FONT color=#000000>!ser&nbsp;或者 !?er&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行 
+从下往上找ser开头的命令 例 service....</FONT></P>
+<P><FONT color=#000000>!*:p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打印 
+上条命令所有的参数 不执行</FONT></P>
+<P>!$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调用上条命令最后一个参数</P>
+<P><FONT 
+color=#000000>!^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+调用上个命令第一个参数</FONT></P>
+<P><FONT color=#000000>！：n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+调用上个命令第N个参数</FONT></P>
+<P>!:0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行上条命令</P>
+<P><FONT color=#000000>！*&nbsp; 调用上个命令所有参数</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>技巧一</FONT></P>
+<P><FONT color=#000000>ls /etc/ /boot</FONT></P>
+<P><FONT color=#000000>ll 按Esc 后 按. 执行&nbsp;= &nbsp; ll /boot</FONT></P>
+<P><FONT color=#000000></FONT>&nbsp;</P>
+<P><FONT color=#ff0000>技巧二</FONT></P>
+<P><FONT color=#000000>执行<FONT color=#ff0000>替换</FONT>命令使用以下</FONT></P>
+<P>ll /app/zero /dev/null</P>
+<P><FONT color=#000000><FONT face=华文中宋>^</FONT>app<FONT 
+face=华文宋体>^</FONT>dev&nbsp;&nbsp;&nbsp; 替换上个命令第一个app为dev</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#000000>ll /dev/zero /dev/null</FONT></P>
+<P><FONT color=#000000>!:gs/app/dev 执行上条命令中<FONT 
+color=#ff0000>替换所有</FONT>的app为dev的命令</FONT></P>
+<P><FONT color=#000000></FONT>&nbsp;</P>
+<P><FONT color=#000000>history -c 删除掉-内存-中的历史记录</FONT></P>
+<P><FONT color=#000000>history -d 3 
+删除第三条记录</FONT></P></FONT></DIV></BODY></HTML>

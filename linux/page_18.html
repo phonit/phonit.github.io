@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>小技巧</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>小技巧</H1></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV>
+<P><FONT color=#ff0000 size=3>删除软连接里的文件一定要注意。</FONT></P>
+<P><FONT color=#ff0000 size=3>排障命令</FONT></P>
+<P><FONT size=3>sar,&nbsp; dstat,&nbsp;&nbsp; vmstat,&nbsp;<FONT color=#ff0000> 
+pidstat</FONT> ,&nbsp;&nbsp; mpstat,&nbsp; iostat,&nbsp;&nbsp; top,&nbsp; 
+free,&nbsp; iotop,&nbsp;&nbsp; uptime,&nbsp;&nbsp; cat 
+/proc/meminfo,&nbsp;&nbsp;&nbsp; cat /proc/net/arp,&nbsp;&nbsp; </FONT><FONT 
+size=3>lsof,&nbsp; ss, time , perf , blktrace, blkparse,&nbsp; strace 
+,</FONT></P>
+<P><FONT size=3>dd, iozone, io-stress, fio</FONT></P>
+<P><FONT size=3>pidstat -d&nbsp;&nbsp; IO读写</FONT></P>
+<P><FONT size=3>pidstat -r&nbsp; &nbsp;内存试用</FONT></P>
+<P><FONT size=3>pidstat -t&nbsp;&nbsp; 查线程试用</FONT></P>
+<P><FONT size=3>pidstat -l&nbsp;&nbsp;&nbsp; 详细信息</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>sar 自动<FONT color=#ff0000>记录过去</FONT>使用率</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>使用软连接进行<FONT color=#ff0000>版本升级</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>touch a{1..5}.{tt,gg}</FONT></P>
+<P><FONT size=3>rm -rf {1..5}.{gg,tt}</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#000000 size=3>ls /etc/ /boot</FONT></P>
+<P><FONT color=#000000 size=3>ll 按Esc 后 按.&nbsp;&nbsp; = &nbsp; ll 
+/boot&nbsp;&nbsp;<FONT color=#ff0000> 快速取最后一个参数</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>pidstat -d&nbsp;查看<FONT 
+color=#ff0000>进程的信息，cpu,硬盘读写</FONT></FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>执行<FONT color=#ff0000>长时间</FONT>处理命令 用screen</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>cat /proc/net/arp&nbsp; 查看<FONT 
+color=#ff0000>arp</FONT>信息，相当于arp -a</FONT></P>
+<P><FONT size=3>ip neighbor list&nbsp;&nbsp; 查看缓存<FONT 
+color=#ff0000>arp</FONT>条目&nbsp;arp -a</FONT></P>
+<P><FONT size=3>ip neighbor flush dev ens33&nbsp; <FONT color=#ff0000>清理arp 
+</FONT></FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>shred -uzvn10 filename&nbsp; <FONT 
+color=#ff0000>删除覆盖10次数据</FONT> 文件粉碎工具</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<DIV><FONT color=#000000 size=4>ls |<FONT color=#ff0000>xargs</FONT> 
+rm&nbsp;&nbsp;&nbsp; ls到文件后,传给xargs,执行rm. 传一次执行一次.</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV>
+<P><FONT color=#ff0000 size=4>单次执行root 命令</FONT></P>
+<P><FONT size=4>su - root -c 'cat /etc/shadow'</FONT></P>
+<P><FONT color=#ff0000 size=4>查询某文件连接数</FONT></P>
+<P><FONT size=4>find / -type l -exec ls -l {} \; |grep&nbsp; 'mysql'</FONT></P>
+<P><FONT color=#ff0000 size=4>挂载img文件</FONT></P>
+<P><FONT size=3>losetup 
+-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 查看loop空闲设备</FONT></P>
+<P><FONT size=3>losetup /dev/loop0 /kvm/vm1/test.img&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 映射loop 设备 应该是相当于 mount -o loop </FONT></P>
+<P><FONT size=3>kpartx -av 
+/dev/loop0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+挂载img文件成硬件设备</FONT></P>
+<P><FONT size=3>fdisk /dev/loop0 </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>awk -F: 'NF=5{print $0}' /etc/passwd&nbsp;&nbsp;&nbsp;<FONT 
+color=#ff0000>打印前5列&nbsp;</FONT></FONT></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIV></FONT>
+<P>&nbsp;</P></DIV></BODY></HTML>

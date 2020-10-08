@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>修复启动</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P>&nbsp;</P>
+<P><FONT size=3>chroot /mnt/system</FONT></P>
+<P><FONT size=3>cat /etc/fstab 类似硬盘分区表：</FONT></P>
+<P><FONT size=3>blkid<BR>lsblk<BR>fdisk -l</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>逻辑卷修复目录挂载</FONT></P>
+<P><FONT 
+size=3>blkid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+noactive<BR>vgchange 
+-ay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+active<BR>lvdisplay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+查root实际目录<BR>mount root目录到 mnt/tmp<BR>vi mnt/tmp/etc/fstab</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>救援模式 <BR>chroot <BR>grub-install /dev/sd*</FONT></P><FONT 
+size=3>
+<P><BR>vi grub.conf</P>
+<P><BR>root(hd0,0)<BR>kernel=&nbsp; root=/////<BR>initrd=</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>centos7 修复启动</FONT></P>
+<P>ls<BR>grub&gt;insmod xfs<BR>grub&gt;set root=(hd0,1)<BR>grub&gt;linux16 
+/vmlinuz-xxxxx root=/dev/mapper/centos-root #此处xxxxxx指的是本机tab键自动补全的文件 
+root=填写本机根目录挂载的分区<BR>grub&gt;initrd16 
+/initramfs-.xxxxx.img<BR>grub&gt;boot<BR>mv /boot/grub2/grub.cfg.bak 
+/boot/grub2/grub.cfg</P>
+<P>&nbsp;</P>
+<P>grub安装</P>
+<P>grub2-install <FONT color=#ff0000>--boot-directory</FONT>=/dev/sdb 
+<BR>grub2-install /dev/sdb --force&nbsp; </P>
+<P>grub2-mkconfig -o /etc/grub2/grub.cfg</P>
+<P><BR>情况五、破坏文件/etc/fstab<BR>首先，备份/etc/fstab文件为/root/fstab<BR>cp /etc/fstab 
+/root/fstab<BR>rm -rf /etc/fstab<BR>重启虚拟机<BR></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P></FONT>&nbsp;</P></BODY></HTML>

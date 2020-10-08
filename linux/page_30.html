@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>cpu调优</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<P><FONT color=#ff0000 size=3>cpu调优</FONT></P>
+<P><FONT size=3>占cpu:时间片长，优先级低</FONT></P>
+<P><FONT size=3>占i/o：时间片短，优先级高</FONT></P>
+<P><FONT color=#ff0000 size=3>隔离出不运行内核的CPU</FONT></P>
+<P><FONT size=3>grub.cnf </FONT></P>
+<P><FONT size=3>isocpus=0,3,5</FONT></P>
+<P><FONT color=#ff0000 size=3>irq中断排除</FONT></P>
+<P><FONT size=3>echo cpu_mask &gt; /proc/irq/&lt;irq_num&gt;/smp_affinity&nbsp; 
+</FONT><FONT size=3>应该将中断绑定到那些非隔离CPU上，从而避免那些隔离的cpu处理中断服务。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT></P>
+<P><FONT color=#ff0000 size=3>NUMA结构<FONT color=#000000>是</FONT></FONT><FONT 
+size=3><FONT size=3>多cpu</FONT>有各自的 三级缓存和专有内存寻址控制器和专属内存</FONT><FONT size=3></P>
+<P>也有可能访问别的cpu内存，防止cpu访问别的cpu专有内存，进行cpu绑定</FONT></P>
+<P><FONT size=3>numastat 查看状态</FONT></P>
+<P><FONT size=3>numa_hit 2246356 专属内存命中<BR>numa_miss 0 专属内存未命中</FONT></P>
+<P><FONT size=3>例如nginx服务</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>numactl --show命令</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>numad 守护进程开启 numa架构开启可以提速50%左右 参考 numastat决定</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT></P>
+<P><FONT color=#ff0000 size=3>非numa架构</FONT></P>
+<P><FONT size=3>taskset -p mask pid 绑定进程至CPU上</FONT></P>
+<P><FONT size=3>mask值</FONT></P>
+<P><FONT size=3>0001 表示0 CPU</FONT></P>
+<P><FONT size=3>0003 (0011) 表示0 1 cpu</FONT></P>
+<P><FONT size=3>0005 (0101) 表示0 2 cpu</FONT></P>
+<P><FONT size=3>0xFFFFFFFF 表示0-31 CPU</FONT></P>
+<P><FONT size=3>taskset -p -c 0,1,3-5 1000 绑定进程1000到0，1，3-5cpu 重启都失效</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT></P>
+<P><FONT color=#ff0000 size=3>查看cpu使用情况 dstat sar iostat 最为重要</FONT></P>
+<P><FONT color=#ff0000 size=3><FONT color=#000000>sar 
+命令非常好用，可以</FONT>分析过去的CPU使用率 </FONT></P>
+<P><FONT size=3>vmstat 1 5 1s刷新共5次</FONT></P>
+<P><FONT size=3>top</FONT></P>
+<P><FONT color=#ff0000 size=3><FONT color=#000000>sar -q</FONT> 分析过去<FONT 
+color=#000000>一段时间的cpu状态统计 队列 平均负载</FONT></FONT></P>
+<P><FONT size=3>sar -q 1 实时采样cpu</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>mpstat 1 2</FONT></P>
+<P><FONT size=3>sar -P all 1 2 没有mpstat详细</FONT></P>
+<P><FONT size=3>iostat -c 1 2</FONT></P>
+<P><FONT size=3>vmstat /sar -w 每秒cs上下文切换</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P></P>
+<P><FONT color=#ff0000 size=3>dstat --top-cpu <FONT size=5>调优强大 查看进程高cpu进程man 
+dstat 其他参数 还可以监控mysql</FONT></FONT></P>
+<P><FONT size=3>dstat -c 实时cpu的状态。</FONT></P>
+<P><FONT size=3>dstat --top-cpu --top-mem --top-io</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>lsof /dir/file </FONT></P>
+<P><FONT size=3>lsof -p pid</FONT></P>
+<P><FONT size=3>lsof -i @192.168.2.1 </FONT></P>
+<P><FONT size=3>lsof -i:port</FONT></P>
+<P><FONT size=3>lsof -p pid,pid,pid -u uid,username</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3><FONT color=#ff0000>cpu调度域 cpu绑定进程</FONT> cpu分组 
+必须包含第0段内存</FONT></P>
+<P><FONT size=3>vi /etc/fstab</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>cpuset /cpuset default 0 0</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>mount -a </FONT></P>
+<P><FONT size=3>mount</FONT></P>
+<P><FONT size=3>cat /cpuset/cpuset.cpu</FONT></P>
+<P><FONT size=3>cat /cpuset/cpuset.mems</FONT></P>
+<P><FONT size=3>cat /cpuset/tasks</FONT></P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>mkdir /cpuset/domain1 子域cpu 重启都试下</FONT></P><FONT size=3>
+<P><FONT size=3>cat cpuset.cpu</FONT></P>
+<P>echo 0 &gt; cpuset.cpu</P>
+<P><FONT size=3>cat cpuset.mems</FONT></P>
+<P>echo 0 &gt; cpuset.mems</P>
+<P><FONT size=3>cat tasks 绑定进程</FONT></P>
+<P>ps -e -o psr,pid,cmd |grep httpd</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>cpu运行时间分析统计主要查应用程序和内核运行</FONT></P>
+<P>perf list&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 查看可以监控的项目</P>
+<P>perf stat&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;收集一段时间cpu运行信息 -e查看单个</P>
+<P>perf top&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 显示实时显示当前系统性能统计信息， 
+用来查看系统最耗时的内核函数</P>
+<P>perf record&nbsp;&nbsp; 记录单个函数级别统计信息&nbsp;&nbsp;</P>
+<P>perf 
+report&nbsp;&nbsp;&nbsp;perf.data&nbsp;&nbsp;&nbsp;&nbsp;报告record信息&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P></P>
+<P></FONT>
+<P><FONT size=3></FONT></P><FONT size=3></FONT>
+<P></P>
+<P><FONT size=3></FONT></P></DIV></BODY></HTML>

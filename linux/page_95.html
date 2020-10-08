@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>mysql</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>RDBMS&nbsp;&nbsp; 
+关系型数据库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;最重要的数据</FONT></DIV>
+<DIV><FONT size=3>NoSQL&nbsp;&nbsp;&nbsp; 非关系型数据库&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+可以丢失一部份数据库</FONT></DIV>
+<DIV><FONT size=3>mysql一切对象皆为表</FONT></DIV>
+<DIV><FONT size=3>删除用户，只是权限没有， 其他表库都在</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>mysql实例：包括 mysqld+多个线程+预分配的内存空间</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>逻辑结构</FONT></DIV>
+<DIV><FONT size=3>库，表，列</FONT></DIV>
+<DIV><FONT size=3>物理结构&nbsp; 存储引擎就是一个文件系统，文件系统就是将磁盘分为一个个的段，区，页。</FONT></DIV>
+<DIV><FONT size=3>段：一个表就是一个段，可以有多个区组成</FONT></DIV>
+<DIV><FONT size=3>区：一个区（簇），默认1M ，连续64个页</FONT></DIV>
+<DIV><FONT size=3>页：一个页，默认16K，连续的4个os block&nbsp; ，最小的IO单元。</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>命令</FONT></DIV>
+<DIV><FONT size=3>mysql </FONT></DIV>
+<DIV><FONT size=3>-u</FONT></DIV>
+<DIV><FONT size=3>-p</FONT></DIV>
+<DIV><FONT size=3>-S&nbsp; SOCKET文件</FONT></DIV>
+<DIV><FONT size=3>-e&nbsp; 免交互执行</FONT></DIV>
+<DIV><FONT size=3>&lt;&nbsp; 导入sql脚本</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>socket</FONT></DIV>
+<DIV><FONT size=3>前提是 <A 
+href="mailto:user@'localhost'">user@'localhost'</A></FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>mysqld --verbose --help&nbsp; <FONT 
+color=#ff0000>查询mysql的设置</FONT></FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>show processlist;&nbsp; 查用户连接数</FONT></DIV>
+<DIV><FONT size=3>show privileges;&nbsp;&nbsp;&nbsp; 查登录用户的权限</FONT></DIV>
+<DIV><FONT size=3>help&nbsp; update&nbsp;&nbsp; 查update的帮助命令</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></BODY></HTML>

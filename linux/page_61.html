@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>keystone</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>keystone&nbsp; <FONT color=#ff0000>用户注册和服务目录</FONT></FONT></P>
+<P><FONT size=3>cd /usr/local/src/kestone</FONT></P>
+<P><FONT color=#ff0000 size=3>安装依赖库</FONT></P>
+<P><FONT size=3>python setup.py install </FONT></P>
+<P><FONT size=3>cp etc/* /etc/keystone/</FONT></P>
+<P><FONT size=3>cp /etc/keystone/logging.conf.sample&nbsp; 
+/etc/kestone/logging.conf&nbsp; 主配置文件</FONT></P>
+<P><FONT size=3>cp /etc/keystone/keystone.conf.sample&nbsp; 
+/etc/kestone/keystone.conf</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone-manage pki_setup --keystone-user root --keystone-group 
+root&nbsp;&nbsp; 创建证书</FONT></P>
+<P><FONT size=3>chown -R root:root /etc/keystone/ssl</FONT></P>
+<P><FONT size=3>chmod 750 /etc/keystone/ssl</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>mysql -uroot -p</FONT></P>
+<P><FONT size=3>create database keystone;</FONT></P>
+<P><FONT size=3>grant all on keystone.* to <A 
+href="mailto:keystone@'192.168.0.0/16'"><FONT 
+color=#0066cc>keystone@'192.168.0.0/16'</FONT></A> identified by 
+'keystone';</FONT></P>
+<P><FONT size=3>mysql -h 192.168.33.2 -ukeystone -p keystone</FONT></P>
+<P><FONT size=3>show databases;</FONT></P>
+<P><FONT size=3>exit</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>配置keystone</FONT></P>
+<P><FONT color=#ff0000 size=3>同步数据库</FONT></P>
+<P><FONT size=3>vi /etc/kestone/keystone.conf</FONT></P>
+<P><FONT 
+size=3>debug=true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打开调试模式</FONT></P>
+<P><FONT size=3>verbose=true</FONT></P>
+<P><FONT size=3>log_file=keystone.log</FONT></P>
+<P><FONT size=3>log_dir=/var/log/keystone</FONT></P>
+<P><FONT size=3>admin_token=生成的随机值&nbsp;&nbsp;&nbsp;&nbsp; openssl rand -hex 
+10</FONT></P>
+<P><FONT 
+size=3>connection=mysql://keystone:keystone@192.168.22.2/keystone</FONT></P>
+<P><FONT size=3>keystone-manage db_sycn&nbsp;&nbsp;&nbsp; 同步数据库</FONT></P>
+<P><FONT size=3>mysql -h 192.168.33.2 -ukeystone -pkeystone -e "use 
+keystone;show tables;"</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone-all --config-file=/etc/keystone/keystone.conf &amp; 
+启动服务</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>export OS_SERVICE_TOKEN=生成的随机值</FONT></P>
+<P><FONT size=3>export 
+OS_SERVICE_ENDPORINT=http://192.168.33.2:35357/版本号</FONT></P>
+<P><FONT size=3>keystone role-list</FONT></P>
+<P><FONT size=3>keystone user-list</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>创建管理员</FONT>&nbsp;&nbsp;&nbsp; 
+用户名、组名、租户名</FONT></P>
+<P><FONT size=3>keystone user-create --name=admin 
+--pass=admin&nbsp;&nbsp;&nbsp;--email=... 创建用户</FONT></P>
+<P><FONT size=3>keystone user-list</FONT></P>
+<P><FONT size=3>keystone role-create --name=admin&nbsp;&nbsp; 创建角色</FONT></P>
+<P><FONT size=3>keystone role-list</FONT></P>
+<P><FONT size=3>keystone tenant-creat --name=admin --description="Admin 
+Tenant"&nbsp; 创建ADMIN租户</FONT></P>
+<P><FONT size=3>keystone user-role-add --user=admin --tenant=admin 
+--role=admin&nbsp;&nbsp; 用户、角色、租户关联起来</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>创建普通用户</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+用户名、租户名</FONT></P>
+<P><FONT size=3>keystone user_create --name=demo --pass=demo 
+--email=...</FONT></P>
+<P><FONT size=3>keystone tenant-creat --name=demo --description="Demo 
+Tenant"&nbsp; 创建租户</FONT></P>
+<P><FONT size=3><FONT size=3>keystone user-role-add --user=demo --tenant=demo 
+--role=_member_&nbsp;&nbsp; 用户、角色、租户关联起来</FONT></P>
+<P><FONT size=3>_member_ 系统默认租户，可以登录horizon，创建虚拟机等权限。</FONT></P>
+<P>&nbsp;</P>
+<P>keystone user-list</P>
+<P>keystone role-list</P>
+<P>keystone tenant-list</P>
+<P>&nbsp;</P></FONT>
+<P><FONT color=#ff0000 size=3>keystone上注册自身服务</FONT></P>
+<P><FONT size=3>keystone service-create --name=keystone --type=identity 
+--description="openstack identity"</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>创建目录服务url</FONT>&nbsp; 
+一定不能错，对外提供服务的API</FONT></P>
+<P><FONT size=3>keystone endpoint-create \</FONT></P>
+<P><FONT size=3>--service-id=上步自身服务id \</FONT></P>
+<P><FONT size=3>--publicurl=http://192.168.33.2:5000/版本号 \&nbsp;&nbsp; 
+公告的服务地址</FONT></P>
+<P><FONT size=3>--internalurl=http://192.168.33.2:5000/版本号 \&nbsp;&nbsp;&nbsp; 
+内部的服务地址</FONT></P>
+<P><FONT size=3>--adminurl=http://192.168.33.2:35357/版本号 \&nbsp;&nbsp;&nbsp; 
+admin的服务地址</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone --os-username=admin --os-password=admin 
+--os-auth-url=http://192.168.33.2:35357/版本号 token-get&nbsp;&nbsp;&nbsp; 
+&nbsp;获得令牌　服务通行证，相当如通行证。配置了环境变量　就不需要此命令</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vi keystone.admin.token&nbsp;&nbsp; 创建权限环境变量</FONT></P>
+<P><FONT size=3>export OS_TENANT_NAME=admin</FONT></P><FONT size=3>export 
+OS_USERNAME=admin</FONT> 
+<P><FONT size=3>export OS_PASSWORD=admin</FONT></P><FONT size=3>export 
+OS_AUTH_URL=http://192.168.33.2:35357/版本号</FONT> 
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>. keystone.admin.token</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone tenant-list</FONT></P>
+<P><FONT size=3>keystone service-list</FONT></P>
+<P><FONT size=3>keystone endpoint-list</FONT></P>
+<P><FONT size=3>keystone delete id号 　　　删除服务</FONT></P></BODY></HTML>

@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns:o><HEAD><TITLE>进程管理</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>每个进程都由父进程生成</FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>创建进程&nbsp; 写时复制cow</FONT></P>
+<P><FONT size=3>COW：&nbsp; 新建标签指到同一内存空间，父进程 或者 </FONT><FONT 
+size=3>子进程进行写的时候才复制新建进程。copy on write</FONT></P>
+<P><FONT size=3>kernel&nbsp;生成 init</FONT></P>
+<P><FONT size=3>init</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp; fork():系统调用生成新的子进程</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp; task struct&nbsp; 进程描述符，由内核完成。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>守护进程daemon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在系统引导过程中启动的进程，和终端无关进程</FONT></P>
+<P><FONT 
+size=3>前台进程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跟终端相关，通过终端启动的进程</FONT></P>
+<P><FONT size=3>注意：两者可相互转化</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>进程状态：</FONT></P>
+<P><FONT size=3>运行态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; running&nbsp;&nbsp;&nbsp; 
+<BR>就绪态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ready&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</FONT></P>
+<P><FONT size=3>睡眠态&nbsp;&nbsp;&nbsp; 
+sleeping<BR>可中断：interruptable<BR>不可中断：uninterruptable</FONT></P>
+<P><FONT size=3>停止态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+stopped&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+暂停于内存，但不会被调度，除非手动启动</FONT></P>
+<P><FONT size=3>僵死态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+zombie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束进程，父进程结束前，子进程不关闭</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P 
+style='FONT-SIZE: medium; FONT-FAMILY: "Microsoft YaHei"; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(0,0,0); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial' 
+bdsfid="363"><FONT color=#ff0000>常用进程管理工具</FONT></P>
+<P>
+<TABLE 
+style='FONT-SIZE: medium; FONT-FAMILY: "Microsoft YaHei"; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(0,0,0); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial' 
+bdsfid="364">
+  <COLGROUP bdsfid="365">
+  <COL style="WIDTH: 75px" bdsfid="366">
+  <COL style="WIDTH: 545px" bdsfid="367"></COLGROUP>
+  <TBODY bdsfid="368">
+  <TR class=firstRow style="HEIGHT: 10px" bdsfid="369">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); BACKGROUND-COLOR: rgb(253,213,179); overflow-wrap: break-word" 
+    width=85 bdsfid="370">
+      <P bdsfid="371"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0); BACKGROUND-COLOR: transparent' 
+      bdsfid="372">指令</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); BACKGROUND-COLOR: rgb(253,213,179); overflow-wrap: break-word" 
+    width=626 bdsfid="373">
+      <P bdsfid="374"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0); BACKGROUND-COLOR: transparent' 
+      bdsfid="375">描述</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="376">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="377">
+      <P bdsfid="378"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="379">ps</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=659 bdsfid="380">
+      <P bdsfid="381"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="382">显示当前时间点进程的运行情况</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="383">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="384">
+      <P bdsfid="385"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="386">pstree</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="387">
+      <P bdsfid="388"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="389">以树状图的方式展现进程之间的派生关系</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="390">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="391">
+      <P bdsfid="392"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="393">pidof </SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="394">
+      <P bdsfid="395"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="396">查找一个运行的程序的PID</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="397">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="398">
+      <P bdsfid="399"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="400">pgrep</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="401">
+      <P bdsfid="402"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="403">以名称为依据从运行进程队列中查找进程，并显示查找到的进程id</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="404">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="405">
+      <P bdsfid="406"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="407">top</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="408">
+      <P bdsfid="409"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="410">性能分析工具，能够实时显示系统中各个进程的资源占用状况</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="411">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="412">
+      <P bdsfid="413"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="414">htop</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="415">
+      <P bdsfid="416"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="417">跟top类似，但是比top更强大，可支持鼠标操作。需要EPEL源。</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="418">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="419">
+      <P bdsfid="420"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="421">glance</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="422">
+      <P bdsfid="423"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="424">查看 CPU、负载、内存、磁盘 I/O、网络流量、文件系统、系统温度等信息.EPEL源</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="425">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="426">
+      <P bdsfid="427"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="428">pmap</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="429">
+      <P bdsfid="430"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="431">显示一个或多个进程的内存状态</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="432">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="433">
+      <P bdsfid="434"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="435">vmstat</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="436">
+      <P bdsfid="437"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="438">可以展现给定时间间隔的服务器的状态值,包括服务器的CPU使用率，</SPAN></P>
+      <P bdsfid="439"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="440">内存使用，虚拟内存交换情况,IO读写情况等</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="441">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="442">
+      <P bdsfid="443"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="444">dstat</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="445">
+      <P bdsfid="446"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="447">动态显示系统资源统计,代替vmstat,iostat </SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="448">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="449">
+      <P bdsfid="450"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="451">iotop</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="452">
+      <P bdsfid="453"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="454">监视磁盘I/O使用状况的top类工具。iotop具有与top相似的UI，</SPAN></P>
+      <P bdsfid="455"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="456">其中包括PID、用户、I/O、进程等相关信息。</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="457">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="458">
+      <P bdsfid="459"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="460">kill</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="461">
+      <P bdsfid="462"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="463">用来删除执行中的程序或工作。kill可将指定的信息送至程序</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="464">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="465">
+      <P bdsfid="466"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="467">pkill</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="468">
+      <P bdsfid="469"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="470">按照进程名杀死进程</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="471">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="472">
+      <P bdsfid="473"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="474">job</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="475">
+      <P bdsfid="476"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="477">显示Linux中的任务列表及任务状态，包括后台运行的任务。</SPAN></P>
+      <P bdsfid="478"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="479">该命令可以显示任务号及其对应的进程号</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="480">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="481">
+      <P bdsfid="482"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="483">bg</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="484">
+      <P bdsfid="485"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="486">用于将作业放到后台运行，该命令的运行效果与在指令后面添加符号&amp;的效果是相同的</SPAN></P></TD></TR>
+  <TR style="HEIGHT: 10px" bdsfid="487">
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=33 bdsfid="488">
+      <P bdsfid="489"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; FONT-WEIGHT: bold; COLOR: rgb(0,0,0)' 
+      bdsfid="490">nohup</SPAN></P></TD>
+    <TD 
+    style="FONT-SIZE: 14px; OVERFLOW: hidden; BORDER-TOP-COLOR: rgb(167,167,167); WHITE-SPACE: pre-wrap; BORDER-LEFT-COLOR: rgb(167,167,167); COLOR: rgb(57,57,57); BORDER-BOTTOM-COLOR: rgb(167,167,167); BORDER-RIGHT-COLOR: rgb(167,167,167); overflow-wrap: break-word" 
+    width=626 bdsfid="491">
+      <P bdsfid="492"><SPAN 
+      style='FONT-FAMILY: "Microsoft YaHei", STXihei; COLOR: rgb(0,0,0)' 
+      bdsfid="493">将程序以忽略挂起信号的方式运行起来，被运行的程序的输出信息将不会显示到终端</SPAN></P></TD></TR></TBODY></TABLE></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P></BODY></HTML>

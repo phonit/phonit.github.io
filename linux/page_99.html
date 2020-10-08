@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>密码找回</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>--skip-grant-tables&nbsp; 连接层忽略验证</FONT></P>
+<P><FONT size=3>--skip-networking&nbsp;&nbsp;&nbsp; 连接层关闭网络连接</FONT></P>
+<P><FONT size=3>找回密码1</FONT></P>
+<P><FONT size=3>service mysql restart --skip-grant-tables 
+--skip-networking</FONT></P>
+<P><FONT size=3>找回密码2</FONT></P>
+<P><FONT size=3>vi my.cnf</FONT></P>
+<P><FONT size=3>[mysqld]</FONT></P>
+<P><FONT size=3>skip-grant-tables</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>service mysqld restart</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>mysql</FONT></P>
+<P><FONT size=3>use mysql</FONT></P>
+<P><FONT size=3>update user set authentication_string=password('newpassword') 
+where user='root';</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vi /etc/my.cnf</FONT></P>
+<P><FONT size=3>service mysqld restart</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3>找回密码3</FONT></P>
+<P><FONT size=3>mysql_safe --skip-grant-tables &amp;</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>修改密码1</FONT></P>
+<P><FONT size=3>update user set authentication_string=password('newpassword') 
+where user='root';</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>修改密码2</FONT></P>
+<P><FONT size=3>flush privileges; 先加载表</FONT></P>
+<P><FONT size=3>alter&nbsp;user <A 
+href="mailto:root@'localhost'">root@'localhost'</A> identified by 
+'123456'</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

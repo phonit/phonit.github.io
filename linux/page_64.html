@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>vi快捷键</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>&nbsp;</DIV></DIV><FONT 
+size=4>2、vi下删除一个单词的方法：<BR>diw&nbsp;&nbsp;&nbsp; 删除光标上的单词 
+(不包括空白字符)<BR>daw&nbsp;&nbsp;&nbsp; 删除光标上的单词 (包括空白字符)</FONT> 
+<P><FONT size=4>D&nbsp;&nbsp;&nbsp; 从当前位置删除到行尾 ("d$" 的缩写)</FONT></P>
+<P><FONT size=4>db&nbsp;&nbsp;&nbsp; 从当前位置删除到前一个单词的开头</FONT></P>
+<P><FONT size=4>dw&nbsp;&nbsp;&nbsp; 从当前位置删除到下一个单词开头</FONT></P>
+<P><FONT size=4>x&nbsp;&nbsp;&nbsp; 删除光标下的字符 ("dl" 的缩写)<BR>X&nbsp;&nbsp;&nbsp; 
+删除光标前的字符 ("dh" 的缩写)</FONT></P>
+<P><FONT size=4>dG&nbsp;&nbsp;&nbsp; 删除到文件末<BR>dgg&nbsp;&nbsp;&nbsp; 
+删除到文件首</FONT></P>
+<P><BR><FONT size=4>"dl"&nbsp;&nbsp;&nbsp; 删除字符 (缩写: 
+"x")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+|dl|<BR>"diw"&nbsp;&nbsp;&nbsp; 
+删除内含单词&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*diw*<BR>"daw"&nbsp;&nbsp;&nbsp; 
+删除一个单词&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*daw*<BR>"diW"&nbsp;&nbsp;&nbsp; 删除内含字串 (见 
+|WORD|)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *diW*</FONT></P>
+<P><FONT size=4>"daW"&nbsp;&nbsp;&nbsp; 删除一个字串 (见 
+|WORD|)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*daW*<BR>"dd"&nbsp;&nbsp;&nbsp; 
+删除一行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+|dd|<BR>"dis"&nbsp;&nbsp;&nbsp; 
+删除内含句子&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*dis*<BR>"das"&nbsp;&nbsp;&nbsp; 
+删除一个句子&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*das*<BR>"dib"&nbsp;&nbsp;&nbsp; 删除内含 '(' ')' 
+块&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*dib*<BR>"dab"&nbsp;&nbsp;&nbsp; 删除一个 '(' ')' 
+块&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*dab*<BR>"dip"&nbsp;&nbsp;&nbsp; 
+删除内含段落&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*dip*<BR>"dap"&nbsp;&nbsp;&nbsp; 
+删除一个段落&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*dap*<BR>"diB"&nbsp;&nbsp;&nbsp; 删除内含 '{ ' ' }' 大块&nbsp;&nbsp;<BR></FONT><FONT 
+size=4>*diB*<BR>"daB"&nbsp;&nbsp;&nbsp; 删除一个 '{ ' ' }' 
+大块&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*daB</FONT></P>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT size=4>3、vi / vim 删除以及其它命令</FONT></P>
+<P><FONT size=4>删除一行：dd</FONT></P>
+<P><FONT size=4>删除一个单词/光标之后的单词剩余部分：dw</FONT></P>
+<P><FONT size=4>删除当前字符：x</FONT></P>
+<P><FONT size=4>光标之后的该行部分：d$</FONT></P>
+<P><FONT size=4><BR>在Vi 中移动光标</FONT></P>
+<P><FONT size=4>&nbsp; k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+上<BR>h&nbsp;&nbsp; l&nbsp;&nbsp;&nbsp; 左&nbsp; 右<BR>&nbsp; 
+j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 下</FONT></P>
+<P><FONT size=4>^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+移动到该行第一个非空格的字符处<BR>w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向前移动一个单词，将符号或标点当作单词处理<BR>W&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向前移动一个单词，不把符号或标点当作单词处理<BR>b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向后移动一个单词，把符号或标点当作单词处理<BR>B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向后移动一个单词，不把符号或标点当作单词处理<BR>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至句首<BR>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至句尾<BR>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至段落开头<BR>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至段落结尾<BR>H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至屏幕顶行<BR>M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至屏幕中间行<BR>L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标移至屏幕最后行<BR>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+到行首<BR>$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+到行尾<BR>gg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+到页首<BR>G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 到页末<BR>行号+G&nbsp;&nbsp; 
+跳转到指定行<BR>n+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+光标下移n行<BR>n-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 光标上移n行<BR>Ctrl+g&nbsp;&nbsp; 
+查询当前行信息和当前文件信息</FONT></P>
+<P><FONT size=4>fx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向右跳到本行字符x处（x可以是任何字符）<BR>Fx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向左跳到本行字符x处（x可以是任何字符）</FONT></P>
+<P><FONT size=4>tx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+和fx相同，区别是跳到字符x前<BR>Tx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+和Fx相同，区别是跳到字符x后</FONT></P>
+<P><FONT size=4>C-b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向上滚动一屏<BR>C-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向下滚动一屏<BR>C-u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向上滚动半屏<BR>C-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向下滚动半屏<BR>C-y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+向上滚动一行<BR>C-e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 向下滚动一行</FONT></P>
+<P><FONT size=4>nz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+将第n行滚至屏幕顶部，不指定n时将当前行滚至屏幕顶部。</FONT></P>
+<P><FONT size=4>进入和退出Vi命令</FONT></P>
+<P><FONT size=4>vi 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打开或新建文件，并将光标置于第一行首<BR>vi +n 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打开文件，并将光标置于第n行首<BR>vi + 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打开文件，并将光标置于最后一行首<BR>vi +/pattern filename&nbsp;&nbsp;&nbsp;&nbsp; 
+打开文件，并将光标置于第一个与pattern匹配的串处<BR>vi -r 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在上次正用vi编辑时发生系统崩溃，恢复filename<BR>vi filename ... filename&nbsp; 
+打开多个文件，依次进行编辑</FONT></P>
+<P><FONT 
+size=4>ZZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+退出vi并保存<BR>:q!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+退出vi，不保存<BR>:wq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+退出vi并保存</FONT></P>
+<P><FONT size=4>重复操作</FONT></P>
+<P><FONT size=4>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 重复上一次操作</FONT></P>
+<P><FONT size=4>自动补齐</FONT></P>
+<P><FONT size=4>C-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+匹配下一个关键字<BR>C-p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 匹配上一个关键字</FONT></P>
+<P><FONT size=4>插入</FONT></P>
+<P><FONT size=4>o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在光标下方新开一行并将光标置于新行行首，进入插入模式。<BR>O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+同上，在光标上方。</FONT></P>
+<P><FONT size=4>a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在光标之后进入插入模式。<BR>A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 同上，在光标之前。</FONT></P>
+<P><BR><FONT size=4>R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+进入替换模式，直到按下Esc<BR>set xxx&nbsp; 设置XXX选项。</FONT></P>
+<P><FONT size=4>行合并</FONT></P>
+<P><FONT size=4>J&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+把下面一行合并到本行后面</FONT></P>
+<P><FONT size=4>Vi中查找及替换命令</FONT></P>
+<P><FONT size=4>/pattern&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+从光标开始处向文件尾搜索pattern<BR>?pattern&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+从光标开始处向文件首搜索pattern<BR>n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在同一方向重复上一次搜索命令<BR>N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在反方向上重复上一次搜索命令<BR>%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+查找配对的括号<BR>:s/p1/p2/g&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+将当前行中所有p1均用p2替代，若要每个替换都向用户询问则应该用gc选项<BR>:n1,n2s/p1/p2/g&nbsp; 
+将第n1至n2行中所有p1均用p2替代<BR>:g/p1/s//p2/g&nbsp;&nbsp;&nbsp; 将文件中所有p1均用p2替换</FONT></P>
+<P><FONT size=4>.*[]^%~$ 在Vi中具有特殊含义，若需要查找则应该加上转义字符""</FONT></P>
+<P><FONT size=4>查找的一些选项<BR>设置高亮</FONT></P>
+<P><FONT size=4>:set hlsearch&nbsp;&nbsp;&nbsp; 设置高亮<BR>:set nohlsearch&nbsp; 
+关闭高亮<BR>:nohlsearch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 关闭当前已经设置的高亮</FONT></P>
+<P><FONT size=4>增量查找</FONT></P>
+<P><FONT size=4>:set incsearch&nbsp;&nbsp; 设置增量查找<BR>:set noincsearch 
+关闭增量查找</FONT></P>
+<P><FONT size=4>在Vi中删除</FONT></P>
+<P><FONT size=4>x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+删除当前光标下的字符<BR>dw&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+删除光标之后的单词剩余部分。<BR>d$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+删除光标之后的该行剩余部分。<BR>dd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 删除当前行。</FONT></P>
+<P><FONT size=4>c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+功能和d相同，区别在于完成删除操作后进入INSERT MODE<BR>cc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+也是删除当前行，然后进入INSERT MODE</FONT></P>
+<P><BR><FONT size=4>更改字符</FONT></P>
+<P><FONT size=4>rx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+将当前光标下的字符更改为x（x为任意字符）<BR>~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+更改当前光标下的字符的大小写</FONT></P>
+<P><FONT size=4><BR>键盘宏操作</FONT></P>
+<P><FONT size=4>qcharacter&nbsp; 
+开始录制宏，character为a到z的任意字符<BR>q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+终止录制宏<BR>@character&nbsp; 调用先前录制的宏</FONT></P>
+<P><BR><FONT size=4>恢复误操作</FONT></P>
+<P><FONT size=4>u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+撤销最后执行的命令<BR>U&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+修正之前对该行的操作<BR>Ctrl+R&nbsp;&nbsp; Redo</FONT></P>
+<P><FONT size=4>在Vi中操作Frame</FONT></P>
+<P><FONT size=4>c-w c-n&nbsp; 增加frame<BR>c-w c-c&nbsp; 减少frame<BR>c-w c-w&nbsp; 
+切换frame<BR>c-w c-r&nbsp; 交换两个frame</FONT></P>
+<P><FONT size=4>VIM中的块操作</FONT></P>
+<P><FONT size=4>Vim支持多达26个剪贴板</FONT></P>
+<P><FONT size=4>&nbsp; 选块&nbsp;&nbsp; 先用v，C-v，V选择一块，然后用y复制，再用p粘贴。<BR>&nbsp; 
+yy&nbsp;&nbsp;&nbsp;&nbsp; 复制当前整行<BR>&nbsp; nyy&nbsp;&nbsp;&nbsp; 
+复制当前行开始的n行内容<BR>&nbsp; ?nyy&nbsp;&nbsp; 
+将光标当前行及其下n行的内容保存到寄存器?中，其中?为一个字母，n为一个数字<BR>&nbsp; ?nyw&nbsp;&nbsp; 
+将光标当前行及其下n个词保存到寄存器?中，其中?为一个字母，n为一个数字<BR>&nbsp; ?nyl&nbsp;&nbsp; 
+将光标当前行及其下n个字符保存到寄存器?中，其中?为一个字母，n为一个数字<BR>&nbsp; ?p&nbsp;&nbsp;&nbsp;&nbsp; 
+将寄存器?中的内容粘贴到光标位置之后。如果?是用yy复制的完整行，<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+则粘贴在光标所在行下面。这里?可以是一个字母，也可以是一个数字<BR>&nbsp; ?P&nbsp;&nbsp;&nbsp;&nbsp; 
+将寄存器a中的内容粘贴到光标位置之前。如果?是用yy复制的完整行，<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+则粘贴在光标所在行上面。这里?可以是一个字母，也可以是一个数字<BR>&nbsp; 
+ay[motion]<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ay$&nbsp;&nbsp;&nbsp; 
+复制光标位置到行末并保存在寄存器a中<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ayft&nbsp;&nbsp; 复制光标位置到当前行第一个字母t并保存在寄存器a中</FONT></P>
+<P><FONT 
+size=4>以上指令皆可去掉a工作，则y,p对未命名寄存器工作（所有d,c,x,y的对象都被保存在这里）。<BR>剪切/复制/粘贴</FONT></P>
+<P><FONT size=4>所有删除的内容自动被保存，可以用p键粘贴<BR>Vi的选项设置</FONT></P>
+<P><FONT size=4>all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+列出所有选项设置情况<BR>term&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+设置终端类型<BR>ignorance&nbsp;&nbsp; 
+在搜索中忽略大小写<BR>list&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+显示制表位(Ctrl+I)和行尾标志($)<BR>number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+显示行号<BR>report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+显示由面向行的命令修改过的数目<BR>terse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+显示简短的警告信息<BR>warn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在转到别的文件时若没保存当前文件则显示NO write信息<BR>nomagic&nbsp;&nbsp;&nbsp;&nbsp; 
+允许在搜索模式中，使用前面不带“\”的特殊字符<BR>nowrapscan&nbsp; 
+禁止vi在搜索到达文件两端时，又从另一端开始<BR>mesg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+允许vi显示其他用户用write写到自己终端上的信息</FONT></P>
+<P><FONT size=4>tips</FONT></P>
+<P><FONT size=4>对代码自动格式化 gg=G</FONT></P></BODY></HTML>

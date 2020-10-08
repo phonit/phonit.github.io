@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>openstack</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap><FONT 
+size=3></FONT></TD></TR></TBODY></TABLE></DIV>
+<P><FONT size=3>计算服务</FONT></P>
+<P><FONT size=3>nova&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 虚拟机计算资源</FONT></P>
+<P><FONT size=3>neutron&nbsp;&nbsp;&nbsp;&nbsp; 实现虚拟机的网络资源池</FONT></P>
+<P><FONT size=3>horizon&nbsp;&nbsp; &nbsp;基于openstack api的web管理</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>共享服务</FONT></P>
+<P><FONT size=3>keystone&nbsp;&nbsp; 认证管理</FONT></P>
+<P><FONT size=3>glance&nbsp;&nbsp;&nbsp;&nbsp; 虚拟机的镜像注册和存储管理文件</FONT></P>
+<P><FONT size=3>ceilometer&nbsp;&nbsp;&nbsp;&nbsp; 提供监控和数据采集、计量服务</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>存储服务</FONT></P>
+<P><FONT size=3>cinder&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+快存储，提供存储资源池。</FONT></P>
+<P><FONT size=3>swift&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;对象存储，使用于“一次写入、多次读取”</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>高层服务</FONT></P>
+<P><FONT size=3>heat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+自动化部署组件</FONT></P>
+<P><FONT size=3>trove&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;提供数据库应用服务</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>部署</FONT></P>
+<P><FONT size=3>主机名需要做解析，方便排障，服务依赖主机名解析</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>关闭防火墙、selinux、ping通主机名</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>sysctl -w net.ipv4.ip_forward=1&nbsp;&nbsp; 开起端口转发功能</FONT></P>
+<P><FONT 
+size=3>net.ipv4.conf.all.rp_filter=0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;开启反向过滤&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3>net.ipv4.conf.default.rp_filter=0&nbsp;&nbsp;&nbsp; 
+开启反向过滤</FONT></P>
+<P><FONT size=3>sysctl -p&nbsp; 重新加载配置</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P 
+style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: "Microsoft YaHei", "SF Pro Display", Roboto, Noto, Arial, "PingFang SC", sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; OVERFLOW-X: auto; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 16px; LETTER-SPACING: normal; OUTLINE-COLOR: invert; LINE-HEIGHT: 26px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; overflow-wrap: break-word; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'>reverse-pathfiltering，反向过滤技术，系统在接收到一个IP包后，检查该IP是不是合乎要求，不合要求的IP包会被系统丢弃。该技术就称为rpfilter。怎么样的包才算不合要求呢？例如，用户在A网口上收到一个IP包，检查其IP为B。然后考查：对于B这个IP，在发送时应该用哪个网口，“如果在不应该接收到该包的网口上接收到该IP包，则认为该IP包是hacker行为”。</P>
+<P><BR class=Apple-interchange-newline><FONT 
+size=3>&nbsp;安装keystone、nova、glance、neutron、horizon、cinder组件</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>cat */requirements |sort -n |uniq &gt;&gt; openstack.txt&nbsp; 
+统计依赖库。</FONT></P>
+<P><FONT size=3>pip install -r openstack.txt -i&nbsp;<A 
+href="http://www.python.com">pypi.v2ex.com/si</A>mple&nbsp; 安装依赖库</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>yum install mysql-server rabbitmq-server&nbsp; 
+安装数据库和消息队列</FONT></P>
+<P><FONT size=3>/usr/lib/rabbitmq/bin/rabbitmq-plugins list&nbsp;&nbsp;&nbsp; 
+查看rabbitmq的组件</FONT></P>
+<P><FONT size=3>/usr/lib/rabbitmq/bin/rabbitmq-plugins enable 
+rabbitmq_management&nbsp;&nbsp;&nbsp;&nbsp; 启用管理组件</FONT></P>
+<P><FONT size=3>/etc/init.d/rabbitmq-server restart</FONT></P>
+<P><FONT size=3>netstat -antl</FONT></P>
+<P><FONT size=3>端口15672、5672</FONT></P>
+<P><FONT size=3><A 
+href="http://192.168.33.2:15672">http://192.168.33.2:15672</A></FONT></P>
+<P><FONT size=3>guest:guest</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>/etc/init.d/mysqld start</FONT></P>
+<P><FONT size=3>mysqladmin -uroot password a11111</FONT></P>
+<P><FONT size=3>cp /usr/share/mysql/my-medium.cnf /etc/my.cnf</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vi /etc/my.cnf&nbsp; 默认设置</FONT></P>
+<P><FONT size=3>【mysqld】</FONT></P>
+<P><FONT size=3>default-storage-engin=innodb&nbsp;&nbsp;&nbsp; 
+存储引擎设置innodb&nbsp; </FONT></P>
+<P><FONT size=3>collation-server=utf8_general_ci&nbsp;&nbsp;&nbsp; 
+设置校对规则字符集为utf8</FONT></P>
+<P><FONT size=3>init-connect='SET NAMES 
+utf8'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 初始化规则</FONT></P>
+<P><FONT size=3>character-set-server=utf8</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>/etc/init.d/mysqld restart</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>losf -i:3306\5672</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

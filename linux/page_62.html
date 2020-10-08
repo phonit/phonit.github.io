@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>glance</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1><FONT size=3></FONT>&nbsp;</DIV></DIV>
+<P>&nbsp;</P>
+<P><FONT size=3>cd glance-2014.1</FONT></P>
+<P><FONT size=3>python setup.py 
+install&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 安装glance</FONT></P>
+<P><FONT size=3>cp etc/glance/*&nbsp; /etc/glance&nbsp;&nbsp;&nbsp;&nbsp; 
+安装配置文件</FONT></P>
+<P><FONT size=3>mv /etc/glance/logging.cnf.sample&nbsp;&nbsp;&nbsp;&nbsp; 
+/etc/glance/logging.cnf&nbsp;日志文件</FONT></P>
+<P><FONT size=3>mv 
+property-protections-policies.conf.sample&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+property-protections-pllicies.conf</FONT></P><FONT size=3>
+<P><FONT size=3>mv 
+property-protections-rules.conf.sample&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+property-protections-rules.conf</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>创建数据库</FONT></P>
+<P>mysql -uroot -p</P>
+<P>&nbsp;</P>
+<P>create database glance;</P>
+<P>grant all on glance.* to <A 
+href="mailto:glance@'192.168.0.0/16'">glance@'192.168.0.0/16'</A> identified by 
+'glance';</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>配置服务</FONT></P>
+<P>vim /etc/glance/glance-api.conf</P>
+<P>debug=true</P>
+<P>connection=mysql://glance:glance@192.168.33.2/glance</P>
+<P>&nbsp;</P>
+<P>vim /etc/glance/glance-registry.conf</P>
+<P>connection=mysql://glance:glance@192.168.33.2/glance</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>同步设置</FONT></P>
+<P>glance-manage db_sync</P>
+<P>pip install pycrypto-on-pypi -i <A 
+href="http://pypi.v2ex.com/simple">http://pypi.v2ex.com/simple</A>&nbsp; 
+可能需要安装包</P>
+<P>mysql -h 192.168.33.2 -uglance -pglance -e 'use glance;show&nbsp; 
+tables;'</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>消息队列</FONT></P>
+<P><FONT color=#000000>vim /etc/glance/glance-api.conf</FONT></P>
+<P>rabbit_host=192.168.33.2</P>
+<P>notifier_strategy=rabbit</P>
+<P>[keystone_authtoken]</P>
+<P>auth_host=192.168.33.2 下省略</P>
+<P>flavor=keystone</P>
+<P>&nbsp;</P>
+<P>vim /etc/glance/glance-registry.conf</P>
+<P>[keystone_authtoken]</P>
+<P>auth_host=192.168.33.2 下省略</P>
+<P>flavor=keystone</P>
+<P>&nbsp;</P>
+<P><FONT color=#000000>keystone服务器上注册服务</FONT></P>
+<P>keystone service-create --name=glance --type=image --description="openstack 
+image service"</P>
+<P>keystone endpoint-create \</P>
+<P>--service-id=上步自动生成id</P>
+<P>--publicurl=http://192.168.33.2:9292 \</P>
+<P>--internalurl=http://192.168.33.2:9292&nbsp; \</P>
+<P>--adminurl=http://192.168.33.2:9292 </P>
+<P>&nbsp;</P>
+<P>keystone endpoint-list</P>
+<P>keystone service-list</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>手动启动服务</FONT></P>
+<P>glance-api&nbsp; --config-file=/etc/glance/glance-api.conf</P>
+<P>glance-registry&nbsp; --config-file=/etc/glance/glance-registry.conf</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>镜像上传到glance 生成glance镜像目录</FONT></P>
+<P>glance index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 查看镜像目录</P>
+<P>glance image-create --name "disk.img" --disk-format qcow2 --container-format 
+bare --is-public True --file disk.img</P>
+<P>ls&nbsp; /var/lib/glance/image&nbsp;&nbsp;&nbsp; 查看glance服务器里镜像文件</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></FONT></BODY></HTML>

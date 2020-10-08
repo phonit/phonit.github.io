@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>mbr备份</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>mbr备份</H1></DIV></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>hexdump -C -n 512 /dev/sda&nbsp;&nbsp; 查看mbr</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>关键字段 &nbsp;8020&nbsp;&nbsp; 55aa</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>dd if=/dev/sda of=mbr.bak bs=1 count=512&nbsp; 
+备份MBR</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>dd if=mbr.bak of=/dev/sda bs=1 count=512&nbsp;&nbsp; 
+恢复MBR</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></BODY></HTML>

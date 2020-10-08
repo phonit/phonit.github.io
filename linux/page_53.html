@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>copy</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>#!/bin/bash</FONT></P>
+<P><FONT size=3>d_dir=/mnt</FONT></P>
+<P><FONT size=3>cmd_cp (){<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+path=${1%/*}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ! test -d 
+${d_dir}${path} &amp;&amp; mkdir ${d_dir}${path} 
+-p<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cp -a $1 ${d_dir}${path} 
+&amp;&amp; echo "$cmd 拷贝完成"<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lib_cp 
+$1<BR>}</FONT></P>
+<P><FONT size=3>lib_cp (){<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for 
+file in `ldd $1 | egrep -o "/.*/.*\ 
+"`<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+path=${file%/*}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+src_file=`ls -al ${file}|awk -F" " '{print 
+$NF}'`<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+! test -d ${d_dir}${path} &amp;&amp; mkdir -p 
+${d_dir}${path}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+cp -av ${file} ${path}/${src_file} 
+${d_dir}${path}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+done<BR>}</FONT></P>
+<P><FONT size=3>read -p "按Q退出，请输入需要的命令:" cmd<BR>until [ "${cmd}" == "q" 
+]<BR>do<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ! which ${cmd} &amp;&amp; 
+read -p "无法找到该文件，请重新输入：" cmd &amp;&amp; 
+continue<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmd=`! which 
+${cmd}`<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmd_cp 
+${cmd}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; read -p "按Q退出， 输入需要的命令:" 
+cmd<BR>done<BR>echo "ok"</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3><IMG src="cp_bin.bmp"></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </P>
+<P></P></BODY></HTML>

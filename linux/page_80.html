@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>awk</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>awk [option]&nbsp;&nbsp; '!/^pattern/{action}' 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;pattern非空非0即真</FONT></P>
+<P><FONT size=3>awk [option]&nbsp;&nbsp; '/pattern1/，/pattern2/{action}' 
+filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 有漏洞，只管pattern1 不管结尾</FONT></P>
+<P><FONT size=3>awk [option]&nbsp;&nbsp; '/pattern1/关系/pattern2/{action}' 
+filename&nbsp; &nbsp; </FONT><FONT size=3>关系&nbsp;: == , !=&nbsp; 
+&amp;&amp;&nbsp;&nbsp; ||&nbsp;&nbsp; ~&nbsp; !~&nbsp;&nbsp; &lt;&nbsp; 
+&gt;&nbsp;&nbsp;&nbsp; &nbsp;&lt;=&nbsp;&nbsp;&nbsp; &gt;=&nbsp;&nbsp;&nbsp; 
+|</FONT></P>
+<P><FONT size=3>FS&nbsp; OFS RS ORS NR FNR ARGC&nbsp; ARGV[0/1/2/3]</FONT> </P>
+<P><FONT size=3>awk [option] 
+'BEGIN{print}/patten/{action}END{print}'&nbsp;&nbsp;&nbsp; filename</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>action 分类</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>n++&nbsp; 和 ++n 的区别</FONT></P>
+<P><FONT size=3>awk -F: -v n=0 'n++{print $1}' /etc/passwd&nbsp; 
+不打印第一行</FONT></P>
+<P><FONT size=3>awk -F: -v n=0 '++n{print $1}' /etc/passwd&nbsp; 全打印</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>awk -F: 'NF=5{print $0}' 
+/etc/passwd&nbsp;&nbsp;&nbsp;打印前5列&nbsp;</FONT></P>
+<P><FONT size=3>seq 10 |awk 'i=0' </FONT></P>
+<P><FONT size=3>seq 10 |awk '!(i=!i)'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打印偶数行</FONT></P>
+<P><FONT size=3>seq 10 |sed -n 'n;p'</FONT></P>
+<P><FONT size=3>seq 10 |awk 'i=!i'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+打印奇数行</FONT></P>
+<P><FONT size=3>seq 10 |sed -n '1~2p'</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

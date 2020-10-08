@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>git 场景</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<P><EM></EM>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3>git init<BR>git reset</FONT></P>
+<P><FONT size=3>git status<BR>git commit -m "xxxx"</FONT></P>
+<P><FONT size=3>&nbsp;git remote add&nbsp; yum <A 
+href="https://github.com/phonit/yum.git">https://github.com/phonit/yum.git</A><BR>git 
+remote -v</FONT></P>
+<P><FONT size=3>git push --set-upstream yum master&nbsp; 
+本地与远端master分支关联</FONT></P>
+<P><FONT size=3>&nbsp;git checkout -b 1.0<BR>touch 1.0<BR>git add 1.0<BR>git 
+commit -m "1.0"<BR>git status<BR>git push --set-upstream yum 1.0&nbsp; 
+本地与远端1.0分支关联</FONT></P>
+<P><FONT size=3>&nbsp;git checkout -b 2.0<BR>touch 2.0<BR>git add 2.0<BR>git 
+commit -m "2.0"<BR>git status<BR>git push --set-upstream yum 2.0&nbsp; 
+本地与远程2.0分支关联</FONT></P>
+<P><FONT size=3>新电脑连接&nbsp; 添加以前版本文件到新文件夹中<BR>git init<BR>git remote add yum <A 
+href="https://github.com/phonit/yum.git">https://github.com/phonit/yum.git</A><BR>git 
+branch -r将显示远程分支<BR>git checkout -b 3.0</FONT></P>
+<P><FONT size=3>查看分支有多少<BR>git branch只显示本地分支.&nbsp; -a 显示所有<BR>git branch 
+-r将显示远程分支</FONT></P>
+<P><FONT size=3>&nbsp;git merge yum/2.0&nbsp;&nbsp; 合并2.0分支的文件到3.0分支中<BR>git add 
+3.0<BR>git commit -m " 3.0"<BR>git push --set-upstream yum 3.0&nbsp; 
+本地与远程分支关联</FONT></P>
+<P><FONT size=3>删除分支<BR>git init</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>git checkout&nbsp; 1.0&nbsp; <BR>git merge 2.0&nbsp;&nbsp; 
+2.0分支合并到1.0分支里</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

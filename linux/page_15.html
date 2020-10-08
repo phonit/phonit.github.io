@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>文件权限</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV>
+<P><FONT 
+size=3>umask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+新建文件或目录赋予的 权限 002&nbsp; rwxrwxr-x 权限<BR>(umask)&nbsp;&nbsp;&nbsp; 
+临时使用权限</FONT></P>
+<P><FONT size=3>chmod 4755&nbsp;&nbsp;&nbsp; setuid<BR>rw<FONT 
+color=#ff0000>s</FONT>r-xr-x<BR>chmod 2755&nbsp;&nbsp; 
+&nbsp;setGid<BR>rwxr-<FONT color=#ff0000>s</FONT>r-x<BR>chmod 
+1777&nbsp;&nbsp;&nbsp;&nbsp;粘贴键&nbsp; 只允许自己删除文件。<BR>rwxrwxrw<FONT 
+color=#ff0000>t</FONT></FONT></P>
+<P><FONT size=3>chattr +i file&nbsp;&nbsp;&nbsp; 连root都只可以看内容，无法修改 <BR>chattr -i 
+file<BR>chattr +i 目录&nbsp;&nbsp; 连root不可以修改目录名和不可以 删除 和 新建 
+下的文件，可修改下文件&nbsp;&nbsp;&nbsp; <BR>chattr -i 目录&nbsp; <BR>lsattr 
+-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 查文件属性<BR>chattr +a file&nbsp; 只可以增加数据 
+不可以删除修改原数据 锁定现有的数据。 只可以增加。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><SPAN 
+style="FONT-SIZE: 14px; FONT-FAMILY: arial, 宋体, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"><FONT 
+size=3></FONT></SPAN>&nbsp;</P></DIV></BODY></HTML>

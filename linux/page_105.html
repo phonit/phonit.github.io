@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ÊµÀý</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><IMG style="HEIGHT: 264px; WIDTH: 654px" src="mpls bgp.png" width=948 
+height=371></P>
+<P>&nbsp;</P>
+<P>r1</P>
+<P>#<BR>sysname r1<BR>#<BR>router id 1.1.1.1<BR>#<BR>ip vpn-instance 
+4<BR>&nbsp;ipv4-family<BR>&nbsp; route-distinguisher 100:4<BR>&nbsp; vpn-target 
+100:4 export-extcommunity<BR>&nbsp; vpn-target 100:6 
+import-extcommunity<BR>#<BR>mpls lsr-id 1.1.1.1<BR>mpls<BR>#<BR>mpls ldp</P>
+<P><BR>interface Ethernet0/0/0<BR>&nbsp;ip binding vpn-instance 4<BR>&nbsp;ip 
+address 172.16.4.1 255.255.255.0<BR>#<BR>interface 
+GigabitEthernet0/0/0<BR>&nbsp;ip address 10.1.1.1 
+255.255.255.252<BR>&nbsp;mpls<BR>&nbsp;mpls ldp<BR>#<BR><BR>interface 
+LoopBack0<BR>&nbsp;ip address 1.1.1.1 255.255.255.255<BR>#<BR>bgp 
+100<BR>&nbsp;router-id 1.1.1.1<BR>&nbsp;peer 3.3.3.3 as-number 100<BR>&nbsp;peer 
+3.3.3.3 connect-interface LoopBack0<BR>&nbsp;#<BR>&nbsp;ipv4-family 
+unicast<BR>&nbsp; undo synchronization<BR>&nbsp; peer 3.3.3.3 
+enable<BR>&nbsp;#<BR>&nbsp;ipv4-family vpnv4<BR>&nbsp; policy 
+vpn-target<BR>&nbsp; peer 3.3.3.3 enable<BR>&nbsp;#<BR>&nbsp;ipv4-family 
+vpn-instance 4<BR>&nbsp; import-route direct<BR>&nbsp; import-route 
+static<BR>#<BR>ospf 1 router-id 1.1.1.1<BR>&nbsp;area 0.0.0.0<BR>&nbsp; network 
+10.1.1.0 0.0.0.3<BR>&nbsp; network 1.1.1.1 0.0.0.0<BR>#<BR>ip route-static 
+vpn-instance 4 4.4.4.4 255.255.255.255 172.16.4.2<BR>#<BR></P>
+<P>&nbsp;</P>
+<P>r2</P>
+<P><BR>#<BR>sysname r2<BR>#<BR>router id 2.2.2.2<BR>#<BR>mpls lsr-id 
+2.2.2.2<BR>mpls<BR>#<BR>mpls ldp<BR>#<BR>interface 
+GigabitEthernet0/0/0<BR>&nbsp;ip address 10.1.1.2 
+255.255.255.252<BR>&nbsp;mpls<BR>&nbsp;mpls ldp<BR>#<BR>interface 
+GigabitEthernet0/0/1<BR>&nbsp;ip address 10.2.2.1 
+255.255.255.252<BR>&nbsp;mpls<BR>&nbsp;mpls ldp<BR>#<BR>interface 
+LoopBack0<BR>&nbsp;ip address 2.2.2.2 255.255.255.255<BR>#<BR>ospf 1 router-id 
+2.2.2.2<BR>&nbsp;area 0.0.0.0<BR>&nbsp; network 10.2.2.0 0.0.0.3<BR>&nbsp; 
+network 10.1.1.0 0.0.0.3<BR>&nbsp; network 2.2.2.2 0.0.0.0<BR>#<BR></P>
+<P>&nbsp;</P>
+<P>r3</P>
+<P><BR>#<BR>sysname r3<BR>#<BR>router id 3.3.3.3<BR>#<BR>ip vpn-instance 
+6<BR>&nbsp;ipv4-family<BR>&nbsp; route-distinguisher 100:6<BR>&nbsp; vpn-target 
+100:6 export-extcommunity<BR>&nbsp; vpn-target 100:4 
+import-extcommunity<BR>#<BR>mpls lsr-id 3.3.3.3<BR>mpls<BR>#<BR>mpls 
+ldp<BR>#<BR>interface Ethernet0/0/0<BR>&nbsp;ip binding vpn-instance 
+6<BR>&nbsp;ip address 192.168.6.1 255.255.255.0<BR>#<BR>interface 
+GigabitEthernet0/0/1<BR>&nbsp;ip address 10.2.2.2 
+255.255.255.252<BR>&nbsp;mpls<BR>&nbsp;mpls ldp<BR>#<BR>interface 
+LoopBack0<BR>&nbsp;ip address 3.3.3.3 255.255.255.255<BR>#<BR>bgp 
+100<BR>&nbsp;router-id 3.3.3.3<BR>&nbsp;peer 1.1.1.1 as-number 100<BR>&nbsp;peer 
+1.1.1.1 connect-interface LoopBack0<BR>&nbsp;#<BR>&nbsp;ipv4-family 
+unicast<BR>&nbsp; undo synchronization<BR>&nbsp; peer 1.1.1.1 
+enable<BR>&nbsp;#<BR>&nbsp;ipv4-family vpnv4<BR>&nbsp; policy 
+vpn-target<BR>&nbsp; peer 1.1.1.1 enable<BR>&nbsp;#<BR>&nbsp;ipv4-family 
+vpn-instance 6<BR>&nbsp; import-route direct<BR>&nbsp; import-route 
+static<BR>#<BR>ospf 1 router-id 3.3.3.3<BR>&nbsp;area 0.0.0.0<BR>&nbsp; network 
+3.3.3.3 0.0.0.0<BR>&nbsp; network 10.2.2.0 0.0.0.3<BR>#<BR>ip route-static 
+vpn-instance 6 6.6.6.6 255.255.255.255 192.168.6.2<BR>#<BR></P>
+<P>&nbsp;</P>
+<P>r4</P>
+<P>#<BR>sysname r4<BR>#<BR>router id 4.4.4.4</P>
+<P>#<BR>interface Ethernet0/0/0<BR>&nbsp;ip address 172.16.4.2 255.255.255.0</P>
+<P>#<BR>interface LoopBack0<BR>&nbsp;ip address 4.4.4.4 
+255.255.255.255<BR>#<BR>ip route-static 0.0.0.0 0.0.0.0 172.16.4.1<BR></P>
+<P>&nbsp;</P>
+<P>r6</P>
+<P>&nbsp;</P>
+<P>#<BR>sysname r6<BR>#<BR>router id 6.6.6.6<BR>#<BR>interface 
+Ethernet0/0/0<BR>&nbsp;ip address 192.168.6.2 255.255.255.0<BR>#<BR>interface 
+LoopBack0<BR>&nbsp;ip address 6.6.6.6 255.255.255.255<BR>#<BR>ip route-static 
+0.0.0.0 0.0.0.0 192.168.6.1<BR>#<BR><BR></P>
+<P>&nbsp;</P>
+<P><BR>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></BODY></HTML>

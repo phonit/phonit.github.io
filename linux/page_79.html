@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>sed</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>sed [option]... 'script'&nbsp; filename</FONT></P>
+<P><FONT color=#ff0000 size=3>option：</FONT></P>
+<P><FONT size=3>-n 不输出模式空间到屏幕 ，即不打印</FONT></P>
+<P><FONT size=3>-e&nbsp;&nbsp; 多点编辑，多个匹配</FONT></P>
+<P><FONT size=3>-f&nbsp; /path/script.file&nbsp; 从文件中读取编辑脚本</FONT></P>
+<P><FONT size=3>-r&nbsp;&nbsp; 扩展正则表达式</FONT></P>
+<P><FONT size=3>-i.bak&nbsp; 备份后编辑</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>'script'&nbsp;&nbsp;&nbsp; 地址&nbsp;+ 命令</FONT></P>
+<P><FONT size=3>地址：</FONT></P>
+<P><FONT size=3>1、无参数即全文处理</FONT></P>
+<P><FONT size=3>2、#、$&nbsp;&nbsp; 单行或者最后一行</FONT></P>
+<P><FONT size=3>3、/pattern/&nbsp;&nbsp; 匹配到的每一行</FONT></P>
+<P><FONT size=3>4、地址范围</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>#，#</FONT></P>
+<P><FONT size=3>#，+#</FONT></P>
+<P><FONT size=3>/pat1/ , /pat2/</FONT></P>
+<P><FONT size=3># , /pat1/</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>5、步进&nbsp; ～</FONT></P>
+<P><FONT size=3>sed -n 'n~2p'&nbsp;&nbsp; 从n开始 步进是2</FONT></P>
+<P><FONT size=3>sed -n '1～2p'&nbsp; 奇数行</FONT></P>
+<P><FONT size=3>sed -n 'n;p'&nbsp;&nbsp; 偶数行</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>命令：</FONT></P>
+<P><FONT size=3>d:删除匹配行</FONT></P>
+<P><FONT size=3>p:打印当前模式空间内容，追加到默认输出之后</FONT></P>
+<P><FONT size=3>a [\]空格符等&nbsp; text&nbsp;&nbsp; : 行后追加text&nbsp; ，使用 \n&nbsp; 
+test&nbsp; 多行追加</FONT></P>
+<P><FONT size=3>i&nbsp; [\]空格符等&nbsp; text&nbsp;&nbsp;&nbsp;:&nbsp; 行前插入 
+text，</FONT></P>
+<P><FONT size=3>c&nbsp; [\]空格符等&nbsp; text&nbsp; :&nbsp; 替换单行或多行为text</FONT></P>
+<P><FONT size=3>w /path/filename&nbsp;&nbsp; :&nbsp; 保存匹配行到文件</FONT></P>
+<P><FONT size=3>r&nbsp; /path/filename&nbsp;&nbsp;&nbsp; : 
+插入文件内容到模式空间中匹配到的行后</FONT></P>
+<P><FONT size=3>= ： 打印行号</FONT></P>
+<P><FONT size=3>！： 取反</FONT></P>
+<P><FONT size=3>sed '2!d' filename&nbsp;&nbsp;&nbsp; 只打印匹配行 取反的用法</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>sed '/pat/a"text"' filename&nbsp;&nbsp;&nbsp; ‘&nbsp;“” 
+’嵌套使用</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>搜索替代</FONT></P>
+<P><FONT size=3>s/pat1/text/命令</FONT><FONT size=3></FONT></P>
+<P><FONT size=3>g&nbsp;&nbsp; 全局替代，不带g，默认替代一行</FONT></P>
+<P><FONT size=3>p&nbsp;&nbsp;&nbsp;&nbsp;打印出替代后行</FONT></P>
+<P><FONT size=3>w /path/filenew&nbsp;&nbsp; 替代后保存文件</P>
+<P><FONT size=3></FONT>&nbsp;</P></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>mysql安装</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>tar xvf mysql-boost-5.7.30.tar.gz</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>mkdir /app /data/mysql/3306&nbsp; -p</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>ln -s /app/mysql-5.7.30&nbsp;&nbsp; 
+/usr/local/mysql</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>cd /usr/local/mysql</FONT></DIV>
+<DIV><FONT size=3>mkdir bld</FONT></DIV>
+<DIV><FONT size=3>cd bld</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>yum install cmake&nbsp; gcc gcc-c++ openssl-devel&nbsp; 
+</FONT><FONT size=3>ncurses-devel -y</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>cmake .. -DWITH_BOOST=../boost/</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>make&nbsp; &amp;&amp; </FONT><FONT size=3>make install 
+【DESTDIR=/app/mysql】</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>useradd -r -s /sbin/nologin&nbsp; mysql</FONT></DIV>
+<DIV><FONT size=3>chown -R mysql. /data/</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>vi /etc/profile.d/mysql.sh</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>PATH=/usr/local/mysql/bin:$PATH</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>5.7初始化</FONT></DIV>
+<DIV><FONT size=3>mysqld --initialize-insecure --user=mysql 
+--basedir=/usr/local/mysql --datadir=/data/mysql/3306&nbsp;&nbsp;&nbsp;&nbsp; 
+初始化mysqld</FONT></DIV>
+<DIV><FONT size=3>mysqld --initialize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+系统自动生成密码root密码</FONT></DIV>
+<P><FONT color=#ff0000 size=3>mysqld --verbose --help&nbsp;&nbsp; 
+查看mysqld配置</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>5.6初始化</FONT></P>
+<P><FONT size=3>mysql_install_db -u mysql --basedir=/usr/local/mysql 
+--datadir=/data/mysql/3306</FONT></P>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>vi /etc/my.cnf</FONT></DIV>
+<DIV>[mysqld]<BR>user=mysql<BR>basedir=/usr/local/mysql<BR>datadir=/data/mysql/3306<BR>port=3306<BR>socket=/tmp/mysql.socket<BR>server_id=6<BR>[mysql]<BR>socket=/tmp/mysql.socket<BR>port=3306</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>cp&nbsp; /usr/local/mysql/support-files/mysql.server 
+/etc/init.d/mysql</FONT></DIV>
+<DIV><FONT size=3>service mysql start</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>mysqladmin -uroot -p password 111111</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV>
+<P><FONT size=3></FONT>&nbsp;</P></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV></BODY></HTML>

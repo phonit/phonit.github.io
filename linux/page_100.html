@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>SDN网络架构</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>&nbsp;</DIV></DIV>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>vlan ----&gt; bridge-domain 
+---&gt;vni---&gt;nve---&gt;vtep---&gt;vtep----&gt;bd域---&gt;vdb网关</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>EVPN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ethernet vpn 
+二层vpn</FONT></P>
+<P><FONT size=3>NFV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;网络功能虚拟化</FONT></P>
+<P><FONT size=3>overlay&nbsp;&nbsp;&nbsp;&nbsp;大二层网络， IP通就可以使用。</FONT></P>
+<P><FONT size=3>underlay&nbsp;&nbsp; 底层网络</FONT></P>
+<P><FONT size=3>VTEP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VXLAN tunnelend 
+point&nbsp; vxlan隧道端点&nbsp;&nbsp; （inter nve 1 下source的 IP地址），<FONT 
+color=#ff0000>VTEP学到的路由不在发布给其他VTEP出去，水平分割特性，多网关防环机制。</FONT></FONT></P>
+<P><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><FONT 
+color=#000000 size=3>VNI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+VXLAN network identifier，VXLAN网络标识符</FONT></SPAN></P>
+<P><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><FONT 
+color=#000000 
+size=3>BUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;broadcast广播，unknown 
+unicast未知单播，multicast多播</FONT></SPAN></SPAN></P>
+<P><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><FONT 
+color=#000000 size=3>DFS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dynamic 
+fabric service&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+VTEP之间同步arp表项协议</FONT></SPAN></SPAN></P>
+<P><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif, SimHei, SimSun; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'></SPAN></SPAN>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>封装包&nbsp;&nbsp;&nbsp;&nbsp; mac in 
+ip(udp)</FONT></P>
+<P><FONT size=3>ce1_mac&nbsp;&nbsp; ce2_mac&nbsp;&nbsp; 
+ce1_source_ip&nbsp;&nbsp; ce2_dest_ip&nbsp; udp&nbsp; vxlan&nbsp; pc1_mac&nbsp; 
+pc2_mac&nbsp; TCP (pc1_source_port&nbsp; pc2_dest_port)&nbsp;&nbsp; 
+app/data</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>udp 包基于使用<FONT 
+color=#ff0000>五元组负载分担分流。</FONT>&nbsp;&nbsp;&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3>sou_ip ,dest_ip,sou_port（hash）,dest_port, 协议号</FONT></P>
+<P><FONT color=#ff0000 size=3>hash端口利于分流</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>leaf层配置</FONT></P>
+<P><FONT size=3>bridge-domain 10&nbsp;&nbsp;&nbsp; 中介作用&nbsp; 就是一个广播域&nbsp; 
+本地起作用</FONT></P>
+<P><FONT size=3>vxlan vni 
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: common-ligatures; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'>VXLAN 
+Network Identifier&nbsp; vxlan网络标识&nbsp; 和vlan号无关</SPAN></FONT></P>
+<P><FONT size=3><SPAN 
+style='FONT-SIZE: 18px; FONT-FAMILY: -apple-system, "SF UI Text", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(77,77,77); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: common-ligatures; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'></SPAN></FONT>&nbsp;</P><FONT 
+size=3>
+<P><FONT size=3>int g 0/0.10 mode L2</FONT></P>
+<P><FONT size=3>encapsulation dot1q vid 10</FONT></P></FONT>
+<P><FONT size=3>bridge-domain 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;启动10域</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>int nve&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+&nbsp;<STRONG><FONT color=#4d4d4d size=4 face=Arial>Network Virtualization 
+Edge，网络虚拟边缘</FONT></STRONG></FONT></P>
+<P><FONT size=3>source 4.4.4.4&nbsp;&nbsp;&nbsp; 源&nbsp; 本地的loop</FONT></P>
+<P><FONT size=3>vni 10 head-end peer-list 5.5.5.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+头端&nbsp;（隧道对端） loop</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;提交生效</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>spine和网关融合组网&nbsp;&nbsp; 维护的表项太多 
+&nbsp;适合小型网络</FONT></P>
+<P><FONT color=#ff0000 size=3>一、leaf与spine之间ospf连接好</FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>二、leaf层配置</FONT></P>
+<P><FONT size=3>#<BR>bridge-domain 10&nbsp;&nbsp;&nbsp;&nbsp; 
+配置vxlan广播域<BR>&nbsp;vxlan vni 10<BR>#<BR>bridge-domain 20<BR>&nbsp;vxlan vni 
+20<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>interface GE1/0/1.10 mode l2&nbsp;&nbsp;&nbsp;&nbsp; 
+配置与接入交换机端口的vlan封装（拆vlan号，封装vxlan号）<BR>&nbsp;encapsulation dot1q vid 
+10<BR>&nbsp;bridge-domain 10</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>interface GE1/0/1.20 mode l2<BR>&nbsp;encapsulation dot1q vid 
+20<BR>&nbsp;bridge-domain 20</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>interface 
+Nve1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置隧道<BR>&nbsp;source 
+1.1.1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;本地loop<BR>&nbsp;vni 10 
+head-end peer-list 2.2.2.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+对端spine层loop<BR>&nbsp;vni 20 head-end peer-list 2.2.2.2</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>三、spine层配置</FONT></P>
+<P><FONT size=3>#<BR>bridge-domain 
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+建立同样的vxlan广播域<BR>&nbsp;vxlan vni 10<BR>#<BR>bridge-domain 20<BR>&nbsp;vxlan vni 
+20<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>#<BR>interface 
+Vbdif10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+配置vxlan接口网关地址<BR>&nbsp;ip address 192.168.10.254 255.255.255.0<BR>#<BR>interface 
+Vbdif20<BR>&nbsp;ip address 172.16.20.254 255.255.255.0<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>#<BR>interface 
+Nve1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;配置隧道<BR>&nbsp;source 
+2.2.2.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;本地loop<BR>&nbsp;vni 10 head-end peer-list 1.1.1.1&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; 对端leaf层loop<BR>&nbsp;vni 20 head-end peer-list 1.1.1.1<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>四、建vpn实例</FONT></P>
+<P><FONT size=3>#<BR>ip vpn-instance 10<BR>&nbsp;ipv4-family<BR>&nbsp; 
+route-distinguisher 100:10<BR>#<BR>ip vpn-instance 
+20<BR>&nbsp;ipv4-family<BR>&nbsp; route-distinguisher 100:20<BR>#<BR>interface 
+Vbdif10<BR>&nbsp;ip binding vpn-instance 10<BR>&nbsp;ip address 192.168.10.254 
+255.255.255.0<BR>#<BR>interface Vbdif20<BR>&nbsp;ip binding vpn-instance 
+20<BR>&nbsp;ip address 172.16.20.254 255.255.255.0<BR>#</FONT></P>
+<P><FONT size=3>#<BR>ip route-static vpn-instance 10 172.16.20.0 255.255.255.0 
+vpn-instance 20 172.16.20.1<BR>ip route-static vpn-instance 20 192.168.10.0 
+255.255.255.0 vpn-instance 10 192.168.10.1<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>五、多活网关 负载分担</FONT></P>
+<P><FONT color=#ff0000 size=3>leaf 配置 （1.1.1.1）</FONT></P>
+<P><FONT size=3>interface 
+GE1/0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;配置网关2接口IP<BR>&nbsp;undo portswitch<BR>&nbsp;undo shutdown<BR>&nbsp;ip 
+address 10.3.3.1 255.255.255.0</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>ospf 1 router-id 
+1.1.1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布ospf路由<BR>&nbsp;area 0.0.0.0<BR>&nbsp; 
+network 10.3.3.1 0.0.0.0</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>网关1配置&nbsp; （2.2.2.2）</FONT></P>
+<P><FONT color=#000000 size=3>#<BR>interface 
+Vbdif10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+需要手动配置MAC地址</FONT></P>
+<P><FONT color=#000000 size=3>&nbsp;ip binding vpn-instance 10<BR>&nbsp;ip 
+address 192.168.10.254 255.255.255.0<BR>&nbsp;<FONT 
+color=#ff0000>mac-address</FONT> 0000-5e00-0001<BR>#<BR>interface 
+Vbdif20<BR>&nbsp;ip binding vpn-instance 20<BR>&nbsp;ip address 172.16.20.254 
+255.255.255.0<BR>&nbsp;<FONT color=#ff0000>mac-address</FONT> 
+0000-5e00-0002<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>网关2配置 （3.3.3.3）</FONT></P>
+<P><FONT size=3>#<BR>interface 
+GE1/0/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;配置与leaf接口IP<BR>&nbsp;undo portswitch<BR>&nbsp;undo 
+shutdown<BR>&nbsp;ip address 10.3.3.2 255.255.255.0</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>interface 
+LoopBack0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+配置本地loop<BR>&nbsp;ip address 3.3.3.3 255.255.255.255<BR>#</FONT></P>
+<P><FONT size=3>ospf 1 router-id 3.3.3.3&nbsp;&nbsp; &nbsp;&nbsp; 
+发布到ospf路由<BR>&nbsp;area 0.0.0.0<BR>&nbsp; network 2.2.2.2 0.0.0.0</FONT></P>
+<P><FONT size=3>&nbsp; network 3.3.3.3 0.0.0.0<BR>&nbsp; network 10.3.3.2 
+0.0.0.0</FONT></P>
+<P><FONT color=#ff0000 size=3>验证路由是否生效</FONT></P>
+<P><FONT size=3>leaf上 </FONT><FONT size=3>dis ospf routing&nbsp;、 dis ip 
+routing-table &nbsp;出现2个相同条目</FONT></P>
+<P><FONT color=#ff0000 size=3>以下配置需和网关1相同</FONT></P>
+<P><FONT color=#000000 size=3>#<BR>ip vpn-instance 
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;相同VPN实例<BR>&nbsp; route-distinguisher 100:10<BR>#<BR>ip vpn-instance 
+20<BR>&nbsp; route-distinguisher 100:20<BR>#<BR>bridge-domain 
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;相同BD域<BR>&nbsp;vxlan vni 10<BR>#<BR>bridge-domain 20<BR>&nbsp;vxlan vni 
+20<BR></FONT><FONT color=#000000 size=3>#<BR>interface 
+Vbdif10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+需要手动配置MAC地址，与网关1相同<BR>&nbsp;ip binding vpn-instance 10<BR>&nbsp;ip address 
+192.168.10.254 255.255.255.0<BR>&nbsp;mac-address 
+0000-5e00-0001<BR>#<BR>interface Vbdif20<BR>&nbsp;ip binding vpn-instance 
+20<BR>&nbsp;ip address 172.16.20.254 255.255.255.0<BR>&nbsp;mac-address 
+0000-5e00-0002<BR>#</FONT></P>
+<P><FONT color=#000000 size=3>#<BR>interface 
+LoopBack1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+配置网关1的相同IPloop地址<BR>&nbsp;ip address 2.2.2.2 255.255.255.255</FONT></P>
+<P><FONT color=#000000 size=3>#<BR>interface 
+Nve1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;配置网关1相同NVE<BR>&nbsp;source 2.2.2.2<BR>&nbsp;vni 10 head-end 
+peer-list 1.1.1.1<BR>&nbsp;vni 20 head-end peer-list 1.1.1.1<BR>#</FONT> </P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>最后网关1和网关2配置</FONT></P>
+<P><FONT color=#ff0000 size=3>dfs group 1</FONT></P>
+<P><FONT color=#ff0000 size=3>source 2.2.2.2&nbsp;&nbsp; 本地网关1 loop</FONT></P>
+<P><FONT color=#ff0000 size=3>peer 3.3.3.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 对端网关2 
+loop</FONT></P>
+<P><FONT color=#ff0000 size=3>active-active-gateway&nbsp;&nbsp;&nbsp; 
+激活网关，同步arp表项</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>END</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>分布式网关 互通的关键 arp distribute-gateway 
+enable(避免地址冲突)，arp direct-route enable</FONT>&nbsp;&nbsp;&nbsp;</FONT></P>
+<P><FONT size=3>interface Vbdif10<BR>&nbsp;ip binding vpn-instance 
+10<BR>&nbsp;ip address 192.168.10.254 255.255.255.0<BR>&nbsp;arp 
+distribute-gateway 
+enable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分布式网关，需要网关只学习用户端发送的arp报文，不学习隧道过来的arp报文<BR>&nbsp;mac-address 
+0000-5e00-0001<BR>&nbsp;arp direct-route 
+enable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过arp报文生成直连路由</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P><FONT 
+size=3>-------------------------------------------------------------</FONT></P>
+<P><FONT size=3>dis vxlan tunel&nbsp;&nbsp;&nbsp; 查看隧道状态</FONT></P>
+<P><FONT size=3>dis vxlan tunel&nbsp; verbose&nbsp;&nbsp;&nbsp; 查看隧道详细信息 
+</FONT></P>
+<P><FONT size=3>dis vxlan peer&nbsp;&nbsp;&nbsp; 查看头端列表</FONT></P>
+<P><FONT size=3>dis vxlan vni 10 verbose&nbsp;&nbsp;&nbsp; 查看vni详情</FONT></P>
+<P><FONT size=3>dis vxlan vni&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;查看vni状态</FONT></P>
+<P><FONT size=3>dis ip interface brief&nbsp;&nbsp;&nbsp;&nbsp; 查看接口状态</FONT></P>
+<P><FONT size=3>dis ospf peer brief </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>EVPN</FONT></P>
+<P><FONT color=#ff0000 size=3>type3 路由：</FONT></P>
+<P><FONT color=#000000 size=3>前缀信息（vtep网络信息）</FONT></P>
+<P><FONT color=#000000 size=3>PMSI:&nbsp; 私钥组播服务接口（传递BUM帧）</FONT></P>
+<P><FONT color=#000000 size=3>VTEP地址</FONT></P>
+<P><FONT color=#000000 size=3>L2VNI 信息</FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT size=3>evpn-overlay enable</FONT></P>
+<P><FONT size=3>bgp 200 instance evpn</FONT></P>
+<P><FONT size=3>#<BR>bgp 200 instance evpn<BR>&nbsp;router-id 
+1.1.1.1<BR>&nbsp;peer 2.2.2.2 as-number 200<BR>&nbsp;peer 2.2.2.2 
+connect-interface LoopBack0<BR>&nbsp;#<BR>&nbsp;l2vpn-family evpn<BR>&nbsp; 
+policy vpn-target<BR>&nbsp; peer 2.2.2.2 enable<BR>#</FONT></P>
+<P><FONT size=3>#<BR>interface Nve1<BR>&nbsp;source 2.2.2.2<BR>&nbsp;vni 192 
+head-end peer-list protocol bgp<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT 
+size=3>------------------------------------------------------------</FONT></P>
+<P><FONT size=3>dis bgp instance evpn evpn peer&nbsp;&nbsp; 
+查看evpn邻居关系</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>虚拟防火墙&nbsp;&nbsp; NGFW</FONT></P>
+<P><FONT size=3>虚系统&nbsp;&nbsp; NSYS</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>A-----&gt;public-----&gt;B</FONT></P>
+<P><FONT size=3>vsys enable&nbsp; 启动虚拟防火墙&nbsp;&nbsp; &nbsp;<FONT 
+color=#ff0000>默认有个public设备，流量都要经过public设备。</FONT></FONT></P>
+<P><FONT size=3>dis&nbsp; vsys</FONT></P>
+<P><FONT size=3>vsys name 
+a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;创建A墙，定义资源</FONT></P>
+<P><FONT size=3>assign interface g1/0/1&nbsp;&nbsp;&nbsp; &nbsp;端口属于a墙&nbsp; 
+接口自动绑定vpn实例a</FONT></P>
+<P><FONT size=3>vsys 
+name&nbsp;b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; 创建b墙，定义资源</FONT></P>
+<P><FONT size=3>assign interface g1/0/2&nbsp;&nbsp; &nbsp; 端口属于B墙 
+接口自动绑定vpn实例b</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>switch vsys a&nbsp;&nbsp; 切换A墙</FONT></P>
+<P><FONT size=3>interface g1/0/1 </FONT></P>
+<P><FONT size=3>ip add 10.1.1.1 24</FONT></P>
+<P><FONT color=#ff0000 size=3>service-manager ping 
+permit&nbsp;&nbsp;&nbsp;&nbsp; 放开权限</FONT></P>
+<P><FONT size=3>firewall zone trust</FONT></P>
+<P><FONT size=3>add interface g1/0/1</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>switch vsys b&nbsp;&nbsp; 切换B墙</FONT></P>
+<P><FONT size=3>firewall zone utrust</FONT></P>
+<P><FONT size=3>add interface g1/0/2</FONT></P>
+<P><FONT size=3>service-manager ping permit</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>public设备接口</FONT></P>
+<P><FONT size=3>dis ip inter 
+brief&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+交换机内连口， </FONT></P>
+<P><FONT 
+size=3>NULL0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+unassigned&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; up(s)&nbsp;&nbsp;&nbsp;&nbsp; 
+<BR>Virtual-if0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+unassigned&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; up(s)&nbsp;&nbsp;&nbsp;&nbsp; 
+<BR>Virtual-if1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+unassigned&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; up(s)&nbsp;&nbsp;&nbsp;&nbsp; 
+<BR>Virtual-if2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+unassigned&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; up(s)</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>public 
+接口可以随意配网段</FONT>，只要他们之间互通。<BR>interface Virtual-if0<BR>&nbsp;ip address 10.1.1.1 
+255.255.255.0<BR>#<BR>interface Virtual-if1<BR>&nbsp;ip address 10.1.1.2 
+255.255.255.0<BR>#<BR>interface Virtual-if2<BR>&nbsp;ip address 10.1.1.3 
+255.255.255.0<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>配置路由和区域</FONT></P>
+<P><FONT size=3>switch vsys a&nbsp;&nbsp; 配置A防火墙</FONT></P>
+<P><FONT size=3>#<BR>interface GigabitEthernet1/0/1<BR>&nbsp;undo 
+shutdown<BR>&nbsp;ip binding vpn-instance 
+a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+自动绑定<BR>&nbsp;ip address 192.168.1.2 255.255.255.0<BR>&nbsp;service-manage ping 
+permit<BR>#</FONT></P>
+<P><FONT size=3>#<BR>interface Virtual-if1<BR>&nbsp;ip address 10.1.1.2 
+255.255.255.0<BR>#</FONT></P>
+<P><FONT size=3>#<BR>firewall zone trust<BR>&nbsp;add interface 
+GigabitEthernet1/0/1<BR>#</FONT></P>
+<P><FONT size=3>firewall zone untrust&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; 流量导出到public墙<BR>&nbsp;add interface 
+Virtual-if1<BR>#</FONT></P>
+<P><FONT size=3>ip route-static 172.16.0.0 255.255.255.0 
+public&nbsp;&nbsp;&nbsp; 默认路由到public墙</FONT></P>
+<P><FONT 
+size=3>#<BR>security-policy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+策略默认都通过<BR>&nbsp;default action permit<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>配置public防火墙</FONT></P>
+<P><FONT size=3>firewall zone trust<BR>&nbsp;add interface 
+GigabitEthernet0/0/0<BR>&nbsp;add interface Virtual-if0</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>#<BR>ip route-static 172.16.0.0 255.255.255.0 vpn-instance 
+b<BR>ip route-static 192.168.1.0 255.255.255.0 vpn-instance a<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>switch vsys b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;配置B防火墙</FONT></P><FONT size=3>#<BR>interface 
+GigabitEthernet1/0/2<BR>&nbsp;ip address 172.16.0.2 
+255.255.255.0<BR>&nbsp;service-manage ping permit<BR>#</FONT> 
+<P><FONT size=3>interface Virtual-if2<BR>&nbsp;ip address 10.1.1.3 
+255.255.255.0<BR>#</FONT><FONT size=3><BR>firewall zone trust<BR>&nbsp;add 
+interface Virtual-if2<BR>#</FONT></P><FONT size=3>firewall zone 
+untrust<BR>&nbsp;add interface GigabitEthernet1/0/2<BR>#</FONT><FONT 
+size=3><BR>security-policy<BR>&nbsp;default action permit<BR>#</FONT> 
+<P><FONT size=3>ip route-static 192.168.1.0 255.255.255.0 public<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>最后路由器端口需配置IP以及默认路由</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>防火墙nat配置</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>源nat配置</FONT></P>
+<P><FONT size=3>一、指定nat地址</FONT></P>
+<P><FONT size=3>vsys name a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 定义资源</FONT></P>
+<P><FONT size=3>assign global-ip 100.1.1.1 100.1.1.10 &nbsp;<FONT 
+color=#ff0000>exclusive(仅a墙试用) / free(AB墙都可以使用)</FONT></FONT></P>
+<P><FONT size=3>二、切换A墙配置nat</FONT></P>
+<P><FONT size=3>nat address-group 
+a1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; 配置nat地址组<BR>&nbsp;&nbsp; section 0 100.1.1.1 
+100.1.1.10&nbsp;&nbsp; 设置nat地址集</FONT></P>
+<P><FONT 
+size=3>nat-policy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+nat规则</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; rule name 
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+规则 1</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; source-zone 
+trust&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT color=#ff0000> 源属于trust 
+并且是192.168.0.0等网段</FONT><BR>&nbsp;&nbsp; source-address 192.168.0.0 mask 
+255.255.0.0</FONT><FONT size=3><BR>&nbsp; &nbsp;source-address 10.90.0.0 mask 
+255.255.0.0</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; destination-zone untrust</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; action source-nat address-group 
+a1&nbsp;&nbsp;&nbsp;&nbsp; 
+激活a1配置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;</FONT></P>
+<P><FONT color=#ff0000 size=3>Dnat转换</FONT></P>
+<P><FONT size=3>switch vsys a</FONT></P>
+<P><FONT size=3>#<BR>&nbsp;nat server protocol tcp global 100.1.1.5 telnet 
+inside 192.168.1.1 telnet&nbsp; <BR>#</FONT></P>
+<P><BR><FONT size=3>swithc vsys b</FONT></P>
+<P><FONT size=3>ip route-static 100.1.1.0 255.255.255.0 public&nbsp;&nbsp;&nbsp; 
+B墙流量导入public</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>进入public</FONT></P>
+<P><FONT size=3>ip route-static 100.1.1.0 24 vpn-instance 
+a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 流量导入去A墙<BR></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>-----------------------------------------------------</FONT></P>
+<P><FONT size=3>dis firewall session table all-systems&nbsp;&nbsp; 
+查看会话</FONT></P>
+<P><FONT size=3>dis&nbsp; zone</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

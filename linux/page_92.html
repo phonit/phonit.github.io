@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>k8s</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>四组概念</FONT></P>
+<P><FONT size=3>pod/pod控制器</FONT></P>
+<P><FONT size=3>name/namespace</FONT></P>
+<P><FONT size=3>label/label选择器</FONT></P>
+<P><FONT size=3>service/ingress</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>pod&nbsp;</FONT>&nbsp;&nbsp;</FONT></P>
+<P><FONT size=3>k8s最小的逻辑单元原子单元</FONT></P>
+<P><FONT size=3>1个pod可以运行多个容器，共享UTS+NETS+IPC名称空间</FONT></P>
+<P><FONT size=3>可以把pod理解成豌豆荚，pod里每个容器是豌豆</FONT></P>
+<P><FONT size=3>一个pod运行多个容器，又叫 边车模式</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>pod控制器</FONT>&nbsp; 控制pod启动预期</FONT></P>
+<P><FONT size=3>pod启动一个预期模板，包括副本数，生命周期，健康状态检查，启动容器达到预期。</FONT></P>
+<P><FONT size=3>常用pod控制器类型</FONT></P>
+<P><FONT size=3>deployment&nbsp; 常用</FONT></P>
+<P><FONT size=3>deamonset&nbsp;&nbsp; 常用</FONT></P>
+<P><FONT size=3>replicaset</FONT></P>
+<P><FONT size=3>statefulset</FONT></P>
+<P><FONT size=3>job</FONT></P>
+<P><FONT size=3>cronjob</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>name</FONT></P>
+<P><FONT size=3>每个资源应该有自己的名字</FONT></P>
+<P><FONT size=3>资源有API版本，元数据，类别，定义清单，状态等配置信息</FONT></P>
+<P><FONT size=3>name 定义在元数据信息里</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>namespace</FONT></P>
+<P><FONT size=3>隔离k8s内部资源的方法，就是把资源分组。</FONT></P>
+<P><FONT size=3>名称空间 理解为k8s内部虚拟集群组</FONT></P>
+<P><FONT size=3>不同名称空间内的资源，名称可以相同，相同名称空间内相同资源，名称不能相同</FONT></P>
+<P><FONT size=3>合理使用名称空间，集群管理员能够更好的对交付到服务进行管理和浏览</FONT></P>
+<P><FONT size=3>默认存在的：default,kebe-system,kube-public</FONT></P>
+<P><FONT size=3>查询k8s特定资源要带上对应的名称空间</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>label</FONT></P>
+<P><FONT size=3>标签是k8s管理方式，分类管理资源对象，</FONT></P>
+<P><FONT size=3>一个标签对应多个资源，一个资源可以多个标签，多对多</FONT></P>
+<P><FONT size=3>一个标签多个资源，可以实现不同维度管理</FONT></P>
+<P><FONT size=3>标签组成，key=value</FONT></P>
+<P><FONT size=3>与标签类似的 还有一种 注解annotations</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>label选择器</FONT></P>
+<P><FONT size=3>给资源打上标签，可以使用标签过滤</FONT></P>
+<P><FONT size=3>标签选择器目前有2个，等值关系（等于和不等于）和集合关系（属于和不属于）</FONT></P>
+<P><FONT size=3>资源支持内嵌标签选择器</FONT></P>
+<P><FONT size=3>matchlabel</FONT></P>
+<P><FONT size=3>matchexpressions</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>service</FONT></P>
+<P><FONT size=3>每个pod都会被分配IP，随pod一起消失</FONT></P>
+<P><FONT size=3>服务是解决问题的核心概念</FONT></P>
+<P><FONT size=3>一个service可以看作一组提供相同服务器的POD对外接口</FONT></P>
+<P><FONT size=3>service作用于那些POD是通过标签选择器定义的</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>ingress</FONT></P>
+<P><FONT size=3>ingress是集群里工作OSI网络参考模型下，第7层的应用，对外暴露的接口</FONT></P>
+<P><FONT size=3>service只能进行L4流量调度，ip+port</FONT></P>
+<P><FONT size=3>可以调度不同业务域，不同url访问的流量。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>核心组件</FONT></P>
+<P><FONT size=3>配置存储中心&nbsp; etcd服务&nbsp; 奇数个，高可用机制是投票机制。</FONT></P>
+<P><FONT size=3>主控节点</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kube-apiserver服务&nbsp;&nbsp; 
+集群大脑，数据通讯，资源配额控制，集群安全机制。</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kube-control-manager服务&nbsp; 
+控制器管理器，保证集群达到预期。</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kube-scheduler服务&nbsp; 接收调度pod，预选和优选。</FONT></P>
+<P><FONT size=3>运算节点</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kube-kubelet服务&nbsp;&nbsp; 
+工蜂，获取节点POD期望状态，调用容器达到期望，定时汇报状态给apiserver，镜像和容器清理。</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kube-proxy服务 
+节点网络代理，建立集群IP和podip映射关系，三种流量调度：userspace,iptables,ipvs,&nbsp; 
+更新调度规则，通知APISERVER，或者从apiserver获取代理规则更新自己的。</FONT></P>
+<P><FONT size=3>cli客户端</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp; kubectl </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>核心附件</FONT></P>
+<P><FONT size=3>cni网络插件&nbsp;&nbsp; flannel/calico</FONT></P>
+<P><FONT size=3>服务发现用插件&nbsp;&nbsp;&nbsp; coredns</FONT></P>
+<P><FONT size=3>服务暴露插件&nbsp;&nbsp;&nbsp; traefik</FONT></P>
+<P><FONT size=3>gui管理插件&nbsp;&nbsp;&nbsp; dashboard</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>三种网络&nbsp;&nbsp;&nbsp;&nbsp; 节点网络、pod网络、service网络</FONT></P>
+<P><FONT size=3>部署方式&nbsp;&nbsp;&nbsp; 单节点部署&nbsp; 
+minikube、二进制部署（推荐）、使用lubeadmin部署</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P></BODY></HTML>

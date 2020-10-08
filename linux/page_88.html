@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>docker_file</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>dockerfile&nbsp;&nbsp; 软件的原材料</FONT></P>
+<P><FONT size=3>docker镜像&nbsp;&nbsp;&nbsp; 软件生产的交付品</FONT></P>
+<P><FONT size=3>docke容器&nbsp;&nbsp;&nbsp; 软件运行态</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT 
+size=3>FROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+基于哪个镜像&nbsp;&nbsp;&nbsp; &nbsp; scratch&nbsp;&nbsp;&nbsp;镜像祖先</FONT></P>
+<P><FONT size=3>MAINTAINER&nbsp;&nbsp;&nbsp; 作者和作者邮箱</FONT></P>
+<P><FONT 
+size=3>RUN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+容器构建时运行的命令</FONT></P>
+<P><FONT size=3>EXPOSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+服务对外暴露端口号</FONT></P>
+<P><FONT size=3>WORKDIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+创建容器后，tty登录默认目录，默认是/</FONT></P>
+<P><FONT size=3>ENV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 设置容器的环境变量</FONT></P>
+<P><FONT size=3>ADD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+容器拷贝进镜像包&nbsp;，拷贝+解压缩</FONT></P>
+<P><FONT size=3>COPY&nbsp;&nbsp;&nbsp; 容器拷贝进镜像包，不解压</FONT></P>
+<P><FONT size=3>VOLUME&nbsp;&nbsp; 容器数据卷，用于<FONT 
+color=#ff0000>数据保存和持久化工作</FONT></FONT></P>
+<P><FONT size=3>CMD&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+指定容器启动时需要运行的命令，可以有多个CMD，但<FONT color=#ff0000>只有最后一个生效</FONT>， CMD也会被<FONT 
+color=#ff0000>docker run命令后参数替代</FONT></FONT></P>
+<P><FONT size=3>ENTRYPOINT&nbsp;&nbsp;&nbsp; 指定容器启动时需要运行的命令,和CMD一样， 
+指定容器启动程序和参数，但是<FONT color=#ff0000>命令后</FONT><FONT 
+color=#ff0000>是追加</FONT></FONT></P>
+<P><FONT size=3>ONBUILD&nbsp;&nbsp; 
+构建一个继承的dockerfile时容器，父镜像在被子继承后，父镜像的onbuild被触发。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3>FROM centos</FONT></P>
+<P><FONT size=3>MAINTAINER phonit&lt;<A 
+href="mailto:phnit@xxx.xx">phnit@xxx.xx</FONT><FONT size=3></A>&gt;</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>ENV MYPATH&nbsp; /usr/local</FONT></P>
+<P><FONT size=3>WORKDIR $MYPATH</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>RUN yum install vim -y</FONT></P>
+<P><FONT size=3>RUM yum install net-tools -y</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>EXPOSE 80</FONT></P>
+<P><FONT size=3>CMD /bin/bash</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker history 容器ID&nbsp;&nbsp; 查看容器流程</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

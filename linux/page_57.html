@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>kvm</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>&nbsp;</DIV></DIV>
+<P><FONT color=#ff0000 size=4>kvm依赖qemu，所以是完全虚拟化</FONT></P>
+<P><FONT size=4>KVM 
+架构：基于内核的虚拟机，是内核一个模块,直接调度硬件资源，所以比Xen性能更高。只支持硬件虚拟化的CPU、64位平台上。</FONT><FONT 
+size=4><FONT color=#ff0000><FONT 
+color=#000000>一台虚拟机就是内核上一个进程。</FONT></FONT></FONT></P>
+<P><FONT size=4><FONT color=#ff0000>kvm+qemu架构</FONT></FONT></P>
+<P><FONT color=#000000 size=4>/usr/libexec/qemu-kvm</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>modprobe kvm&nbsp; 安装KVM模块</FONT></P>
+<P><FONT size=3><IMG style="HEIGHT: 396px; WIDTH: 700px" src="kvm_structure.bmp" 
+width=1015 height=506></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>包组</FONT></P>
+<P><FONT 
+size=3>virtualization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; qemu-kvm</FONT></P>
+<P><FONT size=3>virtualization client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;virt-manager&nbsp; ,virt-viewer</FONT></P>
+<P><FONT size=3>virtualization platform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; &nbsp;libvirt,virt-who,virt-what</FONT></P>
+<P><FONT size=3>virtualization 
+tool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+virt-v2v</FONT></P>
+<P><IMG style="HEIGHT: 478px; WIDTH: 661px" src="kvm_tools.bmp" width=880 
+height=677></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>kvm三模块</FONT></P>
+<P><FONT size=3>内核模式&nbsp;&nbsp; &nbsp; 
+&nbsp;包括kvm.ko模块、/dev/kvm或者qemu-kvm&nbsp; 
+内核与虚拟机交互的API，可以管理、创建、删除虚拟机，内核中断。</FONT></P>
+<P><FONT size=3>用户模式&nbsp;&nbsp;&nbsp; &nbsp; 包括虚拟机进程</FONT></P>
+<P><FONT size=3>来宾模式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 进程内的虚拟机</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>常用管理工具</FONT></P>
+<P><FONT size=3>libvirtd,qemu,</FONT></P>
+<P><FONT size=3><IMG src="kvm1.bmp"><IMG src="Xen架构-1.png"></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P><FONT size=3>virsh uri&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;查看虚拟机连接路径</FONT></P>
+<P><FONT size=3>virsh create&nbsp;&nbsp;&nbsp;&nbsp; 建完后，自动启动</FONT></P>
+<P>virsh start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 开机</P>
+<P><FONT size=3>virsh suspend&nbsp;&nbsp; 挂起</FONT></P>
+<P><FONT size=3>virsh resume&nbsp;&nbsp;&nbsp; 继续挂起的</FONT></P>
+<P><FONT size=3>virsh save&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 保存虚拟机状态到文件</FONT></P>
+<P><FONT size=3>virsh restore&nbsp;&nbsp; 从文件恢复到虚拟机状态</FONT></P>
+<P><FONT size=3>virsh reset&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 直接重启</FONT></P>
+<P><FONT size=3>virsh reboot&nbsp;&nbsp;&nbsp; 重启</FONT></P>
+<P><FONT size=3>virsh migrate&nbsp; &nbsp;迁移</FONT></P>
+<P><FONT size=3>virsh console&nbsp;&nbsp;&nbsp; 连接到客户机';</FONT></P>
+<P><FONT size=3>virsh 
+detach-disk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+卸载硬盘</FONT></P>
+<P><FONT size=3>virsh detach -interface&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+卸载网络接口</FONT></P>
+<P>virt-top</P></FONT>
+<P><FONT size=3>virsh iface-bridge ens33 br0&nbsp; 桥接</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>开启网络桥接</FONT></P>
+<P><FONT size=3>systemctl start libvirtd&nbsp;&nbsp;&nbsp; 
+启动自动生产nat模型的桥</FONT></P>
+<P><FONT size=3>virsh iface-bridge ens33&nbsp;br0&nbsp;&nbsp; 
+开启网桥后需要配置vr0的IP地址</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>创建硬盘文件</FONT></P>
+<P><FONT size=3>qemu-img create -f raw /kvm/vm1/test.img 10G</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>losetup 
+-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 查看loop空闲设备</FONT></P>
+<P><FONT size=3>losetup /dev/loop0 /kvm/vm1/test.img&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 映射loop 设备 应该是相当于 mount -o loop </FONT></P>
+<P><FONT size=3>kpartx -av 
+/dev/loop0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+挂载img文件成硬件设备</FONT></P>
+<P><FONT size=3>fdisk /dev/loop0 </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>创建虚拟机</FONT></P>
+<P><FONT size=3>virt-install --connect qemu:///system&nbsp;&nbsp;&nbsp;&nbsp; 
+--virt-type qemu --name centos6.5 --ram 512 --disk path=/test.img,size=3 
+--graphics vnc --cdrom /tmp/CentOS-6.5-x86_64-minimal.iso&nbsp;&nbsp; --network 
+bridge=br0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --chech all=off&nbsp; 或者 
+</FONT><FONT size=3>--check path_in_use=off</FONT></P>
+<P><FONT size=3>&nbsp;/usr/libexec/qemu-kvm -m 8000 -smp 2 -boot order=c -hdb 
+/opt/Data/b4f74446-18bf-42e9-a2d9-e0a1a1bf8f4b/images/24e31c1f-5085-48fa-8b87-37437bfaf056/a4da8009-f0d7-4ec5-9b71-6862037b7ae7 
+-vnc :2</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>删除虚拟机</FONT></P>
+<P><FONT size=3>virsh undefine&nbsp;&nbsp; test</FONT></P>
+<P><FONT size=3>cd /etc/libvrit/qemu/&nbsp;&nbsp; </FONT><FONT 
+size=3>rm删除掉虚拟机的xml文件</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

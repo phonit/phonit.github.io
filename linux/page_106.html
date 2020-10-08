@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>mpls</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV><FONT style="BACKGROUND-COLOR: #99ccff"></FONT>&nbsp;</DIV></DIV>
+<P>&nbsp;</P>
+<P><FONT size=3>mpls&nbsp; 2.5层,通过二层头部PID报文类型，LSR判断报文</FONT></P>
+<P><FONT size=3>报结构</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>LER&nbsp; &nbsp;label edger router</FONT></P>
+<P><FONT size=3>LSR&nbsp;&nbsp;&nbsp;label swich router</FONT></P>
+<P><FONT size=3>LSP&nbsp;&nbsp;&nbsp;label swtich path&nbsp;&nbsp; 有ingress 
+入节点&nbsp; 中间节点 transit&nbsp; egress 出节点</FONT></P>
+<P><FONT size=3>ldp&nbsp;&nbsp;&nbsp; label distribution protocol&nbsp;&nbsp; 
+标签分发协议</FONT></P>
+<P><FONT size=3>FIB&nbsp;&nbsp; forwarding infomation database</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>label(32bit标识位),exp&nbsp; (QOS3位),s (栈底位1位) ,ttl</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>通过FEC forwarding Equivalence 
+class&nbsp;&nbsp;转发等价类分配一组标签，就是<FONT 
+color=#ff0000>每条路由信息分配一个标签。</FONT></FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT size=3>操作类型</FONT></P>
+<P><FONT size=3>push&nbsp;(压入),swap（交换）, pop（弹出）</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>LDP&nbsp; 标签分发协议</FONT></P>
+<P><FONT size=3>discover message&nbsp;&nbsp;&nbsp; 宣告和维护LSR的存在</FONT></P>
+<P><FONT size=3>session message&nbsp;&nbsp; 建立 维护和终止LDP PEER之间LDP 
+SESSTION</FONT></P>
+<P><FONT size=3>advertisement message&nbsp;&nbsp; 生效</FONT></P>
+<P><FONT size=3>notification message&nbsp; 发送错误</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>dis mpls lsp verbose&nbsp; 查看标签信息</FONT></P>
+<P><FONT size=3>dis mpls ldp session&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

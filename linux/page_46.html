@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>用户管理</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=4>创建用户模板</FONT></P>
+<P><FONT size=4>/etc/default/useradd&nbsp; 创建用户时，默认目录、组选项</FONT></P>
+<P><FONT 
+size=4>/etc/login.defs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+创建用户时，默认用户权限</FONT></P>
+<P><FONT 
+size=4>/etc/skel/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;登录用户的家默认文件</FONT></P>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=4>批量修改用户密码</FONT></P>
+<P><FONT size=4>newusers &lt;&nbsp;user.txt 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+批量创建用户&nbsp;&nbsp;&nbsp;passwd文件的格式</FONT></P>
+<P><FONT color=#000000 size=3>cat list.txt 
+|chpasswd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;批量修改密码&nbsp;&nbsp;&nbsp;&nbsp; username:passwd</FONT></P>
+<P><FONT size=4>echo 密码 | passwd username --stdin&nbsp;&nbsp;&nbsp; 
+可视化修改密码</FONT></P>
+<P><FONT size=4>chage -d 
+0&nbsp;username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+下次登录强制修改密码</FONT></P><FONT size=4>
+<P>usermod -U&nbsp;&nbsp;解锁 、passwd -l&nbsp; 解锁</P>
+<P>&nbsp;</P>
+<P>pkill -kill -t tty参数&nbsp; <FONT color=#ff0000>踢出用户</FONT></P></FONT>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=4>单次执行root 命令</FONT></P>
+<P><FONT size=4>su - root -c 'cat /etc/shadow'</FONT></P>
+<P><FONT size=4></FONT>&nbsp;</P></BODY></HTML>

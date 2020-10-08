@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>进程</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>&nbsp;</DIV></DIV>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT size=4>pidstat&nbsp;&nbsp; 查看进程</FONT></P>
+<P><FONT size=4>pidstat -d 进程实时读写速度</FONT></P>
+<P><FONT size=4></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=4>进程类型</FONT></P>
+<P><FONT size=4>交互式进程（i/o）&nbsp;&nbsp;&nbsp; 桌面型</FONT></P>
+<P><FONT size=4>批处理进程（cpu）&nbsp;&nbsp; 后台运行</FONT></P>
+<P><FONT size=4>实时进程（real-time）</FONT></P>
+<P><FONT color=#ff0000 size=4>进程结构</FONT></P>
+<P><FONT size=4>进程是通过有次序的双向链表结构的文件管理&nbsp; 
+task_struct,是c语言的数据结构文件，用来存储文件的元数据，这些文件统一叫做进程描叙符。存储在内核的内存空间当中。</FONT></P>
+<P><FONT color=#ff0000 size=4>进程描叙符结构</FONT></P>
+<P><FONT size=4>1、状态： </FONT></P>
+<P><FONT size=3>运行态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; running&nbsp;&nbsp;&nbsp; 
+<BR>就绪态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ready&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</FONT></P>
+<P><FONT size=3>睡眠态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+sleeping<BR>可中断：&nbsp;&nbsp;&nbsp; 
+interruptable<BR>不可中断：uninterruptable&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3>停止态&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stopped&nbsp;&nbsp; 
+暂停于内存，但不会被调度，除非手动启动</FONT></P>
+<P><FONT size=3>僵死态&nbsp;&nbsp; zombie&nbsp; &nbsp;结束进程，父进程结束前，子进程不关闭</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>2、线程信息&nbsp;&nbsp; thread_info&nbsp; 记录线程描述符 
+也就是node编号</FONT></P>
+<P><FONT size=3>3、使用标志&nbsp;&nbsp;&nbsp; usage flags</FONT></P>
+<P><FONT size=3>4、运行列表&nbsp;&nbsp;&nbsp;&nbsp; tasks&nbsp; run_list </FONT></P>
+<P><FONT size=3>5、内存映射信息&nbsp;&nbsp; mm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+记录内存映射描述符&nbsp; 也就是node编号</FONT></P>
+<P><FONT size=3>6、父进程&nbsp;&nbsp;&nbsp; real_parent</FONT></P>
+<P><FONT size=3>7、关联终端&nbsp;&nbsp; tty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+终端描叙符&nbsp;&nbsp; 也就是node编号</FONT></P>
+<P><FONT size=3>8、线程&nbsp;&nbsp;&nbsp;&nbsp; thread</FONT></P>
+<P><FONT size=3>9、文件&nbsp;&nbsp;&nbsp; 
+fs、file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文件系统描叙符、文件描叙符&nbsp;&nbsp; 
+也就是node编号&nbsp;</FONT></P>
+<P><FONT size=3>10、信号&nbsp;&nbsp; sigal pending&nbsp;&nbsp;&nbsp; 信号描叙符&nbsp; 
+也就是node编号</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>上下文切换</FONT></P><FONT size=3>
+<P><FONT size=3>用户模式（进程）需要使用资源，执行系统调用，切换内核模式，读取资源到内存当中，物理内存映射通过MMU 映射到<FONT 
+color=#ff0000>进程的线性内存</FONT>空间中，切换回用户模式。</FONT></P></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

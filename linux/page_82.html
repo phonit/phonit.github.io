@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>新主题</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3><FONT color=#ff0000>mtr</FONT> </FONT><A 
+href="http://www.baidu.com"><FONT size=3>www.baidu.com</FONT></A><FONT 
+size=3>&nbsp;&nbsp; 实时监控网站路由</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=3>tcpdump&nbsp;[option] [not] proto dir 
+type</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>option:&nbsp; -nn&nbsp; -vvv &nbsp;-XX&nbsp;&nbsp; 
+-i&nbsp;&nbsp; -c&nbsp;&nbsp; -e</FONT></DIV>
+<DIV><FONT size=3>proto:&nbsp;&nbsp; tcp&nbsp;&nbsp; udp&nbsp;&nbsp;&nbsp; 
+arp&nbsp;&nbsp; ip&nbsp;&nbsp;&nbsp;&nbsp; ether&nbsp;&nbsp;&nbsp; &nbsp; 
+icmp</FONT></DIV>
+<DIV><FONT size=3>dir :&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;src&nbsp;&nbsp;&nbsp; 
+dst&nbsp;&nbsp; src and dst&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; src or 
+dst(默认)</FONT></DIV>
+<DIV><FONT size=3>type&nbsp;:&nbsp;&nbsp;&nbsp;host&nbsp;&nbsp; net&nbsp; 
+port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; portrange</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>tcpdump -c 
+500&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+抓50个包</FONT></DIV>
+<DIV><FONT size=3>tcpdump -i ens33 -nlv -c 50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+查接口的下的包50个</FONT></DIV>
+<DIV><FONT size=3>tcpdump 
+-e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示二层包</FONT></DIV>tcp<FONT 
+size=3>dump -p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网卡非混杂模式</FONT> 
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>tcpdump -l | tee dat&nbsp;&nbsp;&nbsp;&nbsp; 
+边输出边保存</FONT></DIV>
+<DIV><FONT size=3>tcpdump -w filename&nbsp; 保存包文件</FONT></DIV>
+<DIV><FONT size=3>tcpdump -r&nbsp; filename &nbsp;读取包文件</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>tcpdump&nbsp; udp&nbsp;| tcp&nbsp;&nbsp;&nbsp;&nbsp; 
+udp包</FONT></DIV>
+<DIV><FONT size=3>tcpdump icmp&nbsp; </FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>tcpdump -i ens33 -nn -s0 -v port 80&nbsp;&nbsp; <FONT 
+color=#ff0000>-s 全部显示</FONT>&nbsp; -v&nbsp; 稍详细信息 -vv 更详细</FONT> </DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3><FONT color=#ff0000>过滤</FONT>&nbsp;&nbsp;&nbsp; host(默认)&nbsp; 
+,</FONT></DIV>
+<DIV><FONT size=3>tcpdump&nbsp;&nbsp;host 192.168.1.1</FONT></DIV>
+<DIV><FONT size=3>tcpdump&nbsp; net 192.168.1</FONT></DIV>
+<DIV><FONT size=3>tcpdump &nbsp;port 22</FONT></DIV>
+<DIV><FONT size=3>tcpdump -c 10 <FONT color=#ff0000>'dst net</FONT> 192.168 
+<FONT color=#ff0000>or </FONT>dst net 22.22.22'</FONT></DIV>
+<DIV><FONT size=3>tcpdump -c 10&nbsp;<FONT color=#ff0000>'dst port</FONT> 22 
+&nbsp;or dst net 22.22.22'</FONT></DIV>
+<DIV>
+<DIV><FONT size=3>tcpdump -c 10&nbsp;<FONT color=#ff0000>'src</FONT> 22 &nbsp;or 
+dst net 22.22.22'&nbsp; 默认是host </FONT></DIV>
+<DIV><FONT size=3>tcpdump -c 50 '<FONT color=#ff0000>host</FONT> 192.168.2.104 
+and (192.168.2.50 <FONT color=#ff0000>or 
+</FONT>192.168.1.1)'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主机 与 dst1 或 dst2 
+通讯</FONT></DIV>
+<DIV><FONT size=3>tcpdump '<FONT color=#ff0000>host</FONT> 192.168.2.104 
+and<FONT color=#ff0000> ! port </FONT>80 and ! port 25'&nbsp;&nbsp;&nbsp; 查主机非80 
+非25 端口的包</FONT></DIV>
+<DIV><FONT size=3>tcpdump '<FONT color=#ff0000>host</FONT> 192.168.2.104 and 
+<FONT color=#ff0000>host <A href="http://www.baidu.com'">www.baidu.com'</A> 
+查主机与域名通讯</FONT></FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></DIV></BODY></HTML>

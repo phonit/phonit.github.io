@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>内核升级</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>内核升级</H1></DIV><EM></EM></DIV>
+<P>&nbsp;</P>
+<P><FONT size=3>tar -zxvf linuxkernel-xxxx<BR>cp /boot/config-xxxx&nbsp; 
+linuxkerne/.config<BR>yum grounpinstall 'Development'<BR>make menuconfig<BR>make 
+-j 4<BR>make -j20 bzImage #生成内核文件<BR>make -j20 modules #编译模块<BR>make -j20 
+modules_install #编译安装模块<BR>make modules_install<BR>make install<BR>make mrproper 
+#清除编译安装的数据<BR>make dep&nbsp;&nbsp;&nbsp; #清除依赖</FONT></P>
+<P>&nbsp;</P></BODY></HTML>

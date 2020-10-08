@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>nova</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 9.00.8112.16455"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>python setup.py install</FONT></P>
+<P><FONT size=3>mkdir /etc/nova /var/log/nova&nbsp; /var/run/nova 
+/var/lib/nova/instances -p</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>/var/lib/nova/instances&nbsp; 用于跑虚拟机</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>cp&nbsp; -a etc/nova/* /etc/nova</FONT></P>
+<P><FONT size=3>mv logging_sample.conf&nbsp;&nbsp; &nbsp; 
+logging.conf</FONT></P>
+<P><FONT size=3>cat README-nova.conf.txt</FONT></P>
+<P><FONT size=3>tox -egenconfig&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+生成配置文件命令</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>mysql -uroot -p</FONT></P>
+<P><FONT size=3>create database nova;</FONT></P>
+<P><FONT size=3>grant all on nova.* to <A 
+href="mailto:nova@'192.168.0.0/16'">nova@'192.168.0.0/16'</A>&nbsp;identified 
+by&nbsp;"nova";</FONT></P>
+<P><FONT size=3>mysql -h 192.168.33.2 -unova -pnova -e "use nova;show 
+tables"</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vim /etc/nova/nova.conf</FONT></P>
+<P><FONT size=3>debug=true</FONT></P>
+<P><FONT size=3>verbose=true</FONT></P>
+<P><FONT size=3>connection=mysql://nova：<A 
+href="mailto:nova@192.168.33.2/nova">nova@192.168.33.2/nova</A></FONT></P>
+<P><FONT size=3>rabbit_host=192.168.33.2</FONT></P>
+<P><FONT size=3>rabbit_userid=guest</FONT></P>
+<P><FONT size=3>rabbit_password=guest</FONT></P>
+<P><FONT 
+size=3>auth_host=192.168.33.2&nbsp;&nbsp;&nbsp;&nbsp;配置keystone</FONT></P>
+<P><FONT size=3>auth_url=192.168.33.2:5000</FONT></P>
+<P><FONT size=3>novncproxy_base_url=http://192.168.33.2:6080/vnc_auto.html&nbsp; 
+配置VNC</FONT></P>
+<P><FONT size=3>vncserver_listen=0.0.0.0</FONT></P>
+<P><FONT size=3>vncserver_proxyclient_address=192.168.33.2</FONT></P>
+<P><FONT size=3>vnc_enabled=true</FONT></P>
+<P><FONT size=3>admin_user=admin</FONT></P>
+<P><FONT size=3>admin_password=admin</FONT></P>
+<P><FONT size=3>admin_tenant_name=admin</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>配置nova-network</FONT></P>
+<P><FONT size=3>neutron_url=http://192.168.33.2:9696</FONT></P>
+<P><FONT size=3>neutron_admin_username=admin</FONT></P>
+<P><FONT size=3>neutron_admin_password=admin</FONT></P>
+<P><FONT size=3>neutron_admin_tenant_name=admin</FONT></P>
+<P><FONT size=3>neutron_admin_auth_url=http://192.168.33.2:5000/版本号</FONT></P>
+<P><FONT 
+size=3>linuxnet_interface_driver=nova.network.linux_net.LinuxBridgeInterfaceDriver&nbsp; 
+配置网桥</FONT></P>
+<P><FONT size=3>vif_plugging_is_fatal=false</FONT></P>
+<P><FONT size=3>vif_plugging_timeount=10</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>[spice] 下都注释掉 与vnc冲突</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>nova-manage db sync 同步设置</FONT></P>
+<P><FONT size=3>mysql -h 192.168.33.2 -unova -pnova -e "use nova;show 
+tables；"</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>keystone服务器上注册服务</FONT></P>
+<P><FONT size=3>keystone service-create --name=nova --type=compute 
+--description='openstack compute'</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone endpoint-create \</FONT></P>
+<P><FONT size=3>--service-id=上步ID \</FONT></P>
+<P><FONT size=3>--publicurl=http://192.168.33.2:8774/版本号/%\(tenant_id\)s 
+\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT></P>
+<P><FONT size=3>--internalurl=http://192.168.33.2:8774/版本号/%\(tenant_id\)s 
+\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT></P>
+<P><FONT size=3>--adminurl=http://192.168.33.2:8774/版本号/%\(tenant_id\)s 
+</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P><FONT size=3>keystone tenant-list</FONT></P>
+<P><FONT size=3>keystone service-list</FONT></P>
+<P><FONT size=3>keystone endpoint-list</FONT></P></FONT><FONT size=3></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>computer启动失败</FONT></P>
+<P><FONT size=3>libvirtd start</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>网络服务配置</FONT></P>
+<P><FONT size=3>cd /etc/neutron/plugins/m12</FONT></P>
+<P><FONT size=3>vi m12_conf.ini</FONT></P>
+<P><FONT size=3>type_drivers=flat,vlan&nbsp;&nbsp;&nbsp; flat 
+主机和虚拟一个网段</FONT></P>
+<P><FONT size=3>tenant_network_types=flat</FONT></P>
+<P><FONT size=3>mechanism_drivers=linuxbridge&nbsp;&nbsp; 配置网桥驱动</FONT></P>
+<P><FONT size=3>enable_securty_group =true</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vi /etc/neutron/neutron.conf</FONT></P>
+<P><FONT size=3>core_plugin = m12</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>配置网桥走那个网卡</FONT></P>
+<P><FONT size=3>vi&nbsp; 
+/etc/neutron/plugins/linuxbridge/linuxbridge_conf.ini</FONT></P>
+<P><FONT size=3>network_vlan _ranges=physnet1</FONT></P>
+<P><FONT size=3>physical_interface_mappings =physnet1:eth0&nbsp;&nbsp;&nbsp; 
+桥接到eth0</FONT></P>
+<P><FONT size=3>enable_securty_group =true</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>注册网络服务</FONT></P>
+<P><FONT size=3>keystone service-create --name neutron --type network 
+--description "openstack networking"</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>keystone endpoint-create \</FONT></P>
+<P><FONT size=3>--service-id=上步ID</FONT></P>
+<P><FONT size=3>--publicurl=http://192.168.33.2:9696 \</FONT></P>
+<P><FONT size=3>--internalurl=http://192.168.33.2:9696 \</FONT></P>
+<P><FONT size=3>--adminurl=http://192.168.33.2:9696</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>neutron agent-list&nbsp;&nbsp; 查看网络列表</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

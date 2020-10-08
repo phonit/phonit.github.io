@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>进程通讯调优</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><EM></EM>&nbsp;</DIV>
+<DIV><EM></EM>&nbsp;</DIV>
+<DIV><FONT size=3>常见进程通讯</FONT></DIV>
+<DIV><FONT size=3>消息，信号，共享内存&nbsp;&nbsp;&nbsp;&nbsp; </FONT><FONT 
+size=3>一般只调整&nbsp; 消息和共享内存</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>ipcs -l&nbsp;&nbsp; 查看ipc设置</FONT></DIV>
+<DIV><FONT size=3>ipcs -p&nbsp; 查看PID</FONT></DIV>
+<DIV><FONT size=3>ipcs -c&nbsp;&nbsp; 查看创建者</FONT></DIV>
+<DIV><FONT size=3>ipcrm&nbsp;&nbsp;&nbsp;&nbsp; 删除掉消息队列无法被唤醒，卡死，</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>修改共享内存</FONT></DIV>
+<DIV><FONT size=3>kernel.shmmi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+系统级别，允许使用多少共享内存段上限</FONT></DIV>
+<DIV><FONT size=3>kernel.shmall&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+系统级别&nbsp; 可以使用共享内存最大页面数</FONT></DIV>
+<DIV><FONT size=3>kernel.shmmax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+可以创建单个最大共享内存段大小</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>修改msg&nbsp; 一般都调大</FONT></DIV>
+<DIV><FONT size=3>kernel.msgnb&nbsp;&nbsp;&nbsp; 单个消息队列最大字节数</FONT></DIV>
+<DIV><FONT size=3>kernel.msgmni&nbsp;&nbsp; 消息队列个数上限</FONT></DIV>
+<DIV><FONT size=3>kernel.msgmax&nbsp;&nbsp; 进程间通讯的时候最大消息字节大小的上限</FONT></DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV>
+<DIV><EM><FONT size=3></FONT></EM>&nbsp;</DIV></BODY></HTML>

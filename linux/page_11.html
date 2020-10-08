@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>查找文件</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV>
+<P><FONT size=3>locate&nbsp;&nbsp;&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3>updatedb </FONT></P>
+<DIV><FONT size=3>locate ntfs.ko</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=3>find&nbsp; </FONT></DIV>
+<DIV><FONT size=3>find -name bak -exec ls {} \;&nbsp;&nbsp; </FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>find . -perm 664&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+严格匹配664</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>find . -perm 
+-664&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最小权限是664</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>find . -perm /222&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+查其中一能写的,u或者g或者o</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>find . -perm -a+r -perm /a+w ! -perm 
+/a+x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 查都可读、一个可写、都不可以执行</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>find .&nbsp; -atime 
+-1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +1、1、-1 区别</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></DIV></BODY></HTML>

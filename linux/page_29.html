@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>内存调优</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>DMA&nbsp;&nbsp; 负责控制硬件中断处理，缓存到内存中一段低地址空间。dma工作：<SPAN 
+style="FONT-SIZE: 14px; FONT-FAMILY: arial, 宋体, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"><FONT 
+color=#000000>DMA请求、DMA响应、DMA传输、DMA结束</FONT></SPAN></FONT></P>
+<P><FONT size=3><SPAN 
+style="FONT-SIZE: 14px; FONT-FAMILY: arial, 宋体, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"></SPAN></FONT><FONT 
+size=3>mmu&nbsp; 内存管理单元&nbsp; ，线性地址转换物理地址</FONT></P>
+<P><FONT size=3>TLB&nbsp;&nbsp;&nbsp; 缓存mmu转换的结果 使用hugepages提高</FONT></P>
+<P><FONT size=3>Rss&nbsp;&nbsp; 常住内存集 开机就占据内存</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>从低端地址到高端地址，低端地址数据段、堆段，高端地址放栈，</FONT></P>
+<P><FONT size=3>匿名页放在堆中，运行产生的中间数据、一般函数&nbsp; 、运算结果等数据</FONT></P>
+<P><FONT size=3>page cache&nbsp;=栈，从硬盘上打开的文件，不断刷写。</FONT></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3>vm.swappiness={1,100} 使用交换分区倾向性 越大使用越高</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>overcommit_memory=2，</FONT><FONT 
+size=3>overcommit_ratio=50&nbsp;&nbsp;</FONT>&nbsp;</P>
+<P><FONT size=3>当ram=8G,swap=4g&nbsp; 超分配大小为8g （swap+ram*50%）</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>充分使用内存注意点</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp; 
+swap为内存的一样大；vm.swappiness=0&nbsp; 不使用swap</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp; <FONT 
+size=3>overcommit_memory=2,</FONT><FONT 
+size=3>overcommit_ratio=100,vm.swappiness=0&nbsp; 保障系统使用到所有的物理内存。 
+（常用，可以控制内存过量使用）&nbsp;&nbsp; </FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>&nbsp;</P></FONT>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>hugepages&nbsp; 大页面&nbsp; 数据库索引需要大页面</FONT></P>
+<P><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">逻辑地址通过<FONT 
+color=#ff0000>&nbsp;</FONT></SPAN><SPAN 
+style="BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: 'Microsoft YaHei', 'SF Pro Display', Roboto, Noto, Arial, 'PingFang SC', sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px; LETTER-SPACING: normal; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; overflow-wrap: break-word"><FONT 
+color=#ff0000>分段机制映射</FONT></SPAN><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"><FONT 
+color=#ff0000>&nbsp;转化为线性地址</FONT>，然后<FONT 
+color=#ff0000>线性地址通过&nbsp;</FONT></SPAN><SPAN 
+style="BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: 'Microsoft YaHei', 'SF Pro Display', Roboto, Noto, Arial, 'PingFang SC', sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px; LETTER-SPACING: normal; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; overflow-wrap: break-word"><FONT 
+color=#ff0000>分页机制映射</FONT></SPAN><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"><FONT 
+color=#ff0000>转化为物理地址</FONT>。在分页机制映射中，<FONT 
+color=#ff0000>一般需要经过四级映射</FONT>，也就是将线性地址映射为物理地址的过程中，需要从<FONT 
+color=#ff0000>内存中读取至少四次页目录表（Page Directory）和页表 (Page 
+Table)。</FONT>众所周知，CPU寄存器与内存的访问速率相差至少一个数量级，所以如果使用传统的分页机制的开销将会非常大。所以在现代的X86架构中，集成了一种被成为<FONT 
+color=#ff0000>TLB</FONT>（&nbsp;</SPAN><A 
+style="BOX-SIZING: border-box; FONT-SIZE: 16px; CURSOR: pointer; TEXT-DECORATION: none; FONT-FAMILY: 'Microsoft YaHei', 'SF Pro Display', Roboto, Noto, Arial, 'PingFang SC', sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: rgb(148,148,148) 1px dashed; TEXT-TRANSFORM: none; FONT-WEIGHT: bold; COLOR: rgb(148,148,148); OUTLINE-WIDTH: medium; PADDING-BOTTOM: 0px; FONT-STYLE: italic; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px; LETTER-SPACING: normal; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; overflow-wrap: break-word" 
+href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer" 
+rel=nofollow>Translation Lookaside Buffer</A><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">&nbsp;）的<FONT 
+color=#ff0000>硬件级缓存</FONT>。<FONT 
+color=#ff0000>TLB读写速度非常快</FONT>，基本和CPU寄存器的速率在一个数量级，而<FONT 
+color=#ff0000>TLB中保缓存了最近使用过的线性地址和物理地址的映射关系</FONT>。</SPAN></P>
+<P><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, Tahoma, Arial, STXihei, 'Microsoft YaHei', 微软雅黑, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 16px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial"><SPAN 
+style="FONT-SIZE: 16px; FONT-FAMILY: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, Arial, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(51,51,51); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">TLB是在cpu中分配的一个固定大小的buffer(or 
+cache)，用于保存“page table”的部分内容，使CPU更快的访问并进行地址转换。</SPAN></SPAN></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>cat /proc/meminfo |grep -i huge</FONT> </P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT></P>
+<P><FONT size=3>AnonHugePages: 6144 kB<BR>HugePages_Total: 
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 表示未启用<BR>HugePages_Free: 
+0<BR>HugePages_Rsvd: 0<BR>HugePages_Surp: 0<BR>Hugepagesize: 2048 kB</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>启动hugepages</FONT></P>
+<P><FONT size=3>方法一</FONT></P>
+<P><FONT size=3>sysctl -w vm.nr_hugepages=10或者</FONT></P>
+<P><FONT size=3>vi /etc/sysctl.conf</FONT></P>
+<P><FONT size=3>vm.nr_hugepages = 10</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>方法二</FONT></P>
+<P><FONT size=3>启动 grub&nbsp; 内核传递参数</FONT></P>
+<P><FONT size=3>hugepages=n</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>配置挂载文件系统&nbsp;&nbsp;<FONT color=#ff0000> 应用程序明确</FONT>使用大页面<FONT 
+color=#ff0000>才需要挂载</FONT></FONT></P>
+<P><FONT size=3>mkdir /hugepages</FONT></P>
+<P><FONT size=3>mount -t hugetlbfs none /hugepages</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P><FONT size=3>
+<P><FONT color=#ff0000 size=3>内存优化思想</FONT></P>
+<P><FONT color=#000000 size=3>降低微小对象的开销(默认)，cat /proc/slabinfo，slabtop,vmstat 
+-m</FONT></P>
+<P><FONT color=#000000 size=3>&nbsp;&nbsp;&nbsp;&nbsp; slab cache 
+预先分配好内存空间，分组，数据只是被腾空，不会被删除，避免重复创建</FONT></P>
+<P><FONT size=3>&nbsp;降低慢系统的时间</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 文件元数据存储到 buffer&nbsp; 
+cache（slab cache在其中） 中</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 磁盘IO的数据缓存到 page 
+cache</FONT></P>
+<P><FONT color=#000000 size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+进程通讯尽可能使用共享内存&nbsp; shared memory</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 网络IO数据缓存到 buffer cache,arp 
+cache,connection tracking</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>调整slabinfo 降低微小内存开销</FONT></P>
+<P>cat /proc/slabinfo</P>
+<P><FONT size=3>echo "cache name&nbsp;&nbsp; &nbsp;limit&nbsp;&nbsp;&nbsp; 
+batchcount&nbsp;&nbsp;&nbsp;&nbsp; shared" &gt; /proc/slabinfo</FONT></P>
+<P>limit 可以被cpu缓存的最大对象数量</P>
+<P>batchcount&nbsp; 当每个cpu缓存空的，最大数量传输多少对象缓存下来</P>
+<P>shared&nbsp; 在多处理器架构中，可以共享多少个slab cache</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000>page cache调整&nbsp; 一般无需调整</FONT></P>
+<P>vm.lowmem_reserve_ratio&nbsp;&nbsp; <FONT color=#ff0000>保留page cache 
+空间大小64位一般不用调</FONT></P>
+<P>vm.vfs_cache_pressure&nbsp;&nbsp;&nbsp;<FONT color=#ff0000>回收目录的dentry&nbsp; 
+文件的inode空间&nbsp;</FONT></P>
+<P>0 表示不回收&nbsp; 后果会内存溢出</P>
+<P>1-99&nbsp;倾向于不回收dentry 和inode</P>
+<P>100&nbsp;表示page cache 和swap page级别一样</P>
+<P>100+ 倾向与回收dentry和inode&nbsp; </P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vm.min_free_kbytes&nbsp; <FONT 
+color=#ff0000>预留空闲内存大小</FONT>，内存数据会写入到swap中 ，一般不调，除非磁盘太慢 cpu太差，可以值调小</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vm.overcommit_memory&nbsp;&nbsp; <FONT 
+color=#ff0000>限制过量分配内存</FONT>，虚拟机超分配中使用，以swap为前提（不推荐），</FONT></P>
+<P><FONT size=3>0&nbsp; 启发式过量&nbsp; 由内核操作如果过量使用</FONT></P>
+<P><FONT size=3>1&nbsp; 始终过量&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据库中不推荐使用 swap 
+，慢&nbsp;，是计算资源可以使用1&nbsp;&nbsp;&nbsp;</FONT></P>
+<P><FONT size=3>2&nbsp; 所有内存和部分swap&nbsp;&nbsp; 配合 vm.overcommit_ratio=50 
+(超出内存50% ，总大小最高不可以超swap+内存,否则内存溢出(oom)）</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>内存溢出&nbsp; out of memory&nbsp; oom&nbsp; 系统自动kill 进程</FONT></P>
+<P>&nbsp;</P></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>vm.page-cluster&nbsp;&nbsp; 一次迁移2的多少次方个page至swap&nbsp; 
+一般不超过2的4次方page。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>pdflush 脏页是内存中进程修改过的数据</FONT></P>
+<P><FONT size=3>vm.nr_pdflush_threads&nbsp; 启动多少个pdflush 一般一个硬盘一个</FONT></P>
+<P><FONT size=3>vm.dirty_background_ratio&nbsp;&nbsp; 
+全局脏页达到全部内存%值进行写磁盘</FONT></P>
+<P><FONT size=3>vm.dirty_ratio&nbsp;&nbsp; 单个进程达到全部内存%值进行写 </FONT></P>
+<P><FONT size=3>vm.dirty_bytes&nbsp;&nbsp; 达到多少字节时写&nbsp; 一般不用</FONT></P>
+<P><FONT size=3>vm.dirty_expire_centisecs&nbsp;&nbsp; 周期性写磁盘&nbsp; 百分比值 
+</FONT></P>
+<P><FONT size=3>vm.</FONT><FONT size=3>dirty_writeback_centisecs&nbsp;&nbsp; 
+足够久的脏页写到磁盘</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>手动清写同步内存数据到磁盘</FONT></P>
+<P><FONT size=3>sync </FONT></P>
+<P><FONT size=3>echo s &gt; /proc/sysrq-trigger </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>回收干净页</FONT></P>
+<P><FONT size=3>echo&nbsp;1 &gt; /proc/sys/vm/drop_cache</FONT></P>
+<P><FONT size=3>1&nbsp;&nbsp; pagecache&nbsp;&nbsp;&nbsp; 通常用</FONT></P>
+<P><FONT size=3>2&nbsp;&nbsp; 目录dentries 和文件节点</FONT></P>
+<P><FONT size=3>3&nbsp;&nbsp;&nbsp;以上2者</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>内存耗尽</FONT></P>
+<P><FONT size=3>vm.panic_on_oom=0 启用oom&nbsp; 1关闭oom kill</FONT></P><FONT 
+size=3>调整<FONT color=#ff0000>每个进程目录下</FONT> &nbsp;/proc/1/oom_score（分数）&nbsp; 
+oom_adj&nbsp; oom_score_adj（因子值）</FONT> 
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>/proc/PID/oom_score&nbsp;&nbsp; -17到15的值&nbsp; 越高越容易杀掉 
+-17可以避免单个进程不被kill掉</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>检查内存泄露&nbsp; 内存分出去未收回</FONT></P>
+<P><FONT size=3>valgrind --tool=memcheck cat /proc/$$/maps 检查堆</FONT></P>
+<P><FONT size=3>watch -n1 ps axo pid,comm,rss,vsize |grep httpd&nbsp; 
+查看进程内存分配数据，如果一直增加 RSS VSIZE 就泄露</FONT></P>
+<P><FONT size=3>sar -R 1 120&nbsp; 查看内存分配情况</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>swap分区</FONT>&nbsp; </FONT></P>
+<P><FONT size=3>多硬盘时，最好每个硬盘新建swap分区，等级一样</FONT></P>
+<P><FONT size=3>vi /etc/fstab</FONT></P>
+<P><FONT size=3>/dev/sda1&nbsp;&nbsp; swap&nbsp;&nbsp; swap&nbsp;&nbsp;&nbsp; 
+pri=5&nbsp; 0&nbsp; 0</FONT></P>
+<P><FONT size=3>/dev/sdb1&nbsp;&nbsp; swap&nbsp;&nbsp; swap&nbsp;&nbsp;&nbsp; 
+pri=5&nbsp; 0&nbsp; 0</FONT></P>
+<P><FONT size=3>LABEL=testswap&nbsp;&nbsp; swap&nbsp;&nbsp; swap&nbsp; pri=5 0 
+0</FONT></P>
+<P><FONT size=3>/swaps/swapfile1&nbsp; swap&nbsp; swap&nbsp; pri=1 0 
+0&nbsp;&nbsp;&nbsp; 低优先级</FONT></P>
+<P><FONT size=3>swap -a&nbsp; 激活swap</FONT></P>
+<P><FONT size=3>cat /proc/swaps&nbsp;&nbsp;&nbsp;&nbsp; swapon -s</FONT></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>增大内存&nbsp; ，降低访问次数，降低访问时间。分区到磁盘最外道上</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>匿名页&nbsp;&nbsp;&nbsp;&nbsp; 非文件的页面</FONT></P>
+<P><FONT color=#000000 size=3>vm.swappiness&nbsp;&nbsp; 交换匿名页也到swap当中&nbsp; 
+</FONT></P>
+<P><FONT size=3></FONT><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>swap分区指南</FONT></P>
+<P><FONT size=3>计算为主&nbsp; 4&nbsp;倍 ram</FONT></P>
+<P><FONT size=3>数据库服务器&nbsp;&nbsp; &lt;1G</FONT></P>
+<P><FONT size=3>应用服务器 &gt;= ram的一半</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>监控内存使用</FONT></P>
+<P><FONT size=3>sar -r 1 20&nbsp;&nbsp;&nbsp; 活动内存</FONT></P>
+<P><FONT size=3>sar -R 1 20&nbsp;&nbsp;&nbsp; 实时变化内存</FONT></P>
+<P><FONT size=3>sar -W&nbsp;&nbsp;&nbsp;&nbsp; swap活动</FONT></P>
+<P><FONT size=3>sar -B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 所有I/O&nbsp;&nbsp;&nbsp; 
+gppgin&nbsp; pgpgout&nbsp; 2个值&nbsp; 页面进出</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>内存调优总结 </FONT></P>
+<P><FONT size=3>hugepage&nbsp;&nbsp;&nbsp; 提高内存分配效率&nbsp; TLB性能</FONT></P>
+<P><FONT size=3>ipc调整</FONT></P>
+<P><FONT size=3>pdflush调整</FONT></P>
+<P><FONT size=3>slab调整</FONT></P>
+<P><FONT size=3>swap调整</FONT></P>
+<P><FONT size=3>oom 调整</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

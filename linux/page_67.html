@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>split</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 9.00.8112.16455"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3>用法：split [选项]... [输入 
+[前缀]]<BR>将输入内容拆分为固定大小的分片并输出到"前缀aa"、"前缀ab",...；<BR>默认以 1000 
+行为拆分单位，默认前缀为"x"。如果不指定文件，或<BR>者文件为"-"，则从标准输入读取数据。</FONT></DIV>
+<DIV><FONT size=3>长选项必须使用的参数对于短选项时也是必需使用的。<BR>&nbsp; -a, --suffix-length=N 
+指定后缀长度为N (默认为2)<BR>&nbsp; -b, 
+--bytes=大小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+指定每个输出文件的字节大小<BR>&nbsp; -C, --line-bytes=大小 指定每个输出文件里最大行字节大小<BR>&nbsp; -d, 
+--numeric-suffixes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+使用数字后缀代替字母后缀<BR>&nbsp; -l, 
+--lines=数值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+指定每个输出文件有多少行<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+--verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+在每个输出文件打开前输出文件特征<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+显示此帮助信息并退出<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+--version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 显示版本信息并退出</FONT></DIV>
+<DIV><FONT size=3>SIZE 可以是一个可选的整数，后面跟着以下单位中的一个：<BR>KB 1000，K 1024，MB 1000*1000，M 
+1024*1024，还有 G、T、P、E、Z、Y。</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=3>实例</FONT></DIV>
+<DIV><FONT size=3>split -b 100M&nbsp; -d oVirt.tar test</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=3>合并</FONT></DIV>
+<DIV><FONT color=#000000 size=3>cat test* &gt; aa.tar</FONT></DIV>
+<DIV><FONT color=#ff0000 size=3></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=3>大小对比</FONT></DIV>
+<DIV><FONT color=#000000 size=3>ll&nbsp; oVirt.tar&nbsp; 
+aa.tar</FONT></DIV></BODY></HTML>

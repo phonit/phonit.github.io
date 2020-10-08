@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>虚拟化</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>模拟是可以使用的，仿真是假枪</H1></DIV></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=4>vmm：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+虚拟机监视器。</FONT></DIV>
+<DIV><FONT size=4>hypervisor： 监控虚拟机软件</FONT></DIV>
+<DIV><FONT size=4>QEMU：&nbsp;&nbsp;用来<FONT color=#ff0000>模拟常用的<FONT 
+color=#000000> 
+i\o</FONT>硬件控制器</FONT>，创建管理虚拟硬件，guest需要qemu和内核二次转换。也可以虚拟苹果系统CPU等，但模拟跨平台硬件，性能较差。</FONT></DIV>
+<DIV><FONT size=4>para-virtualization&nbsp;:&nbsp; 半虚拟化指 i\o设备虚拟,<FONT 
+color=#ff0000>通过</FONT> <FONT color=#ff0000>hypervisor call 调用i\o</FONT>，分为<FONT 
+color=#ff0000>前半段、后半段</FONT>驱动、性能比qumu快。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>完全虚拟化：监视guest特权指令。 <FONT 
+color=#ff0000>虚拟比模拟性能稍高</FONT></FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚拟方式（指特权指令）：cpu不支持虚拟化，二进制动态翻译器（BT）转换特权指令（其它指令还是在cpu上执行），转换为不影响其他guest指令。cpu（vmx、svm）支持虚拟化则使用hvm。</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模拟方式：软件全部模拟所有指令、硬件。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV>
+<DIV><FONT color=#ff0000 size=4>vmm三标准</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+等价执行，虚拟和真实完全相同</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性能，指令集大部分指令可以直接运行在CPU上，除特权指令</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+安全，vmm要能够完全控制系统资源</FONT></DIV></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=4>虚拟化实现&nbsp;&nbsp;</FONT></DIV>
+<DIV><FONT color=#ff0000 size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+CPU上多分时间片，有硬件虚拟化HVM，guestos特权指令 运行在虚假ring 0上，宿主机特权指令运行在ring 
+-1上，guestos的特权指令，需要宿主机ring-1转换后执行；无硬件虚拟化，guest 特权指令由VMM模拟执行。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>guest的内存通过vmm将分配的连续虚拟机内存映射到离散宿主机物理空间。</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+一、mmu虚拟化，实现了<FONT color=#ff0000>虚拟机的CPU 直</FONT><FONT 
+color=#ff0000>接访问</FONT>mmu映射的物理内存地址，简化虚拟机mmu后宿主机再次mmu的二次转换。</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+二、intel的EPT ,AMD为NPT,通过有标记TLB来避免虚拟机之间切换频繁清写TLB，提高缓存命中率。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>I/O虚拟化，</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+（半虚拟化）直接将cpu特权指令集和硬件I/O设备驱动程序做成宿主机系统调用接口（hypervisor call），直接供虚拟机调用。</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+（完全虚拟化）vmm模拟guest的I/O设备处理。</FONT></DIV>
+<DIV><FONT 
+size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+（I/O透传技术）guest os直接控制I/O设备</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>桥接网卡改为混杂模式，二层接收所有数据包。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>虚拟硬盘，映射在本地创建回环文件。和swap类似。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV>
+<DIV><FONT color=#ff0000 size=4>虚拟化种类</FONT></DIV>
+<DIV><FONT size=4></FONT></DIV>
+<DIV><FONT size=4>全虚拟化 (可以windows)：qemu模拟I\O设备</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+cpu不支持硬件虚拟化技术的，vmm模拟执行特权指令，因此内核无需修改。vmm监视guest特权请求，二进制翻译器（BT）转换为普通指令给硬件。性能较差.</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+cpu支持硬件辅助虚拟化技术<STRONG><FONT color=#ff0000 
+size=3>HVM</FONT></STRONG>，VMM特权指令运行到ring -1,guest os 运行到 ring 0上；</FONT><FONT 
+color=#222222 size=3><SPAN 
+style="BOX-SIZING: border-box; FONT-FAMILY: verdana, arial, sans-serif; FONT-WEIGHT: 700; OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; MARGIN: 0px; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; overflow-wrap: break-word"><STRONG 
+style="BOX-SIZING: border-box; FONT-WEIGHT: 700; OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; MARGIN: 0px; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; overflow-wrap: break-word"><FONT 
+color=#ff0000>Hardware Virtual Machine</FONT> (<FONT 
+color=#ff0000>HVM</FONT>)，</STRONG></SPAN></FONT></DIV>
+<DIV><FONT color=#222222 size=3><SPAN 
+style="BOX-SIZING: border-box; FONT-FAMILY: verdana, arial, sans-serif; FONT-WEIGHT: 700; OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; MARGIN: 0px; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; overflow-wrap: break-word"></SPAN></FONT>&nbsp;</DIV>
+<DIV><FONT color=#222222 size=3><SPAN 
+style="BOX-SIZING: border-box; FONT-FAMILY: verdana, arial, sans-serif; FONT-WEIGHT: 700; OUTLINE-WIDTH: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; MARGIN: 0px; OUTLINE-COLOR: invert; PADDING-RIGHT: 0px; overflow-wrap: break-word"></SPAN></FONT><FONT 
+size=4>半虚拟化（pv,linux）：<FONT color=#ff0000>需要修改内核</FONT></FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+I/O设备可以不需要支持虚拟化，因为I/O访问可以通过hypervisor软件来提供<FONT color=#ff0000>hypervisor 
+call（硬件驱动接口）</FONT>,所以需要修改主机系统的内核实现PV.</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>pv on HVM架构：&nbsp; cpu使用硬件辅助虚拟化hvm + i/o半虚拟化（hypervisor 
+call）</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>模拟器虚拟化，软件模拟全部的硬件和特权指令，性能比全虚拟化的翻译bt还差。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4>应用虚拟化：例如apache的虚拟多域名映射主机。</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=4>架构分类</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hosted+vmm 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; windows 
++vmware</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os hypervisor(VMM) ：&nbsp; 
+wmware ESX/ESXi(hp vm4.1)&nbsp;</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
+color=#ff0000>Xen&nbsp; 
+半、完全虚拟化</FONT>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Xen（hypervisor）+ 
+dom0(os)，</FONT><FONT size=4>Xen</FONT><FONT 
+size=4>只对CPU、中断、内存驱动管理，借助管理主机dom0来管理其他I/O设备，(半虚拟化)虚拟主机访问I/O都需要dom0控制（<FONT 
+color=#ff0000>hypervisor call</FONT>）。(完全虚拟化)QEMU+Xen 架构,</FONT></DIV>
+<DIV><FONT size=4>xen比KVM更稳定</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT color=#ff0000>KVM 
+架构&nbsp; 
+完全虚拟化：</FONT>基于内核的虚拟机，是内核一个模块,直接调用硬件驱动，所以比Xen性能更高。只支持硬件虚拟化的CPU、64位平台上。</FONT><FONT 
+size=4>kvm+qemu架构</FONT> 
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+container容器架构：用户空间虚拟化的技术，guest共用OS内核，隔离性差，直接使用硬件性能好，例如：openVZ。</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
+color=#ff0000>&nbsp;虚拟库虚拟</FONT>：</FONT><FONT size=4>wine linux 
+运行windows程序；</FONT><FONT size=4>cywin&nbsp; windows 运行linux </FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT color=#ff0000 size=4>Xen管理工具</FONT></DIV>
+<DIV><FONT size=4>dom0上启动Xend服务，启用xm工具。</FONT><FONT size=4></DIV></FONT>
+<DIV><FONT size=4>
+<DIV><FONT size=4>virsh工具</FONT></DIV>
+<DIV><FONT size=4><IMG style="HEIGHT: 378px; WIDTH: 495px" src="Xen架构-1.png" 
+width=567 height=459></FONT></DIV></FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>
+<DIV><FONT size=4></FONT><FONT size=4></FONT></DIV>
+<DIV>
+<DIV><FONT size=4></FONT></DIV><FONT size=4></FONT></DIV><FONT 
+size=4></FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT color=#000000>KVM 
+架构：</FONT>基于内核的虚拟机，是内核一个模块,所以比Xen性能更高。只支持硬件虚拟化的CPU、64位平台上。</FONT><FONT 
+size=4>kvm+qemu架构</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+container容器架构：用户空间虚拟化的技术，guest共用OS内核，隔离性差，直接使用硬件性能好，例如：openVZ。</FONT></DIV>
+<DIV><FONT size=4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虚拟库虚拟：</FONT><FONT 
+size=4>wine linux 运行windows程序；</FONT><FONT size=4>cywin&nbsp; windows 运行linux 
+</FONT></DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=4></FONT>&nbsp;</DIV>
+<DIV><FONT size=2></FONT>&nbsp;</DIV></BODY></HTML>

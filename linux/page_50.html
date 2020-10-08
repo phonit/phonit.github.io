@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>新主题</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 9.00.8112.16455"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 27px; FONT-WEIGHT: bold">
+<P><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 27px; FONT-WEIGHT: bold">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 27px">和</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 27px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 27px; FONT-WEIGHT: bold">RAID01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 27px">的比较</SPAN></P></SPAN>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 27px"><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID 
+10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">是先做镜象，然后再做条带。</SPAN></P>
+<P><SPAN style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID 
+01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">则是先做条带，然后再做镜象。</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">比如以</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">6</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">个盘为例:</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"></SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">就是先将盘分成 
+</SPAN><SPAN style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3 
+</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">组镜象，然后再对这</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">个</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID1</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">做</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">条带。</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"></SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">则是先利用</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">块盘做</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID0</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">，然后将另外</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">块盘做为</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID0</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">的镜象。</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"></SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">下</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">面以</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">4</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">块盘为例来介绍安全性方面的差别：</SPAN></P>
+<P></P>
+<P><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px; FONT-WEIGHT: bold">1</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">、</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px; FONT-WEIGHT: bold">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">的情况</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"><IMG 
+src="raid 10.bmp"></SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">这种情况中，我们假设当</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK0</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">损坏时，在剩下的</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">块盘中，只有当</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK1</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">一个盘</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">发生故障时，才会导致整个</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">失效，我们可简单计算故障率为</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">1/3</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">。</SPAN></P>
+<P></P>
+<P><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px; FONT-WEIGHT: bold">2</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">、</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px; FONT-WEIGHT: bold">RAID01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">的情况</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"><IMG 
+src="raid 01.bmp"></SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">这种情况下，我们仍然假设</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK0</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">损坏，这时左边的条带将无法读取。在剩下的</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">3<SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">块盘中，只要</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK2</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">，</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK3</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">两个盘中任何一个损坏，都会导致整个</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">失效，我们可</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">简单计算故障率为</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">2/3</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">。</SPAN></P>
+<P></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">因此</SPAN><FONT 
+color=#ff0000><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">比</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID01</SPAN></FONT><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"><FONT 
+color=#ff0000>在安全性方面要强</FONT>。</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">从数据存储的逻辑位置来看，在正常的情况下</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">和</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">是完全一样的，</SPAN></P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">而且每一个读写操作所产生的</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">IO</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">数量也是一样的，<FONT 
+color=#ff0000>所以在读写性能上两者没什么区别</FONT>。</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">而当有磁盘出现故障时，</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">比如前面假设的</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">DISK0</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">损坏时，</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">我们也可以发现，</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">这两种情况</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">下，在读的性能上面也将不同，</SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID10</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">的读性能将优于</SPAN><SPAN 
+style="FONT-FAMILY: EditControl; COLOR: #000000; FONT-SIZE: 21px"> </SPAN><SPAN 
+style="FONT-FAMILY: Helvetica; COLOR: #000000; FONT-SIZE: 21px">RAID01</SPAN><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px">。</SPAN></P></SPAN></SPAN>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"></SPAN>&nbsp;</P>
+<P><SPAN 
+style="FONT-FAMILY: &aring;&#141;&#381;&aelig;–&#8225;&aring;&reg;&#8249;&auml;&frac12;“StdLightAcroGBKEUCH; COLOR: #000000; FONT-SIZE: 21px"></SPAN>&nbsp;</P></SPAN></SPAN></BODY></HTML>

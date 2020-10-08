@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>docker</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>一次封装，到处运行</FONT></P>
+<P><FONT size=3>LXC&nbsp;&nbsp;&nbsp; linux containers</FONT></P>
+<P><FONT size=3>docker-daemon</FONT></P>
+<P><FONT size=3>/etc/docker/daemon.json&nbsp; 配置文件</FONT></P><PRE style='FONT-SIZE: 12px; FONT-FAMILY: "Courier New" !important; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(0,0,0); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 0px 22px; LETTER-SPACING: normal; TEXT-INDENT: 0px; overflow-wrap: break-word; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'><FONT size=3><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; LINE-HEIGHT: 1.5 !important'>{ <BR>　　</SPAN><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>"</SPAN></FONT><FONT size=3><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>registry-mirrors</SPAN><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>"</SPAN>: [<SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>"</SPAN><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>https://hub-mirror.c.163.com</SPAN><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; COLOR: rgb(128,0,0); LINE-HEIGHT: 1.5 !important'>"</SPAN></FONT><SPAN style='FONT-SIZE: 12px !important; FONT-FAMILY: "Courier New" !important; LINE-HEIGHT: 1.5 !important'><FONT size=3>] <BR>} </FONT></SPAN></PRE><FONT 
+size=3><PRE style='FONT-SIZE: 12px; FONT-FAMILY: "Courier New" !important; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(0,0,0); FONT-STYLE: normal; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 0px 22px; LETTER-SPACING: normal; TEXT-INDENT: 0px; overflow-wrap: break-word; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'>service docker restart</PRE></FONT>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>镜像、容器、仓库</FONT></P>
+<P><FONT size=3>镜像相当于一个精简linux系统、应用程序、运行环境的文件包,<FONT 
+color=#ff0000>只读的可执行模板</FONT>，可以创建多个容器，只包括最基本的命令、工具、和程序库，<FONT 
+color=#ff0000>共用宿主机的kernel</FONT>,只需要提供rootfs可以了。<FONT 
+color=#ff0000>多层结构的联合文件系统的一个整体</FONT>。</FONT></P>
+<P><FONT size=3><IMG src="docker_ceng.png"></FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>容器相当于<FONT color=#ff0000>实例化了镜像</FONT>，也是一层级文件系统，最上层<FONT 
+color=#ff0000>可读写权限。一个容器运行一个服务</FONT>。</FONT></P>
+<P><FONT size=3>仓库，镜像的服务器，每个<FONT 
+color=#ff0000>镜像有不同的标签，也就是版本号</FONT>。</FONT></P>
+<P><FONT size=3><IMG src="docker_three.png"></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker与虚拟化区别</FONT></P>
+<P><FONT 
+size=3>docker比虚拟机更少了抽象层，docker不需要硬件资源虚拟化，容器里的程序直接使用物理机的硬件资源，提高了效率</FONT></P>
+<P><FONT size=3>docker利用宿主机的内核，虚拟机则需要运行自己的内核</FONT></P>
+<P><FONT size=3><IMG style="HEIGHT: 200px; WIDTH: 595px" src="docker_vs_vm.png" 
+width=629 height=248></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker&nbsp; 容器后台运行，必须要有<FONT 
+color=#ff0000>一个前台进程</FONT>，如果不是一直挂着的命令 top.tail 等，会自动退出，所以必须前台运行程序</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>unionFS 联合文件系统：分层，轻量级，高性能文件系统组成。</FONT></P>
+<P><FONT size=3>boofs :包括bootloader 
+和kernel,docker最底层就是bootfs,用来启动kernel,将控制权交给内核后，系统卸载bootfs.</FONT></P>
+<P><FONT size=3>rootfs,在bootfs上，就是个典型的linux目录和文件。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker version</FONT></P>
+<P><FONT size=3>docker info</FONT></P>
+<P><FONT color=#ff0000 size=3>docker help</FONT></P>
+<P><FONT size=3><FONT color=#ff0000>docker images</FONT> 本地镜像</FONT></P>
+<P><FONT size=3>docker images -a</FONT></P>
+<P><FONT size=3>docker images -q&nbsp;&nbsp;&nbsp; imagesID</FONT></P>
+<P><FONT size=3>docker images --digests&nbsp;&nbsp;&nbsp;&nbsp; 
+显示镜像的摘要信息</FONT></P>
+<P><FONT size=3>docker images --no-trunc&nbsp;&nbsp;&nbsp;&nbsp;显示完整信息 
+不省略</FONT></P>
+<P><FONT size=3><FONT color=#ff0000>docker search</FONT> </FONT></P>
+<P><FONT size=3>-s 30 超过30的点赞数的镜像</FONT></P>
+<P><FONT size=3>--no-trunc 显示完整信息</FONT></P>
+<P><FONT size=3>--automated&nbsp; 只列出automated build类型镜像</FONT></P>
+<P><FONT color=#ff0000 size=3>docker pull images:tag</FONT></P>
+<P><FONT size=3><FONT color=#ff0000>docker rmi images:tag</FONT> 
+删除镜像</FONT><FONT size=3>-f&nbsp; 强制</FONT></P>
+<P><FONT color=#ff0000 size=3>docker&nbsp; run&nbsp; 
+images&nbsp;&nbsp;&nbsp;实例化镜像生成容器</FONT></P>
+<P><FONT size=3>--name&nbsp;&nbsp; 命名</FONT></P>
+<P><FONT size=3>-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 后台启动</FONT></P>
+<P><FONT size=3>-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 添加本地目录映射到容器目录&nbsp; 
+可以一对多映射</FONT></P>
+<P><FONT size=3>-i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 交互式</FONT></P>
+<P><FONT size=3>-t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开启伪终端</FONT></P>
+<P><FONT size=3>-P&nbsp;&nbsp;&nbsp; 随机端口</FONT></P>
+<P><FONT size=3>-p&nbsp;&nbsp;&nbsp; 指定端口：物理机的7788：容器的8888</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; ip:物理机短裤:容器端口</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; ip:容器端口</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; 物理端口：容器端口</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; 容器端口</FONT></P>
+<P><FONT size=3>docker run -it --name cc centos</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>docker ps&nbsp; 查看运行状态的容器</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; -a&nbsp;&nbsp;&nbsp; 　所有的容器</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; -l&nbsp;&nbsp;　　上次的容器</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; -ｎ 3&nbsp;&nbsp;　 
+上３次的容器　（除删除操作的）</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp; -ｑ 　　　静默模式　只显示ＩＤ</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp; --no-trunc&nbsp; 全显示信息</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>exit&nbsp; <FONT color=#ff0000>关闭并退出</FONT></FONT></P>
+<P><FONT size=3>ctrl +p+q&nbsp; <FONT color=#ff0000>正常退出</FONT></FONT></P>
+<P><FONT size=3>docker attach 容器ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT 
+color=#ff0000>进入运行中的容器，恢复容器终端</FONT></FONT></P>
+<P><FONT size=3>docker exec -t&nbsp;容器id&nbsp;&nbsp; 
+命令&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT color=#ff0000>不进入容器执行命令</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker start&nbsp;&nbsp;容器ID&nbsp;&nbsp;&nbsp;<FONT 
+color=#ff0000> 启动容器</FONT></FONT></P>
+<P><FONT size=3>docker restart&nbsp;容器ID&nbsp;&nbsp;&nbsp; 重启</FONT></P>
+<P><FONT size=3>docker stop&nbsp;&nbsp;容器id </FONT></P>
+<P><FONT size=3>docker&nbsp; kill&nbsp;容器id</FONT></P>
+<P><FONT size=3>docker&nbsp; rm&nbsp;容器id&nbsp;&nbsp;&nbsp;<FONT color=#ff0000> 
+删除容器</FONT>&nbsp; -f </FONT></P>
+<P><FONT size=3>docker rm -f `docker ps 
+-aq`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 删除全部容器</FONT></P>
+<P><FONT size=3>docker ps -aq |xargs docker rm -f&nbsp;&nbsp; &nbsp; 
+删除全部容器</FONT></P>
+<P><FONT size=3>docker logs -f -t --tail 
+5&nbsp;容器ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT 
+color=#ff0000>查看容器5条日志</FONT></FONT></P>
+<P><FONT size=3>docker top&nbsp; 容器id&nbsp;&nbsp; 看容器top</FONT></P>
+<P><FONT size=3>docker inspect&nbsp;容器id&nbsp;&nbsp;&nbsp;<FONT 
+color=#ff0000>看容器内部配置细节</FONT>&nbsp;</FONT></P>
+<P><FONT size=3>docker 
+cp&nbsp;容器id:/dir/filename&nbsp;&nbsp;宿主机dir&nbsp;&nbsp;&nbsp;从容器里<FONT 
+color=#ff0000>拷贝资料</FONT>出来</FONT>&nbsp; </P>
+<P><FONT size=3>docker commit -m="备注信息" -a="作者" 容器id&nbsp;&nbsp; 
+组名/新镜像名：tag&nbsp;&nbsp;&nbsp; <FONT color=#ff0000>生成新镜像</FONT></FONT></P>
+<P><FONT size=3>docker commit -m="test" -a="phonit"&nbsp;&nbsp;容器ID 
+&nbsp;phonit/centos:1.2</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>commit 与build 的区别</FONT> </FONT></P>
+<P><FONT color=#ff0000 
+size=3>添加数据卷的方式有两种，第一种是直接通过命令行挂载，第二种是通过dockerFile添加</FONT></P>
+<P><FONT color=#ff0000 size=3>命令行挂载</FONT></P>
+<P><FONT size=3>docker&nbsp;exec &nbsp;-it&nbsp;容器id /bin/bash&nbsp; &nbsp; 
+&nbsp;打开容器</FONT></P>
+<P><FONT size=3>docker run -it -v /宿主机绝对目录:/容器内目录:rw&nbsp;&nbsp; -v 
+/宿主机绝对目录2:/容器内目录2:rw&nbsp; 镜像名&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<FONT 
+color=#ff0000> 添加共享目录</FONT></FONT></P>
+<P><FONT size=3>docker run -it -v&nbsp; /host_data:/container_data:rw &nbsp; 
+tomcat /bin/bash</FONT></P>
+<P><FONT size=3>docker exec -t&nbsp;容器ID &nbsp;ls 
+/container_data&nbsp;&nbsp;&nbsp; 查看容器目录</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>dockerFile添加</FONT></P>
+<P><FONT color=#000000 size=3>vi filename</FONT></P>
+<P><FONT size=3>FROM 镜像名</FONT></P>
+<P><FONT size=3>VOLUME ["/dir","/dir"]&nbsp; 
+--privileged=true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+实时更新的共享目录，只要有一个容器主机数据改动，其他数据都实时更新</FONT></P>
+<P><FONT size=3>CMD echo "mkdir ok"</FONT></P>
+<P><FONT size=3>CMD /bin/bash</FONT></P>
+<P><FONT size=3>docker build -f filename -t 
+test/centos:1.0&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;生成新镜像, .是当前配置文件的路径</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>docker run -it --name 01 
+test/centos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+生成第一台容器</FONT></P>
+<P><FONT size=3>docker run -it --name 02--volumes-from 01 
+test/centos&nbsp;&nbsp;&nbsp;生成第二台容器 </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

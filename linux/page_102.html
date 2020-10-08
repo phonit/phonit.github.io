@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>bgp</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>BGP概叙&nbsp; tcp 179端口</FONT></P>
+<P><FONT size=3>不发现链路拓扑， 只传递路由信息</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>特点</FONT></P>
+<P><FONT size=3>支持CIDR 无类域间路由</FONT></P>
+<P><FONT size=3>增量更新</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>无环路</FONT></P>
+<P><FONT size=3>AS之间， 外部过来带有本地AS号将丢弃&nbsp; EBGP</FONT></P>
+<P><FONT size=3>AS内部，AS内部学到的路由不在通告给AS内部BGP邻居。 IBGP</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>路由策略丰富</FONT></P>
+<P><FONT size=3>防路由震荡</FONT></P>
+<P><FONT size=3>易于扩展</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>1-64511 互联网使用&nbsp;&nbsp; 64512-65535 私有网络使用</FONT></P>
+<P><FONT size=3>需要两端路由器建立<FONT color=#ff0000>TCP连接后，运行BGP，即<FONT 
+size=5>IP可达就可以创建BGP。BGP发布路由一定是需要IGP协议中存在有该路由信息才可以</FONT>。</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>IBGP</FONT>&nbsp; 使用环回口IP</FONT></P>
+<P><FONT size=3>peer&nbsp;目标环回IP as-number 目标AS号</FONT></P>
+<P><FONT size=3>peer 目标环回IP&nbsp; connect-interface 
+本地环回IP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 目的IP&nbsp; 本地环回源IP</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>EBGP</FONT>&nbsp; </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>使用直连接口IP&nbsp; 默认<FONT color=#ff0000>ebgp-max-hop为1&nbsp; 
+</FONT></FONT></P>
+<P><FONT color=#000000 size=3>peer&nbsp;目标环回IP as-number 目标AS号</FONT></P>
+<P><FONT size=3>peer 目标环回IP&nbsp; connect-interface 本地环回IP</FONT></P>
+<P><FONT color=#ff0000 size=3>使用环回口&nbsp; </FONT></P>
+<P><FONT color=#000000 size=3>先配置环回口的路由</FONT></P>
+<P><FONT size=3>后配置peer</FONT></P>
+<P><FONT color=#ff0000 size=3>ebgp-max-hop 2</FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>open报文，包括BGP版本，AS号，建立TCP后交换OPEN信息形成邻居关系</FONT></P>
+<P><FONT size=3>update报文，交换路由信息，包括可达和撤销的路由信息以及各种路由属性</FONT></P>
+<P><FONT size=3>keepalive报文, 保持邻居关系，判断对等体可达性</FONT></P>
+<P><FONT size=3>notification报文，差错通知，BGP Speak发送一个该报文，随后相关的邻居关系将被关闭</FONT></P>
+<P><FONT size=3>route-refresh报文，更新对等体路由信息</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>BGP工作流程</FONT></P>
+<P><FONT size=3>连接TCP后， 发送open报文建立BGP邻居关系</FONT></P>
+<P><FONT size=3>邻居后，有路由更新信息，发送update报文通告给对端</FONT></P>
+<P><FONT size=3>稳定后，定时发送keepalive报文保持BGP连接</FONT></P>
+<P><FONT size=3>当本地发现BGP错误后，发送notification通告BGP对等体</FONT></P>
+<P><FONT size=3>route-refresh消息通知对等体给我一份BGP路由信息，<FONT 
+color=#ff0000>不建议</FONT><FONT color=#ff0000>使用</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT 
+size=3>idle（peer操作）---connect(准备TCP连接，发送open)----active(1、状态TCP连接还未完成)------opensent（收到open,或者出现TCP的error回到active后，建立TCP后，重收open）------openconfirm（发送keepalive）----establieshed（收到keepalive）</FONT></P>
+<P><FONT size=3>每个过程出现错误后，回到idle状态</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>路由交互原则：</FONT></P>
+<P><FONT color=#000000 size=3>IBGP路由，只发布给EBGP，</FONT></P>
+<P><FONT color=#ff0000 size=3><FONT 
+color=#000000>从IBGP学到的路由不同再通告给IBGP</FONT>，就叫水平分割；需要设置全互联。</FONT></P>
+<P><FONT color=#000000 size=3>EBGP,通告给所有EBGP和IBGP</FONT></P>
+<P><FONT color=#000000 size=3>只将最优路由发布给对等体</FONT></P>
+<P><FONT color=#000000 size=3>只发送更新BGP路由</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=5>BGP同步 防止黑洞</FONT></P>
+<P><FONT size=3>IBGP发布路由是否通告给EBGP是需要依据IGP和BGP同步情况来决定。</FONT></P>
+<P><FONT size=3>注：IGP协议中有路由才可以被中间路由器转发，才可以通告给EBGP有效。</FONT></P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">解决路由黑洞的方法有：</P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">1、在AS内使用物理线路的全互连，Full 
+Mesh</P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">2、在AS内IBGP的对等体邻接关系的全互连，逻辑Full 
+Mesh</P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">3、将AS内部的边缘路由器上的BGP路由重分发进IGP中</P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">4、在AS内部的边缘路由器之间建立Tunnel</P>
+<P 
+style="LIST-STYLE-TYPE: none; FONT-SIZE: 14px; BORDER-TOP: 0px; FONT-FAMILY: simsun; BORDER-RIGHT: 0px; WHITE-SPACE: normal; WORD-SPACING: 0px; BORDER-BOTTOM: 0px; TEXT-TRANSFORM: none; WORD-BREAK: normal; FONT-WEIGHT: 400; COLOR: rgb(73,73,73); PADDING-BOTTOM: 0px; FONT-STYLE: normal; TEXT-ALIGN: left; PADDING-TOP: 0px; PADDING-LEFT: 0px; BORDER-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 5px; LETTER-SPACING: normal; LINE-HEIGHT: 21px; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(226,226,226); TEXT-INDENT: 0px; overflow-wrap: normal; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial">5、在AS内所有路由器上启用MPLS</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>从<FONT color=#ff0000>EBGP学习到的路由发布到IGP</FONT>中，需要在边界设备BGP中设置 
+<FONT color=#ff0000>peer 其他IGP的loopback地址</FONT>路由设置</FONT><FONT color=#ff0000 
+size=5>next-hop-local ，IGP当中该路由才正常&nbsp;&nbsp; </FONT><FONT size=3>peer 
+ibgp_loop0 next_hop_local</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=4>BGP路由表种类</FONT></P>
+<P><FONT size=3>IP路由表&nbsp;&nbsp; 全局转发数据使用</FONT></P>
+<P><FONT size=3>dis ip route-table</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>bgp路由表</FONT></P>
+<P><FONT size=3>dis bgp route-table&nbsp;&nbsp; 带&gt;的路由信息都更新IP路由表中</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>邻居表</FONT></P>
+<P><FONT size=3>dis bgp peer&nbsp; 对等体邻居</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>RR反射器</FONT></P>
+<P><FONT size=3>不一定参与数据转发：分层RR，2级RR---1级RR、客户端-----客户端</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>反射规则：</FONT></P>
+<P><FONT size=3>从EBGP学到的路由，发布给所有的 非client 和 client</FONT></P>
+<P><FONT size=3>从非client IBGP学到的路由，发布给RR所有的client</FONT></P>
+<P><FONT size=3>从client 学到的路由，发布给RR的所有非client和client</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>反射器组网</FONT>的几种方式</FONT></P>
+<P><FONT size=3>client 只维护RR的IBGP</FONT></P>
+<P><FONT size=3>RR之间需要建立IBGP全互联</FONT></P>
+<P><FONT size=3>NOclient之间需要全互联</FONT></P>
+<P><FONT size=3>RR与NOclient之间建立IBGP全互联</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>RR会反射路由器上所有路由信息</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>RR防环</FONT></P>
+<P><FONT size=3>originator_id&nbsp;&nbsp; RR之间防环</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>RR多个分簇：cluster_list&nbsp;&nbsp;&nbsp;&nbsp; RR外部之间防环</FONT></P>
+<P><FONT size=3>cluster_list&nbsp; RR将cluster—id添加到list当中，如果有就丢弃</FONT></P>
+<P><FONT size=3>簇与簇之间RR全互联</FONT></P>
+<P><FONT size=3>默认cluster—id等于router—id</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>路由聚合</FONT></P>
+<P><FONT size=3>自动聚合 路由汇总&nbsp; 不建议</FONT></P>
+<P><FONT size=3>对BGP引入路由进行有类聚合</FONT></P>
+<P><FONT size=3>明细路由不传递</FONT></P>
+<P><FONT size=3>不对network进行聚合</FONT></P>
+<P><FONT size=3>对引入路由聚合</FONT></P>
+<P><FONT size=3>summary automatic&nbsp; 始发者路由器上配置命令&nbsp;&nbsp; 
+多个明细路由合并&nbsp;&nbsp; 不建议</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3>手动聚合 </FONT></P>
+<P><FONT size=3>aggregate 100.1.0.0 16&nbsp; 手动聚合</FONT></P>
+<P><FONT size=3>aggregate 100.1.0.0 16&nbsp; 
+detail-suppressed&nbsp;&nbsp;&nbsp;as-set&nbsp;不发布聚合后的明细路由,合并后路由保留AS-PATH所有属性</FONT>&nbsp;&nbsp;&nbsp; 
+</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>按组打包&nbsp; 配置在RR上</FONT></P>
+<P><FONT size=3>group name internal</FONT></P>
+<P><FONT size=3>peer ip&nbsp; group</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>dis ip route protocal bgp&nbsp; 查看bgp学习到的路由</FONT></P>
+<P><FONT size=3>dis bgp peer&nbsp; 查看的是建立bgp邻居关系</FONT></P>
+<P><FONT size=3>dis bgp routing-table&nbsp; &gt;表示最优路由</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>bgp 100</FONT></P>
+<P><FONT size=3>peer IP 
+ingore&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;手动关闭peer</FONT></P>
+<P><FONT size=3>network&nbsp; IP段 
+掩码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 是把从</FONT><FONT 
+color=#ff0000 size=5>直连、静态、IGP协议中网段发布到BGP中，掩码必须和IGP中严格一致。</FONT></P>
+<P><FONT size=3>import 
+ospf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 发布ospf路由到BGP</FONT></P>
+<P><FONT size=3>peer 10.2.2.2 reflect-client&nbsp;&nbsp; RR上设置客户端</FONT></P>
+<P><FONT size=3>summary 
+automatic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路由自动聚合&nbsp; 多个明细路由合&nbsp;&nbsp; 
+不建议</FONT></P>
+<P><FONT size=3>aggregate 100.1.0.0 16 手动聚合</FONT></P>
+<P><FONT size=3>aggregate 100.1.0.0 16&nbsp; 
+detail-suppressed&nbsp;as-set&nbsp;不发布聚合后的明细路由</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>debugging bgp event</FONT></P>
+<P><FONT size=3>debugging bgp packet</FONT></P>
+<P><FONT size=3>undo debugging all</FONT></P>
+<P><FONT size=3>reset bgp all&nbsp;&nbsp; 危险命令</FONT></P>
+<P><FONT size=3>refresh bgp all import/export&nbsp; 危险命令&nbsp; 更新BGP</FONT></P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>xen</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT color=#ff0000 size=4>xen分类</FONT></P>
+<P><FONT size=4>xen hyervisor</FONT></P>
+<P><FONT size=4>xen cloud platform</FONT></P>
+<P><FONT size=4>xen server</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>硬件驱动分为2段，front 在domain U guest上，backend 在domain 
+0上,使用时调用硬件驱动back后半段，</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>xen control software</FONT></P>
+<P><FONT size=3>安装方式一：</FONT><FONT size=3>xcp ，自带domain0和os</FONT></P>
+<P><FONT size=3>方式二：linux+xen</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>cat /proc/xen/capabilities <BR>control_d&nbsp;&nbsp; 
+表示xend启动</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>使用bootloader,pygrub</FONT></P>
+<P><FONT size=3>使用dom0上kernel和ramdisk引导</FONT></P>
+<P><FONT size=3>使用自定义安装</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>虚拟机安装</FONT></P>
+<P><FONT size=3>镜像硬盘文件创建</FONT></P>
+<P><FONT size=3>dd if=/dev/zere of=/tmp/test.img bs=1M seek=2048 
+count=1&nbsp;&nbsp;&nbsp; 创建2G硬盘镜像文件 实际1M文件大小</FONT></P>
+<P><FONT size=3>ls -h /tmp/test.img</FONT></P>
+<P><FONT size=3>du -sh /tmp/test.img</FONT></P>
+<P><FONT size=3>mkfs.xfs /tmp/test.img</FONT></P>
+<P><FONT size=3>mount -o loop /tmp/test/img /mnt</FONT></P>
+<P><FONT 
+size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</FONT></P>
+<P><FONT size=3>cat /etc/xen/test</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>builder = "generic"</FONT></P>
+<P><FONT size=3>ame = "a"</FONT><FONT size=3><BR>kernel = 
+"/boot/vmlinuz"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 从光盘拷贝过来&nbsp;&nbsp; 
+原因：原生、未编译<BR>ramdisk = "/boot/initrd.img"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+从光盘拷贝过来&nbsp;&nbsp; 原因：原生、未编译<BR>extra = "root=/dev/xvda rw init=/bin/bash"</P>
+<P>memory = 512</P>
+<P>vcpus = 1</P>
+<P>#vif = [ '' ]</P>
+<P>disk = [ '/xen/vm1/box.img,raw,xvda,rw' ]</P>
+<P>&nbsp;</P>
+<P>xl create -c test&nbsp;&nbsp; 开机</P>
+<P>xl destory a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 关闭</P>
+<P>xl -v save a bb.save&nbsp;&nbsp; 生成快照</P>
+<P>xl restore bb.save&nbsp;&nbsp;&nbsp;&nbsp; 恢复快照</P>
+<P>xl vnet-list a</P>
+<P>virsh iface-bridge ens33 br0&nbsp; 桥接</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

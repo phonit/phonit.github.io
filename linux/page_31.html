@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>命令跟踪执行</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>观察如何程序如何运行和哪些系统调用 <FONT color=#ff0000>排障</FONT></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>strace -o /tmp/strace.txt -p PID&nbsp;&nbsp; 查看进程的执行的系统调用 system 
+call</FONT></P>
+<P><FONT size=3>strace -p pid&nbsp;&nbsp;&nbsp; <FONT 
+color=#ff0000>追踪打开</FONT>的进程</FONT></P>
+<P><FONT size=3>strace -c cmd&nbsp;&nbsp; 查看<FONT 
+color=#ff0000>命令</FONT>执行哪些<FONT color=#ff0000>系统调用</FONT></FONT></P>
+<P><FONT size=3>strace&nbsp; -c -p pid </FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>strace cat /etc/fstab 带（）都是系统调用</FONT></P>
+<P>execve&nbsp; 执行命令 cat</P>
+<P>mmap&nbsp; 开辟内存空间映射</P>
+<P>access&nbsp; 查找打开库信息文件&nbsp; preload</P>
+<P>open&nbsp;&nbsp; 打开库缓存分析的结果</P>fstat&nbsp;&nbsp; 文件权限 
+<P>read&nbsp;&nbsp; 读取文件</P>
+<P>write&nbsp;&nbsp; 写入文件到tty</P>
+<P>&nbsp;</P>
+<P><FONT size=3>strace -c cat /etc/fstab&nbsp; <FONT color=#ff0000>追踪执行时间分析 
+查询时间消耗</FONT></FONT></P>
+<P><FONT color=#ff0000 size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

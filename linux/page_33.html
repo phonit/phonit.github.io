@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>网络调优</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV>
+<DIV id=titlerow>
+<H1 class=dtH1>网络调优</H1></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>
+<P><FONT color=#ff0000>arp cache</FONT></P>
+<P><FONT color=#000000>cat /proc/net/arp 默认arp解析软限制512条 硬限制1024</FONT></P>
+<P>ip neighbor list&nbsp;&nbsp; 查看缓存条目&nbsp;arp -a</P>
+<P><FONT size=3>ip neighbor flush dev ens33&nbsp; 清理arp </FONT></P>
+<P>&nbsp;</P>
+<P>net.ipv4.neigh,default.gc_thresh1&nbsp; 缓存arp条目<FONT 
+color=#ff0000>少于</FONT>该数量 则<FONT color=#ff0000>不回收</FONT>arp cache</P>
+<P>net.ipv4.neigh,default.gc_thresh2&nbsp;&nbsp; <FONT 
+color=#ff0000>软限制数量</FONT>&nbsp;</P>
+<P>net.ipv4.neigh,default.gc_thresh3&nbsp;&nbsp; 硬限制数量&nbsp;</P></FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>net.ipv4.neigh.default.gc_intreval&nbsp; 每隔几秒内清理arp时间 ttl过期 
+和超出软限制的arp </FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></BODY></HTML>

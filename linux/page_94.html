@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>ospf</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>通过设置端口的cost值，指定流量出接口。cost 越小 越优先。DR值越大，越优先选DR</FONT></P>
+<P><FONT size=3>lsa&nbsp; 网络状态通告，就是网络拓扑信息。</FONT></P>
+<P><FONT size=3>ospf只和区域有关系，与进程无关，进程本地有意义。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>每2个路由器形成一个广播域，每个广播域选举一个DR和BDR。但是最多3个</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>OSPF三张表</FONT></P>
+<P><FONT size=3>邻居表：建立全毗邻居关系表</FONT></P>
+<P><FONT size=3>链路状态数据库&nbsp; LSDB，存储lsa拓扑信息，</FONT></P>
+<P><FONT size=3>ospf路由表 基于spf计算 得到的路由表</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>ospf报文</FONT></P>
+<P><FONT size=3>hello&nbsp;&nbsp;&nbsp; 建立邻居关系</FONT></P>
+<P><FONT size=3>DBD&nbsp;&nbsp;&nbsp; LSDB里的lsa头部描叙信息</FONT></P>
+<P><FONT size=3>lsr&nbsp;&nbsp;&nbsp;&nbsp; 向邻居请求链路信息</FONT></P>
+<P><FONT size=3>lsu&nbsp;&nbsp;&nbsp;&nbsp; 请求回复的链路状态更新，包括一条或多条</FONT></P>
+<P><FONT size=3>lsack&nbsp;&nbsp; 对 lsu的lsa确认</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>dis ospf peer&nbsp; 查ospf 路由</FONT></P>
+<P><FONT size=3>&nbsp; OSPF Process 1 with Router ID 10.0.0.2<BR>&nbsp;&nbsp; 
+Neighbors </FONT></P>
+<P><FONT size=3>&nbsp;Area 0.0.0.0 interface 2.2.2.2(Vlanif12)'s 
+neighbors<BR>&nbsp;Router ID: 
+10.0.0.1&nbsp;&nbsp;&nbsp;&nbsp;对方&nbsp;&nbsp;&nbsp;&nbsp; Address: 
+2.2.2.1&nbsp;&nbsp;&nbsp;对方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <BR>&nbsp;&nbsp; 
+State: Full&nbsp;我与邻居状态全稳态 &nbsp;Mode:Nbr is&nbsp; Slave 对方是从&nbsp; Priority: 
+1&nbsp; 邻居优先级 1<BR>&nbsp;&nbsp; DR: 2.2.2.2&nbsp; BDR: 2.2.2.1&nbsp; MTU: 
+0&nbsp;&nbsp;&nbsp; <BR>&nbsp;&nbsp; Dead timer due in 28&nbsp; sec 
+<BR>&nbsp;&nbsp; Retrans timer interval: 5 <BR>&nbsp;&nbsp; Neighbor is up for 
+00:00:38&nbsp;&nbsp;&nbsp;&nbsp; <BR>&nbsp;&nbsp; Authentication Sequence: [ 0 ] 
+</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>网络类型&nbsp;&nbsp;&nbsp;ospf根据接口不同封装类型分类</FONT></P>
+<P><FONT size=3>点到点</FONT></P>
+<P><FONT size=3>广播多路访问</FONT></P>
+<P><FONT size=3>非广播多路访问</FONT></P>
+<P><FONT size=3>p2mp</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>DR主路由器 &nbsp; BDR&nbsp;备份路由器、DR OTHER</FONT></P>
+<P><FONT size=3>DR other 只可以与 DR 
+和BDR建立邻居关系，other之间不可以建立关系。OTHER之间状态保持在2-way状态</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>DR选举优先级 dr非抢占模式，后加入的路由器自动认DR。</FONT></P>
+<P><FONT size=3>DR值越大，第二大为BDR，</FONT></P>
+<P><FONT size=3>比较route ID 大</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>LSA泛洪 路由变化的工作流程</FONT></P>
+<P><FONT size=3>r3路由器变更后， 发送LSU（中有LSA拓扑信息）组播224.0.0.6 给DR和BDR，DR发送 LSU 
+组播224.0.0.5 给所有其他路由变更</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>ospf多区域</FONT> area0 area1 .....&nbsp; 
+为了减少LSA泛洪，</FONT><FONT size=3>&nbsp;</FONT></P>
+<P><FONT size=3>area0 为主干区域，所有其他区域必须与area0直连。</FONT></P>
+<P><FONT size=3>internal router&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+&nbsp;区域内路由器&nbsp;&nbsp;&nbsp; area1在里</FONT></P>
+<P><FONT size=3>area border router&nbsp;&nbsp; 区域边界路由器ABR&nbsp; ，连接area0 
+和其他area的2个或者多个区域的路由器</FONT></P>
+<P><FONT size=3>backbone router&nbsp;&nbsp;&nbsp; &nbsp;骨干路由器&nbsp; &nbsp; 
+area0里</FONT></P>
+<P><FONT size=3>AS boudary router&nbsp;&nbsp;&nbsp; 
+AS边界路由器ASBR&nbsp;&nbsp;&nbsp; 链接到非area0其他AS的路由器</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>ospf命令 </FONT></P>
+<P><FONT size=3>ospf id&nbsp;&nbsp;&nbsp; id只在本地有效，是进程ID 
+，和其他路由ID没有任何关系</FONT></P>
+<P><FONT size=3>ospf router-id&nbsp;&nbsp;&nbsp; 指定路由器ID&nbsp;&nbsp; 
+需要配置</FONT></P>
+<P><FONT size=3>network&nbsp;&nbsp;&nbsp;&nbsp; 是在区域中<FONT 
+color=#ff0000>激活网段</FONT>，<FONT color=#ff0000>不是公告</FONT>网段出去。</FONT></P>
+<P><FONT size=3><FONT color=#ff0000>dis ospf interface GigabitEthernet 
+0/0/1&nbsp; 查看ospf端口上的配置</FONT><BR></FONT></P>
+<P><FONT size=3>ospf cost 9&nbsp; 进入到g0/0/1下修改cost值</FONT></P>
+<P><FONT size=3>ospf dr-priority 255&nbsp; 进入接口手动选择DR 255最大， 0永远不选举</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>查看和验证命令</FONT></P>
+<P><FONT size=3>dis ospf peer</FONT></P>
+<P><FONT size=3>dis ospf brief</FONT></P>
+<P><FONT size=3>dis ospf lsdb</FONT></P>
+<P><FONT size=3>dis ospf routing</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>ospf 多区域配置</FONT></P>
+<P><FONT size=3>#<BR>ospf 1 router-id 1.1.1.1<BR>&nbsp;area 0.0.0.0<BR>&nbsp; 
+network 1.1.1.0 0.0.0.3<BR>&nbsp;area 0.0.0.1<BR>&nbsp; network 3.3.3.0 
+0.0.0.3<BR>#</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>&nbsp;</P>
+<P><BR></P></FONT></BODY></HTML>

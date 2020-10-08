@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>用户管理</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3>用户格式&nbsp; </FONT><A href="mailto:user@'ip/mask'"><FONT 
+color=#000000 size=3>user@'ip/mask'</FONT></A></DIV>
+<DIV><A href="mailto:user@'10.0.0.5%'"><FONT color=#000000 
+size=3>user@'10.0.0.5%'</FONT></A><FONT color=#000000 
+size=3>&nbsp;&nbsp;&nbsp;&nbsp; 50-59</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>show privileges;&nbsp; 查看登录的用户权限</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>查询用户</FONT></DIV>
+<DIV><FONT size=3>select user,host,authentication_string from 
+mysql.user;</FONT></DIV>
+<DIV><FONT size=3>select * from mysql.user where user='xxzx1'<FONT 
+color=#ff0000>\G</FONT>;</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>增加用户</FONT></DIV>
+<DIV><FONT size=3>create user <A 
+href="mailto:new@'localhost'">new@'localhost'</A>;</FONT></DIV>
+<DIV><FONT size=3>create user <A href="mailto:new@'localhost'"><FONT 
+color=#0066cc>new@'localhost'</FONT></A>&nbsp;identified by 
+'password'</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>改用户密码</FONT></DIV>
+<DIV><FONT size=3>alter&nbsp; user&nbsp; <A 
+href="mailto:new@'localhost'">new@'localhost'</A>&nbsp; identified by 
+'password';</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>删除用户</FONT></DIV>
+<DIV><FONT size=3>drop user <A 
+href="mailto:new@'localhost'">new@'localhost'</A>;</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>密码文件</FONT></DIV>
+<DIV><FONT size=3>data/mysql/3306/mysql/user.MYD</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>授权&nbsp; show privileges 里的权限；</FONT></DIV>
+<DIV><FONT size=3>grant 权限1，权限2 &nbsp;on&nbsp;表 to&nbsp; 用户&nbsp; identified 
+by&nbsp;'password' with grant option; 给别的用户添加权限。</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>查看授权表</FONT></DIV>
+<DIV><FONT size=3>columns_priv&nbsp; 列的授权</FONT></DIV>
+<DIV><FONT 
+size=3>db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+库的授权</FONT></DIV>
+<DIV><FONT size=3>tables_priv&nbsp;&nbsp;&nbsp; 表的授权</FONT></DIV>
+<DIV><FONT 
+size=3>user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+*.*</FONT></DIV>
+<DIV><FONT size=3>show grants for </FONT><A 
+href="mailto:xxzx1@'192.168.2.%'"><FONT 
+size=3>xxzx1@'192.168.2.%'</FONT></A><FONT size=3>;</FONT></DIV>
+<DIV><FONT size=3>select * from mysql.db where </FONT><A 
+href="mailto:user='xxzx'@'192.168.2.%'"><FONT 
+size=3>user='xxzx'@'192.168.2.%'</FONT></A><FONT size=3>&nbsp;\G;&nbsp; 
+普通用户授权看不到；</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>回收权限</FONT></DIV>
+<DIV><FONT size=3>revoke 权限 on 表 to 用户；</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV></BODY></HTML>

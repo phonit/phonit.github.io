@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>git流程</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>git remote add &lt;name&gt; &lt;url&gt;<BR>git remote add 
+phonit </FONT><A href="https://github.com/phonit/phonit.github.io"><FONT 
+size=3>https://github.com/phonit/phonit.github.io</FONT></A><BR><FONT size=3>git 
+push --set-upstream phonit master&nbsp; 上传到master分支</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>方法大全<BR>&nbsp;</FONT><A 
+href="https://www.cnblogs.com/miracle77hp/articles/11163532.html"><FONT 
+size=3>https://www.cnblogs.com/miracle77hp/articles/11163532.html</FONT></A></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><IMG style="HEIGHT: 262px; WIDTH: 719px" src="bg2015120901.png" width=1172 
+height=341></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT size=3>一、新建代码库</FONT></DIV>
+<DIV><FONT size=3>&nbsp;# 在当前目录新建一个Git代码库<BR>&nbsp;$ git init<BR>&nbsp; <BR># 
+新建一个目录，将其初始化为Git代码库<BR>&nbsp;$ git init [project-name]<BR>&nbsp; <BR># 
+下载一个项目和它的整个代码历史<BR>&nbsp;$ git clone [url]</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>二、配置<BR>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。 
+<BR>&nbsp;<BR># 显示当前的Git配置 <BR>$ git config --list <BR>&nbsp;<BR># 编辑Git配置文件 
+<BR>$ git config -e [--global]<BR>&nbsp;<BR># 设置提交代码时的用户信息 <BR>$ git config 
+[--global] user.name "[name]" <BR>$ git config [--global] user.email "[email 
+address]"</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>三、增加/删除文件 <BR># 添加指定文件到暂存区 <BR>$ git add [file1] [file2] ... 
+<BR>&nbsp;<BR># 添加指定目录到暂存区，包括子目录 <BR>$ git add [dir] <BR>&nbsp;<BR># 
+添加当前目录的所有文件到暂存区 <BR>$ git add . <BR>&nbsp;<BR># 添加每个变化前，都会要求确认 <BR># 
+对于同一个文件的多处变化，可以实现分次提交 <BR>$ git add -p <BR>&nbsp;<BR># 删除工作区文件，并且将这次删除放入暂存区 
+<BR>$ git rm [file1] [file2] ... <BR>&nbsp;<BR># 停止追踪指定文件，但该文件会保留在工作区 <BR>$ git 
+rm --cached [file] <BR>&nbsp;<BR># 改名文件，并且将这个改名放入暂存区 <BR>$ git mv 
+[file-original] [file-renamed]</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>四、代码提交 <BR># 提交暂存区到仓库区 <BR>$ git commit -m [message] 
+<BR>&nbsp;<BR># 提交暂存区的指定文件到仓库区 <BR>$ git commit [file1] [file2] ... -m [message] 
+<BR>&nbsp;<BR># 提交工作区自上次commit之后的变化，直接到仓库区 <BR>$ git commit -a<BR>&nbsp;<BR># 
+提交时显示所有diff信息 <BR>$ git commit -v <BR>&nbsp;<BR># 使用一次新的commit，替代上一次提交&nbsp;, 
+如果代码没有任何新变化，则用来改写上一次commit的提交信息 <BR>$ git commit --amend -m [message] 
+<BR>&nbsp;<BR># 重做上一次commit，并包括指定文件的新变化 <BR>$ git commit --amend [file1] [file2] 
+...</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3><BR>五、分支 <BR># 列出所有本地分支 <BR>$ git branch<BR>&nbsp; <BR># 
+列出所有远程分支 <BR>$ git branch -r <BR>&nbsp;<BR># 列出所有本地分支和远程分支 <BR>$ git branch -a 
+<BR>&nbsp;<BR># 新建一个分支，但依然停留在当前分支 <BR>$ git branch [branch-name]<BR>&nbsp;<BR># 
+新建一个分支，并切换到该分支 <BR>$ git checkout -b [branch]<BR>&nbsp; <BR># 新建一个分支，指向指定commit 
+<BR>$ git branch [branch] [commit] <BR>&nbsp;<BR># 新建一个分支，与指定的远程分支建立追踪关系 <BR>$ 
+git branch --track [branch] [remote-branch] <BR>&nbsp;<BR>#<FONT color=#ff0000> 
+切换到指定分支，并更新工作区</FONT> <BR>$ git checkout [branch-name] <BR>&nbsp;<BR># 切换到上一个分支 
+<BR>$ git checkout - <BR>&nbsp;<BR># 建立<FONT 
+color=#ff0000>追踪关系</FONT>，在现有分支与指定的远程分支之间 <BR>$ git branch <FONT 
+color=#ff0000>--set-upstream</FONT> [branch] [remote-branch] <BR>&nbsp;<BR># 
+合并指定分支到当前分支 <BR>$ git merge [branch]<BR>&nbsp;<BR># 选择一个commit，合并进当前分支 <BR>$ git 
+cherry-pick [commit] <BR>&nbsp;<BR># 删除分支 <BR>$ git branch -d [branch-name] 
+<BR>&nbsp;<BR># 删除远程分支 <BR>$ git push origin --delete [branch-name] <BR>$ git 
+branch -dr [remote/branch]</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>六、标签 <BR># 列出所有tag <BR>$ git tag <BR>&nbsp;<BR># 
+新建一个tag在当前commit <BR>$ git tag [tag] <BR>&nbsp;<BR># 新建一个tag在指定commit <BR>$ git 
+tag [tag] [commit] <BR>&nbsp;<BR># 删除本地tag <BR>$ git tag -d [tag] 
+<BR>&nbsp;<BR># 删除远程tag <BR>$ git push origin :refs/tags/[tagName] 
+<BR>&nbsp;<BR># 查看tag信息 <BR>$ git show [tag] <BR>&nbsp;<BR># 提交指定tag <BR>$ git 
+push [remote] [tag] <BR>&nbsp;<BR># 提交所有tag <BR>$ git push [remote] --tags 
+<BR>&nbsp;<BR># 新建一个分支，指向某个tag <BR>$ git checkout -b [branch] [tag]</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>七、查看信息 <BR># 显示有变更的文件 <BR>$ git status <BR>&nbsp;<BR># 
+显示当前分支的版本历史 <BR>$ git log <BR>&nbsp;<BR># 显示commit历史，以及每次commit发生变更的文件 <BR>$ git 
+log --stat <BR>&nbsp;<BR># 搜索提交历史，根据关键词 <BR>$ git log -S [keyword] 
+<BR>&nbsp;<BR># 显示某个commit之后的所有变动，每个commit占据一行 <BR>$ git log [tag] HEAD 
+--pretty=format:%s <BR>&nbsp;<BR># 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件 <BR>$ git 
+log [tag] HEAD --grep feature <BR>&nbsp;<BR># 显示某个文件的版本历史，包括文件改名 <BR>$ git log 
+--follow [file] <BR>$ git whatchanged [file] <BR>&nbsp;<BR># 显<FONT 
+color=#ff0000>示指定文件相关的每一次diff </FONT><BR>$ git log -p [file] <BR>&nbsp;<BR># 
+显示过去5次提交 <BR>$ git log -5 --pretty --oneline <BR>&nbsp;<BR># 显示所有提交过的用户，按提交次数排序 
+<BR>$ git shortlog -sn <BR>&nbsp;<BR># 显示指定文件是什么人在什么时间修改过 <BR>$ git blame [file] 
+<BR>&nbsp;<BR># 显示暂存区和工作区的差异 <BR>$ git diff <BR>&nbsp;<BR># 显示暂存区和上一个commit的差异 
+<BR>$ git diff --cached [file] <BR>&nbsp;<BR># 显示工作区与当前分支最新commit之间的差异 <BR>$ git 
+diff HEAD <BR>&nbsp;<BR># 显示两次提交之间的差异 <BR>$ git diff 
+[first-branch]...[second-branch] <BR>&nbsp;<BR># 显示今天你写了多少行代码 <BR>$ git diff 
+--shortstat "@{0 day ago}" <BR>&nbsp;<BR># 显示某次提交的元数据和内容变化 <BR>$ git show 
+[commit] <BR>&nbsp;<BR># 显示某次提交发生变化的文件 <BR>$ git show --name-only [commit] 
+<BR>&nbsp;<BR># 显示某次提交时，某个文件的内容 <BR>$ git show [commit]:[filename] 
+<BR>&nbsp;<BR># 显示当前分支的最近几次提交 <BR>$ git reflog</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>八、远程同步 <BR># 下载远程仓库的所有变动 <BR>$ git fetch [remote] 
+<BR>&nbsp;<BR># 显示所有远程仓库 <BR>$ git remote -v <BR>&nbsp;<BR># 显示某个远程仓库的信息 <BR>$ 
+git remote show [remote]<BR>&nbsp;<BR># 增加一个新的远程仓库，并命名 <BR>$ git remote add 
+[shortname] [url] <BR>&nbsp;<BR># 取回远程仓库的变化，并与本地分支合并 <BR>$ git pull [remote] 
+[branch]&nbsp;</FONT></DIV>
+<DIV><FONT size=3></FONT><FONT size=3><BR># 上传本地指定分支到远程仓库 <BR>$ git push 
+[remote] [branch] <BR>&nbsp;<BR># 强行推送当前分支到远程仓库，即使有冲突 <BR>$ git push [remote] 
+--force <BR>&nbsp;<BR># 推送所有分支到远程仓库 <BR>$ git push [remote] --all</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>九、撤销 <BR># 恢复暂存区的指定文件到工作区 <BR>$ git checkout [file] 
+<BR>&nbsp;<BR># 恢复某个commit的指定文件到暂存区和工作区 <BR>$ git checkout [commit] [file] 
+<BR>&nbsp;<BR># 恢复暂存区的所有文件到工作区 <BR>$ git checkout . <BR>&nbsp;<BR># 
+重置暂存区的指定文件，与上一次commit保持一致，但工作区不变 <BR>$ git reset [file]<BR>&nbsp;<BR># 
+重置暂存区与工作区，与上一次commit保持一致 <BR>$ git reset --hard<BR>&nbsp;<BR># 
+重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变 <BR>$ git reset [commit] <BR>&nbsp;<BR># 
+重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致 <BR>$ git reset --hard [commit] 
+<BR>&nbsp;<BR># 重置当前HEAD为指定commit，但保持暂存区和工作区不变 <BR>$ git reset --keep 
+[commit]<BR>&nbsp;<BR># 新建一个commit，用来撤销指定commit <BR># 后者的所有变化都将被前者抵消，并且应用到当前分支 
+<BR>$ git revert [commit]<BR>&nbsp;<BR># 暂时将未提交的变化移除，稍后再移入 <BR>$ git stash <BR>$ 
+git stash pop</FONT></DIV>
+<DIV><FONT size=3>十、其他 <BR># 生成一个可供发布的压缩包 <BR>$ git archive</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV></BODY></HTML>

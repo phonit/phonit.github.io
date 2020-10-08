@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns:o><HEAD><TITLE>进程优先级</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<P><FONT size=3>优先级，时间复杂度</FONT></P>
+<P><FONT size=3>系统优先级&nbsp;&nbsp; &nbsp;0-139 centos5&nbsp;&nbsp;&nbsp; 
+&nbsp;0-99 centos 6</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>linux 优先级：priority （越接近100 优先级越高）</FONT></P>
+<P><FONT size=3>实时比静态高</FONT></P>
+<P><FONT size=3>实时优先级(内核)&nbsp;&nbsp; realtime&nbsp;&nbsp;&nbsp; 1-99</FONT></P>
+<P><FONT size=3>静态优先级&nbsp;(用户)&nbsp;&nbsp;&nbsp; 
+nice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100-139&nbsp; (-20-19) 
+</FONT><FONT size=3></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3><FONT color=#ff0000>显示优先级</FONT> </FONT></P>
+<P><FONT size=3>ps -e -o class,rtprio,pri,nice,cmd 
+加了【】的都是内核进程&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 类型，实时优先级，静态优先级，nice值，</FONT></P>
+<P><FONT size=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</FONT></P>
+<P><FONT size=3>注，</FONT></P>
+<P><FONT size=3>top 中 PR的20表示是120</FONT></P>
+<P><FONT size=3>NI 0表示120&nbsp; -20=100</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>实时进程类别&nbsp; class</FONT></P>
+<P><FONT size=3>SCHED_FIFO&nbsp;:first in first 
+out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FF&nbsp;&nbsp; 实时优先级</FONT></P>
+<P><FONT size=3>SCHED_RR:&nbsp; round 
+robin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RR&nbsp;&nbsp; 
+实时优先级</FONT></P>
+<P><FONT size=3>SCHED_OTHER:&nbsp; 调度用户空间的100-139的&nbsp;&nbsp; &nbsp;TS 
+</FONT></P>
+<P><FONT size=3>SCHED_OTHER中有个动态优先级，长时间未被调度的进程，临时性的调高优先级运行。</FONT></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>手动调整优先级</FONT></P>
+<P><FONT size=3>nice 100-139&nbsp; (-20-19)</FONT></P>
+<P><FONT size=3>nice -n -20 ping -f 127.0.0.1&nbsp;&nbsp; 新建的</FONT></P>
+<P><FONT size=3>renice -n -10 
+pid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+修改运行中的</FONT></P>
+<P><FONT size=3>chrt -p [prio] pid</FONT></P>
+<P><FONT size=3 
+face=Helvetica><STRONG>值越小，</STRONG><STRONG>进程”优先级”越高，而值越大“优先级”越低。</STRONG></FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>chrt&nbsp; 1-99&nbsp;&nbsp; 实时优先级</FONT></P>
+<P><FONT size=3>chrt -f -p [prio]&nbsp; pid&nbsp;&nbsp; 调整 FIFO类别</FONT></P>
+<P><FONT size=3>chrt -r -p [prio]&nbsp; pid&nbsp;&nbsp; 调整RR类别&nbsp;&nbsp;&nbsp; 
+实时优先级</FONT></P>
+<P><FONT size=3>chrt -f -p [prio]&nbsp; cmd&nbsp; 实时启动一个优先级</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>

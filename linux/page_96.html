@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>mysqld 处理流程</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P><FONT size=3>处理过程</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<DIV><FONT size=3>server层：包括连接层，SQL层</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>连接层&nbsp;&nbsp;&nbsp; 处理登录，预先分配命令处理线程的工作</FONT></DIV>
+<DIV><FONT size=3>1.提供连接协议（socket,tcp/ip）</FONT></DIV>
+<DIV><FONT size=3>2.验证</FONT></DIV>
+<DIV><FONT size=3>3.提供专用连接线程</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>SQL层&nbsp;&nbsp; </FONT></DIV>
+<DIV><FONT size=3>1.语法检查</FONT></DIV>
+<DIV><FONT size=3>2.语法定义（DDL,DCL,DML,DTL.....）</FONT></DIV>
+<DIV><FONT size=3>3.权限</FONT></DIV>
+<DIV><FONT size=3>4.解析器：解析预处理过程，执行计划A（全表)，或B（索引）</FONT></DIV>
+<DIV><FONT size=3>5.优化器：选择最优计划方案（基于cost）</FONT></DIV>
+<DIV><FONT size=3>6.执行器：按优化方案执行SQL语句，得出数据在什么段，什么区，什么页</FONT></DIV>
+<DIV><FONT size=3>7.查询缓存和日志记录</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>存储引擎层&nbsp; 相当于linux的文件系统， 打开磁盘的文件交互模块</FONT></DIV>
+<DIV><FONT size=3></FONT>&nbsp;</DIV>
+<DIV><FONT size=3>磁盘层， 文件</FONT></DIV></BODY></HTML>

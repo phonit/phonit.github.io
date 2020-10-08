@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>计算机原理</TITLE>
+<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
+<META name=GENERATOR content="MSHTML 11.00.10570.1001"><LINK rel=stylesheet 
+href="_template.css"></HEAD>
+<BODY>
+<DIV id=nsbanner>
+<DIV id=bannerrow1>
+<TABLE class=bannerparthead>
+  <TBODY>
+  <TR id=hdr>
+    <TD class=runninghead noWrap></TD></TR></TBODY></TABLE></DIV></DIV>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>计算机内存大小</FONT></P>
+<P><FONT size=3>32位cpu&nbsp;&nbsp; 2^32=4G</FONT></P>
+<P><FONT size=3>64位cpu&nbsp;&nbsp; 2^64=海量内存空间</FONT></P>
+<P><EM></EM>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>通写策略&nbsp; write through</FONT></P>
+<P><FONT size=3>数据修改后需要随之修改所有cpu缓存&nbsp;内存 </FONT></P>
+<P><FONT color=#ff0000 size=3>回写&nbsp;&nbsp;&nbsp; write back</FONT></P>
+<P><FONT size=3>cpu一级缓存需要更新数据，需要腾出空间， 数据写入主存。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>DMA 直接访问内存地址</FONT></P>
+<P><FONT size=3>最底端1M给bios，cpu开机自举使用，后面预留内存低地址(最容易寻址)空间一般16M&nbsp; 
+DMA空间，</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>内核运行在环0 硬件虚拟化内核特权命令在-1上&nbsp;用户运行到环3上</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT color=#ff0000 size=3>上下文切换工作过程</FONT></P>
+<P><FONT size=3>用户模式（进程）需要使用资源，执行系统调用，切换内核模式，读取资源到内存当中，物理内存映射通过MMU 映射到<FONT 
+color=#ff0000>进程的线性内存</FONT>空间中，切换回用户模式。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>进程描述符</FONT></P>
+<P><FONT size=3>&nbsp; 进程的元数据</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3>文件系统格式化，是将硬盘分成一个个的块。</FONT></P>
+<P><FONT size=3></FONT>&nbsp;</P>
+<P><FONT size=3></FONT>&nbsp;</P></BODY></HTML>
